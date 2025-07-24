@@ -1,8 +1,21 @@
-node_modules
+# Node.js dependencies
+node_modules/
+
+# Environment variables
 .env
 .env.local
-dist
-.next
-.turbo
+
+# Build output
+dist/
+.next/
+.turbo/
+
+# Logs
 *.log
+
+# macOS system files
 .DS_Store
+
+# Documentation files
+*.md
+!README.md
