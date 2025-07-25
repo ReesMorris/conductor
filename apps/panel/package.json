@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "@conductor/panel",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,9 +14,9 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "typescript": "^5"
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "typescript": "^5.8.3"
   }
 }
