@@ -10,17 +10,8 @@
       "persistent": true,
       "cache": false
     },
-    "lint": {
+    "check": {
       "dependsOn": ["^build"]
-    },
-    "type-check": {
-      "dependsOn": ["^build"]
-    },
-    "db:generate": {
-      "cache": false
-    },
-    "db:push": {
-      "cache": false
     }
   }
 }

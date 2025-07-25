@@ -6,19 +6,13 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo dev",
     "build": "turbo build",
     "check": "turbo check",
-    "db:generate": "turbo db:generate",
-    "db:push": "turbo db:push",
+    "dev": "turbo dev",
+    "prepare": "husky",
     "syncpack:fix": "syncpack fix",
     "syncpack:format": "syncpack format",
     "syncpack:lint": "syncpack lint"
-  },
-  "devDependencies": {
-    "@types/node": "^24.1.0",
-    "syncpack": "^14.0.0-alpha.18",
-    "turbo": "^2.5.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -27,6 +21,13 @@
     "*.json": [
       "biome check --fix"
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "syncpack": "^14.0.0-alpha.18",
+    "turbo": "^2.5.5"
   },
   "packageManager": "yarn@4.9.2"
 }

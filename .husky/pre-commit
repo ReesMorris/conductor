@@ -1,0 +1,3 @@
+yarn lint-staged
+yarn syncpack fix
+yarn syncpack format
