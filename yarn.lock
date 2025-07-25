@@ -9,6 +9,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@conductor/panel@workspace:apps/panel"
   dependencies:
+    "@t3-oss/env-nextjs": "npm:^0.13.8"
     "@types/node": "npm:^24.1.0"
     "@types/react": "npm:^19.1.8"
     "@types/react-dom": "npm:^19.1.6"
@@ -16,6 +17,7 @@ __metadata:
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
     typescript: "npm:^5.8.3"
+    zod: "npm:^4.0.10"
   languageName: unknown
   linkType: soft
 
@@ -532,6 +534,50 @@ __metadata:
   dependencies:
     tslib: "npm:^2.8.0"
   checksum: 10c0/33002f74f6f885f04c132960835fdfc474186983ea567606db62e86acd0680ca82f34647e8e610f4e1e422d1c16fce729dde22cd3b797ab1fd9061a825dabca4
+  languageName: node
+  linkType: hard
+
+"@t3-oss/env-core@npm:0.13.8":
+  version: 0.13.8
+  resolution: "@t3-oss/env-core@npm:0.13.8"
+  peerDependencies:
+    arktype: ^2.1.0
+    typescript: ">=5.0.0"
+    valibot: ^1.0.0-beta.7 || ^1.0.0
+    zod: ^3.24.0 || ^4.0.0-beta.0
+  peerDependenciesMeta:
+    arktype:
+      optional: true
+    typescript:
+      optional: true
+    valibot:
+      optional: true
+    zod:
+      optional: true
+  checksum: 10c0/429a082d3c6dff9fb020b725e0fad5a08f6b210caf367e320d3a6b1835297d497aa29eb7e39018d442b03d2aa43a3361bde7dad06d8b6d0a57068adfb65bd367
+  languageName: node
+  linkType: hard
+
+"@t3-oss/env-nextjs@npm:^0.13.8":
+  version: 0.13.8
+  resolution: "@t3-oss/env-nextjs@npm:0.13.8"
+  dependencies:
+    "@t3-oss/env-core": "npm:0.13.8"
+  peerDependencies:
+    arktype: ^2.1.0
+    typescript: ">=5.0.0"
+    valibot: ^1.0.0-beta.7 || ^1.0.0
+    zod: ^3.24.0 || ^4.0.0-beta.0
+  peerDependenciesMeta:
+    arktype:
+      optional: true
+    typescript:
+      optional: true
+    valibot:
+      optional: true
+    zod:
+      optional: true
+  checksum: 10c0/1c4b62e5f15330b9bdc42857c7a76115e74987bc065e74a061a805316330e3589c7de10a924bfbe91b375363b65187f376a92a18104ab7f75c6aaef99c7ca5c3
   languageName: node
   linkType: hard
 
@@ -1937,5 +1983,12 @@ __metadata:
   version: 5.0.0
   resolution: "yallist@npm:5.0.0"
   checksum: 10c0/a499c81ce6d4a1d260d4ea0f6d49ab4da09681e32c3f0472dee16667ed69d01dae63a3b81745a24bd78476ec4fcf856114cb4896ace738e01da34b2c42235416
+  languageName: node
+  linkType: hard
+
+"zod@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "zod@npm:4.0.10"
+  checksum: 10c0/8d1145e767c22b571a7967c198632f69ef15ce571b5021cdba84cf31d9af2ca40b033ea2fcbe5797cfd2da9c67b3a6ebe435938eabfbb1d1f3ab2f17f00f443b
   languageName: node
   linkType: hard
