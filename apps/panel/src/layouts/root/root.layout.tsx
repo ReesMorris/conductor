@@ -1,3 +1,6 @@
+import 'server-only';
+
+import { AuthProvider } from '@/providers';
 import '@/theme/globals.css';
 
 interface LayoutProps {
@@ -6,8 +9,10 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <html lang='en'>
-      <body>{children}</body>
+    <html lang='en' suppressHydrationWarning>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 };
