@@ -4,7 +4,7 @@ export const styles = {
   form: css({
     display: 'flex',
     flexDirection: 'column',
-    gap: '2'
+    gap: '4'
   }),
   alert: css({
     marginBlockEnd: '4'

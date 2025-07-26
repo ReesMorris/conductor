@@ -3,11 +3,13 @@
 import { Button, Field, Form, Input } from '@/components/ui';
 import { useAuth } from '@/lib/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginFormData, loginFormSchema } from './login-form.schema';
 
 export const LoginForm: React.FC = () => {
+  const t = useTranslations('login_page.form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
@@ -42,15 +44,18 @@ export const LoginForm: React.FC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} errorMessage={authError}>
-      <Field label='Email Address' errorMessage={errors.email?.message}>
+      <Field label={t('email.label')} errorMessage={errors.email?.message}>
         <Input
           {...register('email')}
-          placeholder='steve@minecraft.com'
+          placeholder={t('email.placeholder')}
           autoComplete='email'
         />
       </Field>
 
-      <Field label='Password' errorMessage={errors.password?.message}>
+      <Field
+        label={t('password.label')}
+        errorMessage={errors.password?.message}
+      >
         <Input
           {...register('password')}
           type='password'
@@ -60,7 +65,7 @@ export const LoginForm: React.FC = () => {
       </Field>
 
       <Button type='submit' isLoading={isSubmitting}>
-        Sign In
+        {t('submit')}
       </Button>
     </Form>
   );

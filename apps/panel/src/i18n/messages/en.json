@@ -1,0 +1,21 @@
+{
+  "common": {
+    "page_title": "{title} | {appName}"
+  },
+  "login_page": {
+    "metadata": {
+      "title": "Login"
+    },
+    "form": {
+      "title": "Welcome Back",
+      "email": {
+        "label": "Email Address",
+        "placeholder": "steve@minecraft.net"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "submit": "Login"
+    }
+  }
+}
