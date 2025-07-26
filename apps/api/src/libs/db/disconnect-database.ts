@@ -1,4 +1,7 @@
 import { prisma } from '@conductor/database';
+import { createLogger } from '../logger';
+
+const log = createLogger('database');
 
 /**
  * Disconnects from the Prisma database.
@@ -10,5 +13,7 @@ import { prisma } from '@conductor/database';
  * @returns A promise that resolves when the disconnection is complete.
  */
 export async function disconnectDatabase(): Promise<void> {
+  log.info('Disconnecting from database…');
   await prisma.$disconnect();
+  log.info('Database disconnected');
 }

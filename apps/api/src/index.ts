@@ -1,17 +1,19 @@
 import { app } from './app';
 import { env } from './env';
-import { disconnectDatabase } from './libs';
+import { disconnectDatabase, logger } from './libs';
 
-console.log(`Server running on port ${env.PORT} in ${env.NODE_ENV} mode`);
+const log = logger.child({ module: 'server' });
+
+log.info(`Server starting on port ${env.PORT} in ${env.NODE_ENV} mode`);
 
 // Graceful shutdown handlers
 process.on('SIGINT', async () => {
-  console.log('SIGINT received, shutting down gracefully...');
+  log.info('SIGINT received, shutting down gracefully…');
   await disconnectDatabase();
   process.exit(0);
 });
 process.on('SIGTERM', async () => {
-  console.log('SIGTERM received, shutting down gracefully...');
+  log.info('SIGTERM received, shutting down gracefully…');
   await disconnectDatabase();
   process.exit(0);
 });

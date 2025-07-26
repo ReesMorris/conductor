@@ -1,4 +1,7 @@
 import { prisma } from '@conductor/database';
+import { createLogger } from '../logger';
+
+const log = createLogger('database');
 
 /**
  * Checks the connection to the database by executing a simple query.
@@ -11,7 +14,7 @@ export async function checkDatabaseConnection(): Promise<boolean> {
     await prisma.$queryRaw`SELECT 1`;
     return true;
   } catch (error) {
-    console.error('Database connection failed:', error);
+    log.error(error, 'Database connection failed');
     return false;
   }
 }

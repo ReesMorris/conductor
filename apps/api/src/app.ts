@@ -1,13 +1,12 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-import { logger } from 'hono/logger';
-import { dbMiddleware, errorHandler } from './middlewares';
+import { dbMiddleware, errorHandler, loggingMiddleware } from './middlewares';
 import { routes } from './routes';
 
 export const app = new Hono();
 
 // Global middleware
-app.use('*', logger());
+app.use('*', loggingMiddleware);
 app.use('*', cors());
 app.use('*', dbMiddleware);
 
