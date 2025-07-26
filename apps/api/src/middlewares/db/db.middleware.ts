@@ -1,6 +1,6 @@
+import { prisma } from '@/libs';
 import type { PrismaClient } from '@conductor/database';
 import { createMiddleware } from 'hono/factory';
-import { prisma } from '../../libs';
 
 // Type augmentation for Hono context
 declare module 'hono' {

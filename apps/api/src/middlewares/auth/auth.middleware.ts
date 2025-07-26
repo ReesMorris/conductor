@@ -1,0 +1,60 @@
+import { auth } from '@/libs';
+import type { Context, Next } from 'hono';
+import type { AuthVariables } from './auth.types';
+
+/**
+ * Authentication middleware that populates the request context with user session data.
+ *
+ * This middleware attempts to retrieve the current user's session from Better Auth
+ * and makes it available throughout the request lifecycle via Hono's context.
+ *
+ * @remarks
+ * - Does not block requests - unauthenticated requests will have null user/session
+ * - Extracts session from cookies/headers automatically via Better Auth
+ * - Handles errors gracefully by setting null values
+ *
+ * @example
+ * ```typescript
+ * // Apply globally
+ * app.use('*', authMiddleware);
+ *
+ * // Access in routes
+ * app.get('/profile', (c) => {
+ *   const user = c.get('user');
+ *   if (!user) {
+ *     return c.json({ error: 'Unauthorized' }, 401);
+ *   }
+ *   return c.json({ user });
+ * });
+ * ```
+ *
+ * @param c - Hono context object with AuthVariables
+ * @param next - Next middleware function
+ * @returns Promise that resolves when middleware completes
+ */
+export const authMiddleware = async (
+  c: Context<{ Variables: AuthVariables }>,
+  next: Next
+) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: c.req.raw.headers
+    });
+
+    if (!session) {
+      c.set('user', null);
+      c.set('session', null);
+      return next();
+    }
+
+    c.set('user', session.user);
+    c.set('session', session.session);
+  } catch {
+    // Authentication errors are non-blocking
+    // Set null values to indicate no authenticated user
+    c.set('user', null);
+    c.set('session', null);
+  }
+
+  return next();
+};

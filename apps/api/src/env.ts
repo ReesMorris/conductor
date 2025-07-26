@@ -19,7 +19,14 @@ export const env = createEnv({
       .string()
       .transform(v => v === 'true')
       .default(false)
-      .describe('Enable or disable request logging')
+      .describe('Enable or disable request logging'),
+    DATABASE_URL: z.url().describe('Database connection URL'),
+    BETTER_AUTH_SECRET: z
+      .string()
+      .min(32)
+      .describe('Secret key for signing Better Auth tokens'),
+    BETTER_AUTH_URL: z.url().describe('Base URL for Better Auth'),
+    FRONTEND_URL: z.url().describe('Frontend URL for CORS configuration')
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true

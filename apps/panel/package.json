@@ -21,6 +21,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.61.1",
     "server-only": "^0.0.1",
+    "url-join": "^5.0.0",
     "zod": "^4.0.10"
   },
   "devDependencies": {
