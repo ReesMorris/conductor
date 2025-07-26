@@ -15,5 +15,6 @@ export const env = createEnv({
   runtimeEnv: {
     API_URL: process.env.API_URL,
     DEFAULT_THEME: process.env.DEFAULT_THEME
-  }
+  },
+  emptyStringAsUndefined: true
 });

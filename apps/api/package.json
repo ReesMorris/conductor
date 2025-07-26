@@ -9,6 +9,11 @@
     "dev": "bun --watch src/index.ts",
     "start": "NODE_ENV=production bun run dist/index.js"
   },
+  "dependencies": {
+    "@t3-oss/env-core": "^0.13.8",
+    "hono": "^4.8.9",
+    "zod": "^4.0.10"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.1.2",
     "@types/bun": "^1.2.19",

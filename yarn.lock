@@ -174,9 +174,11 @@ __metadata:
   resolution: "@conductor/api@workspace:apps/api"
   dependencies:
     "@biomejs/biome": "npm:^2.1.2"
+    "@t3-oss/env-core": "npm:^0.13.8"
     "@types/bun": "npm:^1.2.19"
-  peerDependencies:
-    typescript: ^5
+    hono: "npm:^4.8.9"
+    typescript: "npm:^5"
+    zod: "npm:^4.0.10"
   languageName: unknown
   linkType: soft
 
@@ -199,7 +201,7 @@ __metadata:
     react-dom: "npm:19.1.0"
     react-hook-form: "npm:^7.61.1"
     server-only: "npm:^0.0.1"
-    typescript: "npm:^5.8.3"
+    typescript: "npm:^5"
     zod: "npm:^4.0.10"
   languageName: unknown
   linkType: soft
@@ -1138,7 +1140,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@t3-oss/env-core@npm:0.13.8":
+"@t3-oss/env-core@npm:0.13.8, @t3-oss/env-core@npm:^0.13.8":
   version: 0.13.8
   resolution: "@t3-oss/env-core@npm:0.13.8"
   peerDependencies:
@@ -2113,6 +2115,13 @@ __metadata:
   version: 4.2.11
   resolution: "graceful-fs@npm:4.2.11"
   checksum: 10c0/386d011a553e02bc594ac2ca0bd6d9e4c22d7fa8cfbfc448a6d148c59ea881b092db9dbe3547ae4b88e55f1b01f7c4a2ecc53b310c042793e63aa44cf6c257f2
+  languageName: node
+  linkType: hard
+
+"hono@npm:^4.8.9":
+  version: 4.8.9
+  resolution: "hono@npm:4.8.9"
+  checksum: 10c0/385539d1787fdc747bc869ef0e5ccc9f39cbe40289b94f23eecfc82c6ca440f059704647cd6381a5066d2cf7baa43ab25184c78d44af4c5c98a5c5b07670059e
   languageName: node
   linkType: hard
 
@@ -3868,7 +3877,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.8.2, typescript@npm:^5.8.3":
+"typescript@npm:^5, typescript@npm:^5.8.2":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -3888,7 +3897,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
