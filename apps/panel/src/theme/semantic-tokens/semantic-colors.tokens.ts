@@ -1,6 +1,6 @@
 import { defineSemanticTokens } from '@pandacss/dev';
 
-export const colors = defineSemanticTokens.colors({
+export const semanticColors = defineSemanticTokens.colors({
   // -- Base Colors --
   background: {
     DEFAULT: {
@@ -56,7 +56,12 @@ export const colors = defineSemanticTokens.colors({
   danger: {
     foreground: {
       DEFAULT: {
-        value: { _light: '{colors.red.900}', _dark: '{colors.red.400}' }
+        value: { _light: '{colors.red.900}', _dark: '{colors.red.100}' }
+      }
+    },
+    background: {
+      DEFAULT: {
+        value: { _light: '{colors.red.50}', _dark: '{colors.red.900}' }
       }
     },
     border: {

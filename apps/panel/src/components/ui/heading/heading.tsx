@@ -5,13 +5,19 @@ import type { HeadingProps } from './heading.types';
 export const Heading: React.FC<HeadingProps> = ({
   level,
   className,
+  unstyled,
   children,
   ...props
 }) => {
   const Element = `h${level}` as React.ElementType;
 
+  let classNames = className;
+  if (!unstyled) {
+    classNames = cx(classNames, styles.heading({ level }));
+  }
+
   return (
-    <Element className={cx(styles.heading({ level }), className)} {...props}>
+    <Element className={classNames} {...props}>
       {children}
     </Element>
   );

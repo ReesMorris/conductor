@@ -5,5 +5,8 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '2'
+  }),
+  alert: css({
+    marginBlockEnd: '4'
   })
 };

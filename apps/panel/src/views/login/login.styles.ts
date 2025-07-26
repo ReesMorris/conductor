@@ -4,8 +4,10 @@ export const styles = {
   wrapper: css({
     flex: '1',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    gap: '2'
   }),
   content: css({
     display: 'flex',
@@ -24,16 +26,11 @@ export const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '4',
     textAlign: 'center',
     marginBlockEnd: '4'
   }),
-  logo: css({
-    padding: '1',
-    borderWidth: '1',
-    borderStyle: 'solid',
-    borderColor: 'border',
-    backgroundColor: 'background',
-    marginBlockStart: '[-5rem]'
+  subtitle: css({
+    textStyle: 'md',
+    color: 'foreground.muted'
   })
 };

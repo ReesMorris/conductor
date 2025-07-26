@@ -11,8 +11,6 @@ export const styles = {
     }
   }),
   fieldDescription: css({
-    marginBlockStart: '1',
-
     _disabled: {
       opacity: 'disabled'
     }

@@ -1,8 +1,9 @@
-import { cva } from '@/styled-system/css';
+import { css, cva } from '@/styled-system/css';
 
 export const styles = {
   button: cva({
     base: {
+      position: 'relative',
       blockSize: 'ui',
       borderRadius: 'md',
       textStyle: 'sm',
@@ -20,6 +21,16 @@ export const styles = {
 
       _active: {
         transform: 'scale(0.99)'
+      },
+
+      _disabled: {
+        opacity: 'disabled',
+        cursor: 'not-allowed'
+      },
+
+      _loading: {
+        opacity: 'loading',
+        cursor: 'wait'
       }
     },
     variants: {
@@ -31,9 +42,46 @@ export const styles = {
         tertiary: {},
         ghost: {}
       }
+    },
+    defaultVariants: {
+      variant: 'primary'
     }
   }),
-  defaultVariants: {
-    variant: 'primary'
-  }
+  content: css({
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '2',
+    inlineSize: 'full',
+    opacity: '1',
+    transitionProperty: 'opacity',
+    transitionDuration: 'normal',
+    transitionTimingFunction: 'ease',
+
+    '.group:is([aria-busy]) &': {
+      pointerEvents: 'none',
+      opacity: '0'
+    }
+  }),
+  loadingSpinner: css({
+    opacity: '0',
+    position: 'absolute',
+    inset: '0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+    transitionProperty: 'opacity',
+    transitionDuration: 'normal',
+    transitionTimingFunction: 'ease',
+    animation: 'spin',
+
+    '.group:is([aria-busy]) &': {
+      opacity: '1'
+    },
+
+    _icon: {
+      transform: 'scale(0.75)'
+    }
+  })
 };

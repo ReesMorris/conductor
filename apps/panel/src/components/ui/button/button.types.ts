@@ -9,4 +9,9 @@ export interface ButtonProps
    * @default 'primary'
    */
   variant?: ButtonVariant;
+
+  /**
+   * Whether the button is in a loading state.
+   */
+  isLoading?: boolean;
 }

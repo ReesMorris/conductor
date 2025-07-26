@@ -174,16 +174,19 @@ __metadata:
   resolution: "@conductor/panel@workspace:apps/panel"
   dependencies:
     "@biomejs/biome": "npm:^2.1.2"
+    "@hookform/resolvers": "npm:^5.2.0"
     "@pandacss/dev": "npm:^0.54.0"
     "@t3-oss/env-nextjs": "npm:^0.13.8"
     "@types/node": "npm:^24.1.0"
     "@types/react": "npm:^19.1.8"
     "@types/react-dom": "npm:^19.1.6"
     better-auth: "npm:^1.3.3"
+    lucide-react: "npm:^0.525.0"
     next: "npm:15.4.4"
     next-themes: "npm:^0.4.6"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
+    react-hook-form: "npm:^7.61.1"
     server-only: "npm:^0.0.1"
     typescript: "npm:^5.8.3"
     zod: "npm:^4.0.10"
@@ -406,6 +409,17 @@ __metadata:
   version: 1.1.28
   resolution: "@hexagon/base64@npm:1.1.28"
   checksum: 10c0/f90876938cda7c369444f9abcf268a9d93fe26269ae9a16a95fa1f294a5e8f9d172a77905fac205d315b4538ab4da90c866ba73cc035cc0fcf5a6062bb6691ca
+  languageName: node
+  linkType: hard
+
+"@hookform/resolvers@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@hookform/resolvers@npm:5.2.0"
+  dependencies:
+    "@standard-schema/utils": "npm:^0.3.0"
+  peerDependencies:
+    react-hook-form: ^7.55.0
+  checksum: 10c0/3f302d40f5886085dd796ca32ddcf31d065f1ff39e3ee53e9492be2ea869103a7429fdee6aa7709d2db584a2f0d9fcc7a120b18d1d1f6404cc52ea80bd9dbcc1
   languageName: node
   linkType: hard
 
@@ -1094,6 +1108,13 @@ __metadata:
     "@peculiar/asn1-schema": "npm:^2.3.8"
     "@peculiar/asn1-x509": "npm:^2.3.8"
   checksum: 10c0/b7b1457ce44edb1ae0770d5a77b29c1d661dbf669c90d360c3cb7d9438abb32d5b6a826f4d69bdf1c2b99c3a03a94bdf232eba18405dade08bfb925d92200219
+  languageName: node
+  linkType: hard
+
+"@standard-schema/utils@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@standard-schema/utils@npm:0.3.0"
+  checksum: 10c0/6eb74cd13e52d5fc74054df51e37d947ef53f3ab9e02c085665dcca3c38c60ece8d735cebbdf18fbb13c775fbcb9becb3f53109b0e092a63f0f7389ce0993fd0
   languageName: node
   linkType: hard
 
@@ -2478,6 +2499,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.525.0":
+  version: 0.525.0
+  resolution: "lucide-react@npm:0.525.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/81c4438e2cf1c86ea2ebe0a97b378201512450894283cccce766a89bc6a4e47c8df1d9115d845d98f582bb0a10be31c454aa232520fea35018dac1cd8466ea9b
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:0.30.17, magic-string@npm:^0.30.6":
   version: 0.30.17
   resolution: "magic-string@npm:0.30.17"
@@ -3140,6 +3170,15 @@ __metadata:
   peerDependencies:
     react: ^19.1.0
   checksum: 10c0/3e26e89bb6c67c9a6aa86cb888c7a7f8258f2e347a6d2a15299c17eb16e04c19194e3452bc3255bd34000a61e45e2cb51e46292392340432f133e5a5d2dfb5fc
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.61.1":
+  version: 7.61.1
+  resolution: "react-hook-form@npm:7.61.1"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10c0/c241bca80f6d5f9f8b4f24b668670a3ee7249f9cf99537219c4ac1072431493d3768a910b6f2aaff20689a727d0e2797aeacb1ab9285b3e59309de3dd1bead41
   languageName: node
   linkType: hard
 
