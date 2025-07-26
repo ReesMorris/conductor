@@ -1,0 +1,48 @@
+import { globalStyles } from '@/theme/global.styles';
+import { theme } from '@/theme/theme';
+import { THEME_DATA_ATTRIBUTE } from '@/theme/theme.constants';
+import { defineConfig } from '@pandacss/dev';
+
+export default defineConfig({
+  // Whether to use css reset
+  preflight: true,
+
+  // Where to look for your css declarations
+  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+
+  // Files to exclude
+  exclude: [],
+
+  // Global styles
+  globalCss: globalStyles,
+
+  // Hash class names for production
+  hash: {
+    className: true,
+    cssVar: false
+  },
+
+  // Whether to minify the generated css
+  minify: true,
+
+  // The framework for your css system
+  jsxFramework: 'react',
+
+  // Support older browsers
+  cssVarRoot: ':root',
+
+  // Whether to allow shorthand properties
+  shorthands: false,
+
+  // Useful for theme customization
+  theme: theme,
+
+  // The css selectors or media queries shortcuts
+  conditions: {
+    light: `[${THEME_DATA_ATTRIBUTE}=light] &`,
+    dark: `[${THEME_DATA_ATTRIBUTE}=dark] &`
+  },
+
+  // The output directory for your css system
+  outdir: 'styled-system'
+});

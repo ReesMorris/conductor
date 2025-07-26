@@ -1,7 +1,9 @@
 import 'server-only';
 
-import { AuthProvider } from '@/providers';
-import '@/theme/globals.css';
+import { AuthProvider, ThemeProvider } from '@/providers';
+import { cx } from '@/styled-system/css';
+import { geist } from '@/theme/fonts';
+import '@/theme/root.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,9 +11,11 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html suppressHydrationWarning lang='en' className={cx(geist.variable)}>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
