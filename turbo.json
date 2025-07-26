@@ -12,6 +12,9 @@
     },
     "check": {
       "dependsOn": ["^build"]
+    },
+    "start": {
+      "dependsOn": ["build"]
     }
   }
 }
