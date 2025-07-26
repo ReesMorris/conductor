@@ -6,7 +6,7 @@
     "build": "next build",
     "check": "biome check --write . && tsc --noEmit",
     "codegen": "panda codegen",
-    "dev": "next dev --turbo",
+    "dev": "yarn codegen && next dev --turbo",
     "prepare": "yarn codegen",
     "start": "next start"
   },

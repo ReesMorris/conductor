@@ -3,7 +3,9 @@ import { defineSemanticTokens } from '@pandacss/dev';
 export const fonts = defineSemanticTokens.fonts({
   // -- Custom Fonts --
   geist: { value: 'var(--font-geist)' },
+  inter: { value: 'var(--font-inter)' },
 
   // -- Semantic Fonts --
-  body: { value: '{fonts.geist}' }
+  body: { value: '{fonts.geist}' },
+  heading: { value: '{fonts.inter}' }
 });

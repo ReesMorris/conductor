@@ -1,6 +1,10 @@
 import type { ExtendableTheme } from '@pandacss/types';
 import { colors } from './semantic-tokens/colors.tokens';
+import { fontSizes } from './semantic-tokens/font-sizes.tokens';
 import { fonts } from './semantic-tokens/fonts.tokens';
+import { opacity } from './semantic-tokens/opacity.tokens';
+import { sizes } from './semantic-tokens/sizes.tokens';
+import { textStyles } from './text-styles';
 
 /**
  * Module for defining the application's theme.
@@ -9,9 +13,16 @@ import { fonts } from './semantic-tokens/fonts.tokens';
  */
 export const theme: ExtendableTheme = {
   extend: {
+    textStyles,
+    tokens: {
+      opacity
+    },
     semanticTokens: {
       colors,
-      fonts
+      fontSizes,
+      fonts,
+      opacity,
+      sizes
     }
   }
 };

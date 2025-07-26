@@ -2,8 +2,11 @@ import { defineGlobalStyles } from '@pandacss/dev';
 
 export const globalStyles = defineGlobalStyles({
   body: {
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: 'background',
     color: 'foreground',
-    fontFamily: 'body'
+    minBlockSize: 'dvh',
+    textStyle: 'body'
   }
 });
