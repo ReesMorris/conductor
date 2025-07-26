@@ -11,6 +11,7 @@ node_modules
 # env files
 .env
 .env.local
+# .env.dev is committed for local development
 
 # Build output
 dist/
