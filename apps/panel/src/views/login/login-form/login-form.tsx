@@ -3,6 +3,8 @@
 import { Button, Field, Form, Input } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { getAuthErrorKey } from '@/i18n/mappings';
+import { useRouter } from '@/i18n/navigation';
+import { route } from '@/utils/route';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -15,6 +17,7 @@ export const LoginForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
+  const router = useRouter();
 
   const {
     register,
@@ -37,10 +40,11 @@ export const LoginForm: React.FC = () => {
       if (error) {
         const errorKey = getAuthErrorKey(error.code);
         setAuthError(tAuth(errorKey));
+      } else {
+        router.push(route('HOME'));
       }
     } catch {
       setAuthError(tAuth('auth.errors.generic'));
-    } finally {
       setIsSubmitting(false);
     }
   };

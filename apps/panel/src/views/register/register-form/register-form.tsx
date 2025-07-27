@@ -49,7 +49,6 @@ export const RegisterForm: React.FC = () => {
       }
     } catch {
       setAuthError(tAuth('auth.errors.generic'));
-    } finally {
       setIsSubmitting(false);
     }
   };
