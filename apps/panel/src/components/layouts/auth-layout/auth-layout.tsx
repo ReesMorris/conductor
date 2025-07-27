@@ -25,14 +25,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
           </VisuallyHidden>
         )}
       </header>
-      <div className={styles.content}>
-        {children}
-        {footer && (
-          <div className={styles.footer}>
-            <p className={styles.footerText}>{footer}</p>
-          </div>
-        )}
-      </div>
+      <div className={styles.content}>{children}</div>
+      {footer && (
+        <div className={styles.footer}>
+          <p className={styles.footerText}>{footer}</p>
+        </div>
+      )}
     </main>
   );
 };

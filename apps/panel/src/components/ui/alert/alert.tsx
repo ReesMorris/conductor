@@ -3,6 +3,7 @@ import { styles } from './alert.styles';
 import type { AlertProps } from './alert.types';
 
 export const Alert: React.FC<AlertProps> = ({
+  color,
   variant,
   children,
   className,
@@ -12,7 +13,7 @@ export const Alert: React.FC<AlertProps> = ({
     <div
       aria-live='assertive'
       {...props}
-      className={cx(styles.alert({ variant }), className)}
+      className={cx(styles.alert({ color, variant }), className)}
     >
       {children}
     </div>

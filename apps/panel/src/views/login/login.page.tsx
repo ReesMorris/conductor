@@ -1,6 +1,6 @@
 import { AuthLayout } from '@/components/layouts';
+import { Link } from '@/components/ui';
 import { route } from '@/utils/route';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { LoginForm } from './login-form';
 

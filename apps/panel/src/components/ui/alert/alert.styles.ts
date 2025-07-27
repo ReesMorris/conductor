@@ -10,11 +10,10 @@ export const styles = {
       paddingBlock: '2',
       paddingInline: '6',
       textStyle: 'sm',
-      color: 'colorPalette.foreground',
-      backgroundColor: 'colorPalette.background',
-      borderBlockWidth: '1',
-      borderBlockStyle: 'solid',
-      borderBlockColor: 'colorPalette.border',
+      borderWidth: '1',
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+      borderRadius: 'md',
       textAlign: 'center',
 
       _icon: {
@@ -24,7 +23,7 @@ export const styles = {
       }
     },
     variants: {
-      variant: {
+      color: {
         info: {
           // colorPalette: 'info'
         },
@@ -34,10 +33,25 @@ export const styles = {
         error: {
           colorPalette: 'danger'
         }
+      },
+      variant: {
+        outlined: {
+          color: 'colorPalette.foreground',
+          borderColor: 'colorPalette.border'
+        },
+        solid: {
+          color: 'colorPalette.foreground.onSolid',
+          backgroundColor: 'colorPalette.background.solid'
+        },
+        subtle: {
+          color: 'colorPalette.foreground.onSubtle',
+          backgroundColor: 'colorPalette.background.subtle'
+        }
       }
     },
     defaultVariants: {
-      variant: 'info'
+      color: 'info',
+      variant: 'outlined'
     }
   })
 };

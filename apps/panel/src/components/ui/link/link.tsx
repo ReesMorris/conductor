@@ -1,8 +1,11 @@
 import { Link as IntlLink } from '@/i18n/navigation';
+import { cx } from '@/styled-system/css';
+import { styles } from './link.styles';
 import type { LinkProps } from './link.types';
 
 export const Link: React.FC<LinkProps> = ({
   href,
+  underlined,
   className,
   children,
   ...props
@@ -13,7 +16,11 @@ export const Link: React.FC<LinkProps> = ({
   }
 
   return (
-    <IntlLink href={href} {...props} className={className}>
+    <IntlLink
+      href={href}
+      {...props}
+      className={cx(styles.link({ underlined }), className)}
+    >
       {children}
     </IntlLink>
   );

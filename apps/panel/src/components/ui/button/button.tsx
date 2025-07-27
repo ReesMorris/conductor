@@ -4,6 +4,7 @@ import { styles } from './button.styles';
 import type { ButtonProps } from './button.types';
 
 export const Button: React.FC<ButtonProps> = ({
+  color,
   variant,
   isLoading,
   className,
@@ -16,7 +17,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
       aria-busy={isLoading || undefined}
       disabled={disabled}
-      className={cx('group', styles.button({ variant }), className)}
+      className={cx('group', styles.button({ color, variant }), className)}
     >
       <div className={styles.content}>{props.children}</div>
       <div className={styles.loadingSpinner}>

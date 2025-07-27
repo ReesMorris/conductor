@@ -4,7 +4,7 @@ export const styles = {
   field: css({
     display: 'flex',
     flexDirection: 'column',
-    gap: '2',
+    gap: '1.5',
 
     _disabled: {
       cursor: 'not-allowed'

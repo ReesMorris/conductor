@@ -5,6 +5,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontSize: 'body',
       fontFamily: 'body',
+      fontWeight: 'normal',
       letterSpacing: 'normal'
     }
   },

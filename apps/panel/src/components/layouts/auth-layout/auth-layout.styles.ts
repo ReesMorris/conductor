@@ -17,7 +17,7 @@ export const styles = {
     borderRadius: 'md',
     borderWidth: '1',
     borderStyle: 'solid',
-    borderColor: 'border.muted',
+    borderColor: 'border.subtle',
     inlineSize: '[min(100vw, 30rem)]',
     boxShadow: 'sm'
   }),
@@ -34,7 +34,7 @@ export const styles = {
     marginBlockStart: '4'
   }),
   footerText: css({
-    textStyle: 'md',
+    textStyle: 'sm',
     color: 'foreground.muted'
   })
 };

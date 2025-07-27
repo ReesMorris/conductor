@@ -6,7 +6,6 @@ import { semanticOpacity } from './semantic-tokens/opacity.semantic-tokens';
 import { semanticSizes } from './semantic-tokens/sizes.semantic-tokens';
 import { textStyles } from './text-styles';
 import { animations } from './tokens/animations.tokens';
-import { colors } from './tokens/colors.tokens';
 import { keyframes } from './tokens/keyframes.tokens';
 import { opacity } from './tokens/opacity.tokens';
 import { zIndices } from './tokens/z-indices.tokens';
@@ -22,7 +21,6 @@ export const theme: ExtendableTheme = {
     textStyles,
     tokens: {
       animations,
-      colors,
       opacity,
       zIndex: zIndices
     },

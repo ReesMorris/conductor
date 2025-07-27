@@ -9,15 +9,12 @@ export const styles = {
       textStyle: 'sm',
       fontWeight: 'medium',
       cursor: 'pointer',
-      backgroundColor: 'colorPalette.background',
-      color: 'colorPalette.foreground',
-      transitionProperty: 'background-color, transform',
+      borderWidth: '1',
+      borderStyle: 'solid',
+      borderColor: 'transparent',
+      transitionProperty: 'border-color, background-color, transform',
       transitionDuration: 'normal',
       transitionTimingFunction: 'in-out',
-
-      '&:not(:disabled):hover': {
-        backgroundColor: 'colorPalette.background.hover'
-      },
 
       _active: {
         transform: 'scale(0.99)'
@@ -31,20 +28,55 @@ export const styles = {
       _loading: {
         opacity: 'loading',
         cursor: 'wait'
+      },
+
+      _focusVisible: {
+        outlineWidth: '2',
+        outlineOffset: '0.5',
+        outlineStyle: 'solid',
+        outlineColor: 'colorPalette.focusRing'
       }
     },
     variants: {
-      variant: {
+      color: {
         primary: {
           colorPalette: 'primary'
         },
         secondary: {},
         tertiary: {},
         ghost: {}
+      },
+      variant: {
+        solid: {
+          backgroundColor: 'colorPalette.background.solid',
+          color: 'colorPalette.foreground.onSolid',
+
+          '&:not(:disabled):hover': {
+            backgroundColor: 'colorPalette.background.solid.hover'
+          }
+        },
+        subtle: {
+          backgroundColor: 'colorPalette.background.subtle',
+          color: 'colorPalette.foreground.onSubtle',
+
+          '&:not(:disabled):hover': {
+            backgroundColor: 'colorPalette.background.subtle.hover'
+          }
+        },
+        outline: {
+          backgroundColor: 'transparent',
+          color: 'colorPalette.foreground',
+          borderColor: 'colorPalette.border',
+
+          '&:not(:disabled):hover': {
+            borderColor: 'colorPalette.border.hover'
+          }
+        }
       }
     },
     defaultVariants: {
-      variant: 'primary'
+      variant: 'solid',
+      color: 'primary'
     }
   }),
   content: css({
