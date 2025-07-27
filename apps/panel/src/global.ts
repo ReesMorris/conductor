@@ -1,6 +1,6 @@
 // import { formats } from '@/i18n/request';
 import type messages from '@/i18n/messages/en.json';
-import type { Locale } from './i18n/i18n.types';
+import type { Locale } from './constants';
 
 declare module 'next-intl' {
   interface AppConfig {

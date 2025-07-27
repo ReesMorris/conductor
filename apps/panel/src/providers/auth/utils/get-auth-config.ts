@@ -1,11 +1,10 @@
 import 'server-only';
 
-import { env } from '@/env';
+import { getAuthBaseUrl } from '@/utils/get-auth-base-url';
 import type { ClientOptions } from 'better-auth';
-import urlJoin from 'url-join';
 
 export const getAuthConfig = (): ClientOptions => {
   return {
-    baseURL: urlJoin(env.API_URL, 'auth')
+    baseURL: getAuthBaseUrl()
   };
 };
