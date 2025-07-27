@@ -16,6 +16,7 @@
     "dev:down": "docker compose down",
     "dev:services": "docker compose up -d",
     "prepare": "husky",
+    "start": "turbo start",
     "syncpack:fix": "syncpack fix",
     "syncpack:format": "syncpack format",
     "syncpack:lint": "syncpack lint"

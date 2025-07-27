@@ -15,6 +15,10 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+export const generateStaticParams = () => {
+  return routing.locales.map(locale => ({ locale }));
+};
+
 export const Layout = async ({ params, children }: LayoutProps) => {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
