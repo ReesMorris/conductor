@@ -5,7 +5,8 @@ export const semanticColors = defineSemanticTokens.colors({
   background: {
     DEFAULT: {
       value: { _light: '{colors.gray.50}', _dark: '{colors.gray.900}' }
-    }
+    },
+    overlay: { value: '{colors.black/60}' }
   },
   foreground: {
     DEFAULT: {

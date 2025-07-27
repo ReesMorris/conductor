@@ -1,6 +1,6 @@
 import { defineSemanticTokens } from '@pandacss/dev';
 
-export const fontSizes = defineSemanticTokens.fontSizes({
+export const semanticFontSizes = defineSemanticTokens.fontSizes({
   body: { value: '{fontSizes.md}' },
   h1: { value: '{fontSizes.2xl}' },
   h2: { value: '{fontSizes.xl}' },

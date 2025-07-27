@@ -18,7 +18,7 @@ export const styles = {
     borderWidth: '1',
     borderStyle: 'solid',
     borderColor: 'border.muted',
-    inlineSize: 'min(100vw, 30rem)',
+    inlineSize: '[min(100vw, 30rem)]',
     boxShadow: 'sm'
   }),
   header: css({

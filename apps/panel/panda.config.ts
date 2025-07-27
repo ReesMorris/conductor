@@ -44,5 +44,11 @@ export default defineConfig({
   },
 
   // The output directory for your css system
-  outdir: 'styled-system'
+  outdir: 'styled-system',
+
+  // Only allow token values and prevent custom or raw CSS values
+  strictTokens: true,
+
+  // Only use valid CSS values for properties that do have a predefined list of values
+  strictPropertyValues: true
 });

@@ -1,11 +1,15 @@
 import type { ExtendableTheme } from '@pandacss/types';
-import { fontSizes } from './semantic-tokens/font-sizes.tokens';
-import { fonts } from './semantic-tokens/fonts.tokens';
-import { opacity } from './semantic-tokens/opacity.tokens';
-import { semanticColors } from './semantic-tokens/semantic-colors.tokens';
-import { sizes } from './semantic-tokens/sizes.tokens';
+import { semanticColors } from './semantic-tokens/colors.semantic-tokens';
+import { semanticFontSizes } from './semantic-tokens/font-sizes.semantic-tokens';
+import { semanticFonts } from './semantic-tokens/fonts.semantic-tokens';
+import { semanticOpacity } from './semantic-tokens/opacity.semantic-tokens';
+import { semanticSizes } from './semantic-tokens/sizes.semantic-tokens';
 import { textStyles } from './text-styles';
+import { animations } from './tokens/animations.tokens';
 import { colors } from './tokens/colors.tokens';
+import { keyframes } from './tokens/keyframes.tokens';
+import { opacity } from './tokens/opacity.tokens';
+import { zIndices } from './tokens/z-indices.tokens';
 
 /**
  * Module for defining the application's theme.
@@ -14,17 +18,20 @@ import { colors } from './tokens/colors.tokens';
  */
 export const theme: ExtendableTheme = {
   extend: {
+    keyframes,
     textStyles,
     tokens: {
+      animations,
       colors,
-      opacity
+      opacity,
+      zIndex: zIndices
     },
     semanticTokens: {
       colors: semanticColors,
-      fontSizes,
-      fonts,
-      opacity,
-      sizes
+      fontSizes: semanticFontSizes,
+      fonts: semanticFonts,
+      opacity: semanticOpacity,
+      sizes: semanticSizes
     }
   }
 };

@@ -13,7 +13,7 @@ export const styles = {
       color: 'colorPalette.foreground',
       transitionProperty: 'background-color, transform',
       transitionDuration: 'normal',
-      transitionTimingFunction: 'ease',
+      transitionTimingFunction: 'in-out',
 
       '&:not(:disabled):hover': {
         backgroundColor: 'colorPalette.background.hover'
@@ -56,7 +56,7 @@ export const styles = {
     opacity: '1',
     transitionProperty: 'opacity',
     transitionDuration: 'normal',
-    transitionTimingFunction: 'ease',
+    transitionTimingFunction: 'in-out',
 
     '.group:is([aria-busy]) &': {
       pointerEvents: 'none',
@@ -73,7 +73,7 @@ export const styles = {
     pointerEvents: 'none',
     transitionProperty: 'opacity',
     transitionDuration: 'normal',
-    transitionTimingFunction: 'ease',
+    transitionTimingFunction: 'in-out',
     animation: 'spin',
 
     '.group:is([aria-busy]) &': {

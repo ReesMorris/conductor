@@ -26,10 +26,10 @@ export const styles = {
     variants: {
       variant: {
         info: {
-          colorPalette: 'info'
+          // colorPalette: 'info'
         },
         warning: {
-          colorPalette: 'warning'
+          // colorPalette: 'warning'
         },
         error: {
           colorPalette: 'danger'

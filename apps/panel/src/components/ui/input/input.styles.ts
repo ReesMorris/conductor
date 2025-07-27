@@ -13,7 +13,7 @@ export const styles = {
     borderColor: 'border',
     transitionProperty: 'border-color, outline',
     transitionDuration: 'normal',
-    transitionTimingFunction: 'ease',
+    transitionTimingFunction: 'in-out',
     outlineWidth: '1',
     outlineStyle: 'solid',
     outlineColor: 'transparent',

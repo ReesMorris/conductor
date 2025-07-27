@@ -8,8 +8,8 @@ export const styles = {
         2: { textStyle: 'h2' },
         3: { textStyle: 'h3' },
         4: { textStyle: 'h4' },
-        5: { textStyle: 'h5' },
-        6: { textStyle: 'h6' }
+        5: {},
+        6: {}
       }
     }
   })
