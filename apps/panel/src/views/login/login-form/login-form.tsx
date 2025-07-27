@@ -2,6 +2,7 @@
 
 import { Button, Field, Form, Input } from '@/components/ui';
 import { useAuth } from '@/hooks';
+import { getAuthErrorKey } from '@/i18n/mappings';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -10,6 +11,7 @@ import { type LoginFormData, loginFormSchema } from './login-form.schema';
 
 export const LoginForm: React.FC = () => {
   const t = useTranslations('login_page.form');
+  const tAuth = useTranslations();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
@@ -33,10 +35,11 @@ export const LoginForm: React.FC = () => {
       });
 
       if (error) {
-        setAuthError(error.message || 'Invalid email or password');
+        const errorKey = getAuthErrorKey(error.code);
+        setAuthError(tAuth(errorKey));
       }
     } catch {
-      setAuthError('An unexpected error occurred. Please try again.');
+      setAuthError(tAuth('auth.errors.generic'));
     } finally {
       setIsSubmitting(false);
     }

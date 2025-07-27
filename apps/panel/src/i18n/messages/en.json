@@ -17,5 +17,23 @@
       },
       "submit": "Login"
     }
+  },
+  "auth": {
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "invalid_credentials": "Incorrect email or password",
+      "user_not_found": "No account found with this email",
+      "invalid_email_or_password": "Incorrect email or password",
+      "account_locked": "Your account has been locked. Please contact support.",
+      "account_not_verified": "Please verify your email before logging in",
+      "user_already_exists": "An account with this email already exists",
+      "invalid_email": "Please enter a valid email address",
+      "password_too_weak": "Password must be at least 8 characters",
+      "session_expired": "Your session has expired. Please log in again.",
+      "invalid_token": "Invalid or expired token",
+      "too_many_attempts": "Too many attempts. Please try again later.",
+      "network_error": "Network error. Please check your connection.",
+      "server_error": "Server error. Please try again later."
+    }
   }
 }
