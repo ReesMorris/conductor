@@ -1,3 +1,4 @@
+import { route } from '@/utils/route';
 import { type NextRequest, NextResponse } from 'next/server';
 import { getSession, isPublicRoute } from './utils';
 
@@ -16,6 +17,5 @@ export const auth = async (request: NextRequest) => {
   }
 
   // The user is not authenticated, redirect to login
-  // TODO: Don't make this a magic string
-  return NextResponse.redirect(new URL('/login', request.url));
+  return NextResponse.redirect(new URL(route('LOGIN'), request.url));
 };
