@@ -2,10 +2,12 @@ import 'server-only';
 
 import { routing } from '@/i18n/routing';
 import { AuthProvider, ThemeProvider } from '@/providers';
+import { I18nProvider } from '@/providers/i18n';
 import { cx } from '@/styled-system/css';
 import { geist, inter } from '@/theme/fonts';
 import { notFound } from 'next/navigation';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { hasLocale } from 'next-intl';
+
 import '@/theme/root.css';
 
 interface LayoutProps {
@@ -27,11 +29,11 @@ export const Layout = async ({ params, children }: LayoutProps) => {
       className={cx(geist.variable, inter.variable)}
     >
       <body>
-        <NextIntlClientProvider>
+        <I18nProvider locale={locale}>
           <AuthProvider>
             <ThemeProvider>{children}</ThemeProvider>
           </AuthProvider>
-        </NextIntlClientProvider>
+        </I18nProvider>
       </body>
     </html>
   );

@@ -11,12 +11,14 @@ export const env = createEnv({
   server: {
     FRONTEND_URL: z.url(),
     API_URL: z.url(),
-    DEFAULT_THEME: z.enum(ThemeNames).default('dark')
+    DEFAULT_THEME: z.enum(ThemeNames).default('dark'),
+    TIMEZONE: z.string().default('UTC')
   },
   runtimeEnv: {
     FRONTEND_URL: process.env.FRONTEND_URL,
     API_URL: process.env.API_URL,
-    DEFAULT_THEME: process.env.DEFAULT_THEME
+    DEFAULT_THEME: process.env.DEFAULT_THEME,
+    TIMEZONE: process.env.TIMEZONE
   },
   skipValidation: process.env.NEXT_PHASE === 'phase-production-build',
   emptyStringAsUndefined: true
