@@ -1,14 +1,11 @@
 import 'server-only';
 
-import { AuthClientProvider } from '@/lib/auth';
 import { getAuthConfig } from '@/lib/auth/utils';
-
-export interface AuthProviderProps {
-  children: React.ReactNode;
-}
+import type { AuthProviderProps } from './auth.types';
+import { Client } from './client';
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const config = getAuthConfig();
 
-  return <AuthClientProvider config={config}>{children}</AuthClientProvider>;
+  return <Client config={config}>{children}</Client>;
 };

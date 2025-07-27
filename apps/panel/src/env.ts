@@ -1,6 +1,6 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
-import { ThemeNames } from './providers';
+import { ThemeNames } from './providers/theme/theme.types';
 
 /**
  * Environment variables for the panel application.
@@ -18,5 +18,6 @@ export const env = createEnv({
     API_URL: process.env.API_URL,
     DEFAULT_THEME: process.env.DEFAULT_THEME
   },
+  skipValidation: process.env.NEXT_PHASE === 'phase-production-build',
   emptyStringAsUndefined: true
 });
