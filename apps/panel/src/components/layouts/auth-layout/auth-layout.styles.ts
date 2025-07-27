@@ -29,7 +29,11 @@ export const styles = {
     textAlign: 'center',
     marginBlockEnd: '4'
   }),
-  subtitle: css({
+  footer: css({
+    textAlign: 'center',
+    marginBlockStart: '4'
+  }),
+  footerText: css({
     textStyle: 'md',
     color: 'foreground.muted'
   })

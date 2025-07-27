@@ -1,19 +1,19 @@
 import { AuthLayout } from '@/components/layouts';
+import { Link } from '@/components/ui';
 import { route } from '@/utils/route';
-import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { LoginForm } from './login-form';
+import { RegisterForm } from './register-form';
 
 export const Page = () => {
-  const t = useTranslations('login_page');
+  const t = useTranslations('register_page');
 
   return (
     <AuthLayout
       title={t('form.title')}
       subtitle={t('form.subtitle')}
-      footer={<Link href={route('REGISTER')}>{t('form.register_link')}</Link>}
+      footer={<Link href={route('LOGIN')}>{t('form.login_link')}</Link>}
     >
-      <LoginForm />
+      <RegisterForm />
     </AuthLayout>
   );
 };

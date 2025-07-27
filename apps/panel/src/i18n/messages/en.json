@@ -8,6 +8,7 @@
     },
     "form": {
       "title": "Welcome Back",
+      "subtitle": "Please sign in to continue",
       "email": {
         "label": "Email Address",
         "placeholder": "steve@minecraft.net"
@@ -15,7 +16,30 @@
       "password": {
         "label": "Password"
       },
-      "submit": "Login"
+      "submit": "Login",
+      "register_link": "Don't have an account? Register now"
+    }
+  },
+  "register_page": {
+    "metadata": {
+      "title": "Register"
+    },
+    "form": {
+      "title": "Create Account",
+      "subtitle": "Create your account to get started",
+      "name": {
+        "label": "First Name",
+        "placeholder": "Steve"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "steve@minecraft.net"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "submit": "Create Account",
+      "login_link": "Already have an account? Sign in"
     }
   },
   "auth": {
