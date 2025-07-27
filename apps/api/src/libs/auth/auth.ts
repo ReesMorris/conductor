@@ -1,6 +1,7 @@
 import { env } from '@/env';
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { admin } from 'better-auth/plugins';
 import { prisma } from '../db';
 
 export const auth = betterAuth({
@@ -13,7 +14,8 @@ export const auth = betterAuth({
   trustedOrigins: [env.FRONTEND_URL],
   emailAndPassword: {
     enabled: true
-  }
+  },
+  plugins: [admin()]
 });
 
 export type Auth = typeof auth;
