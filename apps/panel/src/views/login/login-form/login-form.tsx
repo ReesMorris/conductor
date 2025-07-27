@@ -40,6 +40,7 @@ export const LoginForm: React.FC = () => {
       if (error) {
         const errorKey = getAuthErrorKey(error.code);
         setAuthError(tAuth(errorKey));
+        setIsSubmitting(false);
       } else {
         router.push(route('HOME'));
       }
