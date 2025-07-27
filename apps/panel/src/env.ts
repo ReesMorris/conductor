@@ -1,17 +1,21 @@
 import { createEnv } from '@t3-oss/env-nextjs';
 import { z } from 'zod';
-import { ThemeNames } from './providers/theme/theme.types';
+import { THEME_NAMES } from './constants';
 
 /**
  * Environment variables for the panel application.
  * This configuration uses `@t3-oss/env-nextjs` to define and validate environment
  * variables at runtime.
+ *
+ * Because this will be containerised, we skip validation during production builds
+ * to avoid issues with missing environment variables that are expected to be set
+ * in the container environment.
  */
 export const env = createEnv({
   server: {
     FRONTEND_URL: z.url(),
     API_URL: z.url(),
-    DEFAULT_THEME: z.enum(ThemeNames).default('dark'),
+    DEFAULT_THEME: z.enum(THEME_NAMES).default('dark'),
     TIMEZONE: z.string().default('UTC')
   },
   runtimeEnv: {

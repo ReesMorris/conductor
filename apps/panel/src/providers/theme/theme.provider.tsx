@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { env } from '@/env';
 import { THEME_DATA_ATTRIBUTE } from '@/theme/theme.constants';
 import { ThemeProvider as Provider } from 'next-themes';

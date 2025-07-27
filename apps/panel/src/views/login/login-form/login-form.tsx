@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Field, Form, Input } from '@/components/ui';
-import { useAuth } from '@/lib/auth';
+import { useAuth } from '@/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';

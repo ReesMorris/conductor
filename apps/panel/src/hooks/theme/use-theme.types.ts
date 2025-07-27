@@ -1,6 +1,4 @@
-export const ThemeNames = ['light', 'dark'] as const;
-
-export type ThemeName = (typeof ThemeNames)[number];
+import type { ThemeName } from '@/constants';
 
 export interface UseTheme {
   /**

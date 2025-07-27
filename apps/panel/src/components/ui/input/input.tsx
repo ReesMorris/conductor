@@ -1,12 +1,12 @@
 'use client';
 
-import { useFieldContext } from '@/contexts';
+import { useField } from '@/hooks';
 import { cx } from '@/styled-system/css';
 import { styles } from './input.styles';
 import type { InputProps } from './input.types';
 
 export const Input: React.FC<InputProps> = ({ className, ...props }) => {
-  const fieldContext = useFieldContext();
+  const fieldContext = useField();
 
   return (
     <input

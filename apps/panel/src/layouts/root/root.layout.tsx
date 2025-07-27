@@ -1,8 +1,9 @@
 import 'server-only';
 
 import { routing } from '@/i18n/routing';
-import { AuthProvider, ThemeProvider } from '@/providers';
+import { AuthProvider } from '@/providers/auth';
 import { I18nProvider } from '@/providers/i18n';
+import { ThemeProvider } from '@/providers/theme';
 import { cx } from '@/styled-system/css';
 import { geist, inter } from '@/theme/fonts';
 import { notFound } from 'next/navigation';

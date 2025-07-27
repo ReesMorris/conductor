@@ -1,6 +1,6 @@
 'use client';
 
-import { FieldContextProvider } from '@/contexts';
+import { FieldContext } from '@/contexts';
 import { cx } from '@/styled-system/css';
 import { useId } from 'react';
 import { Label } from '../label';
@@ -22,7 +22,7 @@ export const Field: React.FC<FieldProps> = ({
   const { labelId, controlId, descriptionId, errorId } = generateIds(id);
 
   return (
-    <FieldContextProvider
+    <FieldContext
       value={{
         controlId,
         labelId,
@@ -59,6 +59,6 @@ export const Field: React.FC<FieldProps> = ({
           )}
         </div>
       </div>
-    </FieldContextProvider>
+    </FieldContext>
   );
 };

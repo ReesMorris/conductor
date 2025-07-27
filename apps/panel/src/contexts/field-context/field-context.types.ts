@@ -39,15 +39,3 @@ export interface FieldContextValue {
    */
   isReadOnly?: boolean;
 }
-
-export interface FieldContextProviderProps {
-  /**
-   * The value to provide to the context
-   */
-  value: FieldContextValue;
-
-  /**
-   * The children to render within the context provider
-   */
-  children: React.ReactNode;
-}

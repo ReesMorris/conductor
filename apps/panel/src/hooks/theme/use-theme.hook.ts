@@ -1,7 +1,8 @@
 'use client';
 
+import type { ThemeName } from '@/constants';
 import { useTheme as hook } from 'next-themes';
-import type { ThemeName, UseTheme } from './theme.types';
+import type { UseTheme } from './use-theme.types';
 
 export const useTheme = (): UseTheme => {
   const data = hook();
