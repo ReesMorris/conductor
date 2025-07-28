@@ -43,8 +43,8 @@ export const styles = {
     justifyContent: 'center'
   }),
   actionRowButton: css({
-    inlineSize: '12',
-    blockSize: '12',
+    inlineSize: '10',
+    blockSize: '10',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

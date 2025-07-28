@@ -1,15 +1,9 @@
 import { LanguageSelector } from '@/components/features/language-selector';
+import { ThemeToggle } from '@/components/features/theme-toggle';
 import { Heading } from '@/components/ui';
 import { VisuallyHidden } from '@/styled-system/jsx';
-import { LanguagesIcon } from 'lucide-react';
 import { styles } from './auth-layout.styles';
-
-export interface AuthLayoutProps {
-  title: string;
-  subtitle?: string;
-  children: React.ReactNode;
-  footer?: React.ReactNode;
-}
+import type { AuthLayoutProps } from './auth-layout.types';
 
 export const AuthLayout: React.FC<AuthLayoutProps> = ({
   title,
@@ -36,14 +30,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
         )}
       </div>
       <div className={styles.actionRow}>
-        <LanguageSelector
-          triggerAsChild
-          trigger={
-            <button type='button' className={styles.actionRowButton}>
-              <LanguagesIcon />
-            </button>
-          }
-        />
+        <ThemeToggle className={styles.actionRowButton} />
+        <LanguageSelector triggerClassName={styles.actionRowButton} />
       </div>
     </main>
   );

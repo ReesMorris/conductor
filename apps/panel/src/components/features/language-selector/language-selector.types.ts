@@ -6,4 +6,9 @@ export interface LanguageSelectorProps
    * Callback when language is changed
    */
   onLanguageChange?: (locale: string) => void;
+
+  /**
+   * Class name for the trigger button (if not using a custom trigger)
+   */
+  triggerClassName?: string;
 }

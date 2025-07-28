@@ -5,6 +5,7 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { CheckIcon } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useTransition } from 'react';
+import { DefaultTrigger } from './default-trigger';
 import { LANGUAGES } from './language-selector.constants';
 import { styles } from './language-selector.styles';
 import type { LanguageSelectorProps } from './language-selector.types';
@@ -12,6 +13,7 @@ import type { LanguageSelectorProps } from './language-selector.types';
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   trigger,
   triggerAsChild,
+  triggerClassName,
   onLanguageChange,
   ...props
 }) => {
@@ -36,8 +38,8 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   return (
     <Dialog
-      trigger={trigger}
-      triggerAsChild={triggerAsChild}
+      trigger={trigger || <DefaultTrigger className={triggerClassName} />}
+      triggerAsChild={trigger ? triggerAsChild : true}
       title={t('dialog_title')}
       description={t('dialog_description')}
       {...props}

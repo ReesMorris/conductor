@@ -17,6 +17,7 @@ export const Logo: React.FC<LogoProps> = ({
       width={size}
       height={size}
       className={cx(styles.logo, className)}
+      draggable={false}
     />
   );
 };

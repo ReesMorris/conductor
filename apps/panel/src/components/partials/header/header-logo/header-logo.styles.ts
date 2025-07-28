@@ -9,7 +9,8 @@ export const styles = {
     gap: '3',
     borderInlineEndWidth: '1',
     borderInlineEndStyle: 'solid',
-    borderInlineEndColor: 'border'
+    borderInlineEndColor: 'border',
+    userSelect: 'none'
   }),
   name: css({
     fontWeight: 'black',

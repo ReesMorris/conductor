@@ -47,6 +47,7 @@ export const UserMenu = () => {
       <LanguageSelector
         open={languageSelectorOpen}
         onOpenChange={setLanguageSelectorOpen}
+        trigger={<> </>}
       />
 
       <DropdownMenu.Root

@@ -68,7 +68,13 @@
     }
   },
   "language_selector": {
+    "label": "Select Language",
     "dialog_title": "Select Language",
     "dialog_description": "Choose your preferred language"
+  },
+  "theme_toggle": {
+    "label": "Change to {theme} mode",
+    "light": "Light",
+    "dark": "Dark"
   }
 }
