@@ -1,3 +1,5 @@
+import { Header } from '@/components/partials';
+
 export const Page = () => {
-  return <p>homepage</p>;
+  return <Header />;
 };

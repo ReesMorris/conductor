@@ -8,6 +8,11 @@ export interface UseTheme {
   setTheme: (themeName: ThemeName) => void;
 
   /**
+   * Toggles the theme between 'light' and 'dark'.
+   */
+  toggleTheme: () => void;
+
+  /**
    * The current theme name, which can be 'light', 'dark', or undefined if not set.
    */
   theme: ThemeName | undefined;

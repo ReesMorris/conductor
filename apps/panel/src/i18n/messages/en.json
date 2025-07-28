@@ -42,6 +42,13 @@
       "login_link": "Already have an account?"
     }
   },
+  "user_menu": {
+    "account_settings": "Account Settings",
+    "toggle_theme": "Toggle Theme",
+    "change_language": "Change Language",
+    "admin_panel": "Admin Panel",
+    "logout": "Log Out"
+  },
   "auth": {
     "errors": {
       "generic": "An error occurred. Please try again.",

@@ -16,9 +16,18 @@ export const useTheme = (): UseTheme => {
   };
 
   /**
+   * Toggles the theme between 'light' and 'dark'.
+   */
+  const toggleTheme = () => {
+    const currentTheme = data.theme;
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    data.setTheme(newTheme);
+  };
+
+  /**
    * The current theme name, which can be 'light', 'dark', or undefined if not set.
    */
   const theme = data.theme as ThemeName | undefined;
 
-  return { setTheme, theme };
+  return { setTheme, toggleTheme, theme };
 };
