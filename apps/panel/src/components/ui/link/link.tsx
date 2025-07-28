@@ -5,22 +5,31 @@ import type { LinkProps } from './link.types';
 
 export const Link: React.FC<LinkProps> = ({
   href,
+  unstyled,
   underlined,
+  fallbackElement,
   className,
   children,
   ...props
 }) => {
+  // If unstyled, don't apply any custom styles
+  let classes = className;
+  if (!unstyled) {
+    classes = cx(classes, styles.link({ underlined }));
+  }
+
   // If there's no href, return it as a span
   if (!href?.trim()) {
-    return <span className={className}>{children}</span>;
+    const Element = fallbackElement || 'span';
+    return (
+      <Element {...props} className={classes}>
+        {children}
+      </Element>
+    );
   }
 
   return (
-    <IntlLink
-      href={href}
-      {...props}
-      className={cx(styles.link({ underlined }), className)}
-    >
+    <IntlLink href={href} {...props} className={classes}>
       {children}
     </IntlLink>
   );
