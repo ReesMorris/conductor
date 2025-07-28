@@ -1,4 +1,7 @@
+export * from './alert';
+export * from './avatar';
 export * from './button';
+export * from './dialog';
 export * from './field';
 export * from './form';
 export * from './heading';
