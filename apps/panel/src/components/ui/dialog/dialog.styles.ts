@@ -1,8 +1,18 @@
 import { sva } from '@/styled-system/css';
 
 export const styles = sva({
-  slots: ['overlay', 'content', 'container', 'header', 'description'],
+  slots: [
+    'trigger',
+    'overlay',
+    'content',
+    'container',
+    'header',
+    'description'
+  ],
   base: {
+    trigger: {
+      cursor: 'pointer'
+    },
     overlay: {
       position: 'fixed',
       inset: '0',

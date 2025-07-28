@@ -2,7 +2,7 @@ import { css } from '@/styled-system/css';
 
 export const styles = {
   label: css({
-    color: 'foreground.muted',
+    color: 'foreground',
     display: 'inline-flex',
     inlineSize: 'fit',
     textStyle: 'sm',

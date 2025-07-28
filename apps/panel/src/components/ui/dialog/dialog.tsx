@@ -15,7 +15,7 @@ export const Dialog = ({
 
   return (
     <RadixDialog.Root {...props}>
-      <RadixDialog.Trigger asChild={triggerAsChild}>
+      <RadixDialog.Trigger asChild={triggerAsChild} className={classes.trigger}>
         {trigger}
       </RadixDialog.Trigger>
       <RadixDialog.Portal>

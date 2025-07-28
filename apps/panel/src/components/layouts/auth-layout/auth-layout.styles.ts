@@ -12,7 +12,7 @@ export const styles = {
   content: css({
     display: 'flex',
     flexDirection: 'column',
-    gap: '8',
+    gap: '3',
     padding: '10',
     borderRadius: 'md',
     borderWidth: '1',
@@ -30,11 +30,37 @@ export const styles = {
     marginBlockEnd: '4'
   }),
   footer: css({
-    textAlign: 'center',
-    marginBlockStart: '4'
+    textAlign: 'center'
   }),
   footerText: css({
     textStyle: 'sm',
     color: 'foreground.muted'
+  }),
+  actionRow: css({
+    marginBlockStart: '4',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }),
+  actionRowButton: css({
+    inlineSize: '12',
+    blockSize: '12',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    opacity: '0.7',
+    transitionProperty: 'opacity',
+    transitionDuration: 'normal',
+    transitionTimingFunction: 'in-out',
+
+    _hover: {
+      opacity: '1'
+    },
+
+    _icon: {
+      inlineSize: '4',
+      blockSize: '4'
+    }
   })
 };

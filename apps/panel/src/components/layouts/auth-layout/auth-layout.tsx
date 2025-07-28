@@ -1,5 +1,7 @@
+import { LanguageSelector } from '@/components/features/language-selector';
 import { Heading } from '@/components/ui';
 import { VisuallyHidden } from '@/styled-system/jsx';
+import { LanguagesIcon } from 'lucide-react';
 import { styles } from './auth-layout.styles';
 
 export interface AuthLayoutProps {
@@ -25,12 +27,24 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
           </VisuallyHidden>
         )}
       </header>
-      <div className={styles.content}>{children}</div>
-      {footer && (
-        <div className={styles.footer}>
-          <p className={styles.footerText}>{footer}</p>
-        </div>
-      )}
+      <div className={styles.content}>
+        {children}
+        {footer && (
+          <div className={styles.footer}>
+            <p className={styles.footerText}>{footer}</p>
+          </div>
+        )}
+      </div>
+      <div className={styles.actionRow}>
+        <LanguageSelector
+          triggerAsChild
+          trigger={
+            <button type='button' className={styles.actionRowButton}>
+              <LanguagesIcon />
+            </button>
+          }
+        />
+      </div>
     </main>
   );
 };
