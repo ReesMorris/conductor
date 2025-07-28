@@ -1,6 +1,6 @@
-import type { createAuthClient } from 'better-auth/react';
+import type { authClient } from '@/libs';
 import { createContext } from 'react';
 
 export const AuthContext = createContext<
-  ReturnType<typeof createAuthClient> | undefined
+  ReturnType<typeof authClient> | undefined
 >(undefined);
