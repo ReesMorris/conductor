@@ -1,12 +1,14 @@
 'use client';
 
+import { LanguageSelector } from '@/components/features/language-selector';
 import { DropdownMenu } from '@/components/ui';
 import { Avatar } from '@/components/ui/avatar/avatar';
 import { useAuth, useSession, useTheme } from '@/hooks';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
-import { LogOutIcon, MoonIcon, SunIcon } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { LanguagesIcon, LogOutIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { styles } from './user-menu.styles';
 
 export const UserMenu = () => {
@@ -14,7 +16,7 @@ export const UserMenu = () => {
   const auth = useAuth();
   const { data: session } = useSession();
   const { toggleTheme, theme } = useTheme();
-  const locale = useLocale();
+  const [languageSelectorOpen, setLanguageSelectorOpen] = useState(false);
   const router = useRouter();
 
   // If no session, don't render the menu
@@ -34,43 +36,56 @@ export const UserMenu = () => {
     router.push(route('LOGIN'));
   };
 
-  return (
-    <DropdownMenu.Root
-      trigger={<Avatar src={session.user.image} />}
-      align='end'
-      sideOffset={8}
-      className={styles.menu}
-    >
-      <div className={styles.accountHeader}>
-        <div className={styles.username}>{session.user.name}</div>
-        <div className={styles.email}>{session.user.email}</div>
-      </div>
+  // Handle opening the language selector
+  const handleLanguageSelectorOpen = (e: Event) => {
+    e.preventDefault(); // prevent closing the dropdown
+    setLanguageSelectorOpen(true);
+  };
 
-      <DropdownMenu.Item href={route('ACCOUNT')}>
-        {t('account_settings')}
-      </DropdownMenu.Item>
-      <DropdownMenu.Item
-        onSelect={handleThemeChange}
-        icon={theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+  return (
+    <>
+      <LanguageSelector
+        open={languageSelectorOpen}
+        onOpenChange={setLanguageSelectorOpen}
+      />
+
+      <DropdownMenu.Root
+        trigger={<Avatar src={session.user.image} />}
+        align='end'
+        sideOffset={8}
+        className={styles.menu}
       >
-        {t('toggle_theme')}
-      </DropdownMenu.Item>
-      <DropdownMenu.Item
-        disabled
-        icon={<div className={styles.locale}>{locale}</div>}
-      >
-        {t('change_language')}
-      </DropdownMenu.Item>
-      <DropdownMenu.Separator />
-      {session.user.role === 'admin' && (
-        <>
-          <DropdownMenu.Item>{t('admin_panel')}</DropdownMenu.Item>
-          <DropdownMenu.Separator />
-        </>
-      )}
-      <DropdownMenu.Item onSelect={handleLogout} icon={<LogOutIcon />}>
-        {t('logout')}
-      </DropdownMenu.Item>
-    </DropdownMenu.Root>
+        <div className={styles.accountHeader}>
+          <div className={styles.username}>{session.user.name}</div>
+          <div className={styles.email}>{session.user.email}</div>
+        </div>
+
+        <DropdownMenu.Item disabled href={route('ACCOUNT')}>
+          {t('account_settings')}
+        </DropdownMenu.Item>
+        <DropdownMenu.Item
+          onSelect={handleThemeChange}
+          icon={theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        >
+          {t('toggle_theme')}
+        </DropdownMenu.Item>
+        <DropdownMenu.Item
+          onSelect={handleLanguageSelectorOpen}
+          icon={<LanguagesIcon />}
+        >
+          {t('change_language')}
+        </DropdownMenu.Item>
+        <DropdownMenu.Separator />
+        {session.user.role === 'admin' && (
+          <>
+            <DropdownMenu.Item disabled>{t('admin_panel')}</DropdownMenu.Item>
+            <DropdownMenu.Separator />
+          </>
+        )}
+        <DropdownMenu.Item onSelect={handleLogout} icon={<LogOutIcon />}>
+          {t('logout')}
+        </DropdownMenu.Item>
+      </DropdownMenu.Root>
+    </>
   );
 };

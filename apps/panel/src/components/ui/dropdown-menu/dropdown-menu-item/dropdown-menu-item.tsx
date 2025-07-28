@@ -6,11 +6,16 @@ import type { DropdownMenuItemProps } from './dropdown-menu-item.types';
 
 export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
   children,
-  href,
+  href: hrefProp,
   icon,
   className,
   ...props
 }) => {
+  // If the item is disabled, don't render as a link
+  let href = hrefProp;
+  if (props.disabled) {
+    href = undefined;
+  }
   return (
     <RadixDropdownMenu.Item
       {...props}

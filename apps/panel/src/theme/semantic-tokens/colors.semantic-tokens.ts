@@ -45,8 +45,8 @@ export const semanticColors = defineSemanticTokens.colors({
     foreground: {
       DEFAULT: { value: { _light: '#ffffff', _dark: '#7dd3fc' } },
       muted: { value: { _light: '#cccccc', _dark: '#b3b3b3' } },
-      onSolid: { value: { _light: '#ffffff', _dark: '#e6e6e6' } },
-      onSubtle: { value: { _light: '#333333', _dark: '#cccccc' } }
+      onSolid: { value: { _light: '#ffffff', _dark: '#ffffff' } },
+      onSubtle: { value: { _light: '#333333', _dark: '#ffffff' } }
     },
     border: {
       DEFAULT: { value: { _light: '#3b82f6', _dark: '#4a5568' } },

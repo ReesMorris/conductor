@@ -7,7 +7,7 @@ export const styles = sva({
       position: 'fixed',
       inset: '0',
       backgroundColor: 'background.overlay',
-      zIndex: 'above',
+      zIndex: 'overlay',
 
       _open: {
         animation: 'fade-in-smooth'
@@ -19,7 +19,7 @@ export const styles = sva({
     },
     content: {
       position: 'fixed',
-      insetBlockStart: '[15vh]',
+      insetBlockStart: '[10vh]',
       insetInlineStart: '[50%]',
       transform: 'translateX(-50%)',
       zIndex: 'modal',
