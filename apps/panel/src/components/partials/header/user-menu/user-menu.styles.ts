@@ -7,7 +7,7 @@ export const styles = {
   accountHeader: css({
     maxInlineSize: 'full',
     paddingBlock: '2',
-    paddingInline: '3'
+    paddingInline: '4'
   }),
   username: css({
     fontWeight: 'medium',

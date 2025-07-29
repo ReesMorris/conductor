@@ -6,18 +6,16 @@ export const styles = {
     position: 'fixed',
     insetBlockStart: '0',
     insetInline: '0',
-    borderBlockEndWidth: '1',
-    borderBlockEndStyle: 'solid',
-    borderBlockEndColor: 'border',
-    backgroundColor: 'background.secondary',
     zIndex: 'above'
   }),
   content: css({
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    inlineSize: 'full',
     blockSize: 'full',
-    paddingInline: '6'
+    paddingInline: 'header'
   }),
   left: css({
     blockSize: 'full',

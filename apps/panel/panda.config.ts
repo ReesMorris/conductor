@@ -28,9 +28,6 @@ export default defineConfig({
   // The framework for your css system
   jsxFramework: 'react',
 
-  // Support older browsers
-  cssVarRoot: ':root',
-
   // Whether to allow shorthand properties
   shorthands: false,
 

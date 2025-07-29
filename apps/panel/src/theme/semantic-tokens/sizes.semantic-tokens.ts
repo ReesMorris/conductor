@@ -1,7 +1,8 @@
 import { defineSemanticTokens } from '@pandacss/dev';
 
 export const semanticSizes = defineSemanticTokens.sizes({
-  ui: { value: '{sizes.9}' },
-  header: { value: '4rem' },
-  sidebar: { value: '15rem' }
+  ui: { value: '{sizes.10}' },
+  header: { value: '5rem' },
+  sidebar: { value: '15rem' },
+  wrapper: { value: '72rem' }
 });

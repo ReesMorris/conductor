@@ -6,7 +6,7 @@ export const styles = {
     display: 'inline-flex',
     inlineSize: 'fit',
     textStyle: 'sm',
-    fontWeight: 'light',
+    fontWeight: 'medium',
     letterSpacing: 'wide',
 
     _disabled: {

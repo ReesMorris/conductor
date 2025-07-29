@@ -5,12 +5,14 @@ export const styles = {
     inlineSize: 'sidebar',
     blockSize: 'full',
     display: 'flex',
-    alignItems: 'center',
-    gap: '3',
-    borderInlineEndWidth: '1',
-    borderInlineEndStyle: 'solid',
-    borderInlineEndColor: 'border',
     userSelect: 'none'
+  }),
+  link: css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '3',
+    inlineSize: 'fit'
   }),
   name: css({
     fontWeight: 'black',

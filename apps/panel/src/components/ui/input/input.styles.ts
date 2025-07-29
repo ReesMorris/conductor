@@ -17,6 +17,8 @@ export const styles = {
     outlineWidth: '1',
     outlineStyle: 'solid',
     outlineColor: 'transparent',
+    backdropFilter: 'auto',
+    backdropBlur: 'xl',
 
     '&:not(:disabled):hover': {
       borderColor: 'border.hover',

@@ -5,9 +5,11 @@ import { styles } from './header-logo.styles';
 
 export const HeaderLogo = () => {
   return (
-    <Link unstyled href={route('HOME')} className={styles.container}>
-      <Logo size={32} />
-      <div className={styles.name}>{APP_NAME}</div>
-    </Link>
+    <div className={styles.container}>
+      <Link unstyled href={route('HOME')} className={styles.link}>
+        <Logo size={32} />
+        <div className={styles.name}>{APP_NAME}</div>
+      </Link>
+    </div>
   );
 };

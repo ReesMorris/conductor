@@ -4,6 +4,7 @@ import { semanticFontSizes } from './semantic-tokens/font-sizes.semantic-tokens'
 import { semanticFonts } from './semantic-tokens/fonts.semantic-tokens';
 import { semanticOpacity } from './semantic-tokens/opacity.semantic-tokens';
 import { semanticSizes } from './semantic-tokens/sizes.semantic-tokens';
+import { semanticSpacing } from './semantic-tokens/spacing.semantic-tokens';
 import { textStyles } from './text-styles';
 import { animations } from './tokens/animations.tokens';
 import { keyframes } from './tokens/keyframes.tokens';
@@ -29,7 +30,8 @@ export const theme: ExtendableTheme = {
       fontSizes: semanticFontSizes,
       fonts: semanticFonts,
       opacity: semanticOpacity,
-      sizes: semanticSizes
+      sizes: semanticSizes,
+      spacing: semanticSpacing
     }
   }
 };

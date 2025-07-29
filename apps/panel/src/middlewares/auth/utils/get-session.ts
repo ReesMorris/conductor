@@ -1,5 +1,5 @@
 import { getAuthBaseUrl } from '@/utils/get-auth-base-url';
-import { createAuthClient } from 'better-auth/react';
+import { createAuthClient } from 'better-auth/client';
 import type { NextRequest } from 'next/server';
 
 /**
