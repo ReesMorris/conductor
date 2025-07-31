@@ -10,6 +10,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import '@/theme/root.css';
+import '@/theme/colors';
 
 interface LayoutProps {
   params: Promise<{ locale: string }>;

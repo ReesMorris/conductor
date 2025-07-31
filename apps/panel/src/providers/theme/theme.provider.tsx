@@ -1,7 +1,6 @@
 import 'server-only';
 
 import { env } from '@/env';
-import { THEME_DATA_ATTRIBUTE } from '@/theme/theme.constants';
 import { ThemeProvider as Provider } from 'next-themes';
 
 interface ThemeProviderProps {
@@ -13,7 +12,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     <Provider
       enableSystem
       disableTransitionOnChange
-      attribute={THEME_DATA_ATTRIBUTE}
+      attribute='class'
       defaultTheme={env.DEFAULT_THEME}
     >
       {children}

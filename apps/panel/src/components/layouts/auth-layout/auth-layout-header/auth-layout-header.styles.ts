@@ -8,7 +8,7 @@ export const styles = {
   logo: css({
     inlineSize: '16',
     blockSize: '16',
-    backgroundColor: 'black/35',
+    backgroundColor: 'glass.light',
     backdropFilter: 'auto',
     backdropBlur: 'sm',
     borderRadius: 'full',
@@ -24,7 +24,7 @@ export const styles = {
     lineHeight: 'tight'
   }),
   subtitle: css({
-    color: 'foreground/40',
+    color: 'foreground/60',
     textStyle: 'sm',
     fontWeight: 'medium'
   })

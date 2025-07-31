@@ -41,6 +41,6 @@ export const styles = {
   }),
   errorText: css({
     textStyle: 'xs',
-    color: 'red.400'
+    color: 'red.800'
   })
 };

@@ -16,7 +16,7 @@
       "password": {
         "label": "Password"
       },
-      "forgot": "Forgot?",
+      "forgot": "Forgot<hidden> password</hidden>?",
       "submit": "Login",
       "register_link": "Don't have an account? <link>Create an account</link>"
     }

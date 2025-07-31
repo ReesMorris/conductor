@@ -18,11 +18,11 @@ export const styles = {
     transitionTimingFunction: 'in-out',
 
     _hover: {
-      backgroundColor: 'purple.400/10'
+      backgroundColor: 'purple.900/10'
     },
 
     _focus: {
-      backgroundColor: 'purple.400/10'
+      backgroundColor: 'purple.900/10'
     },
 
     _disabled: {
@@ -53,7 +53,7 @@ export const styles = {
     color: 'foreground',
 
     _current: {
-      color: 'purple.400'
+      color: 'purple.900'
     }
   }),
   content: css({

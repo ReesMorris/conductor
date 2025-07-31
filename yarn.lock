@@ -203,7 +203,6 @@ __metadata:
     "@biomejs/biome": "npm:^2.1.2"
     "@hookform/resolvers": "npm:^5.2.0"
     "@pandacss/dev": "npm:^0.54.0"
-    "@radix-ui/colors": "npm:^3.0.0"
     "@t3-oss/env-nextjs": "npm:^0.13.8"
     "@types/node": "npm:^24.1.0"
     "@types/react": "npm:^19.1.8"
@@ -3175,6 +3174,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "conductor@workspace:."
   dependencies:
+    "@radix-ui/colors": "npm:^3.0.0"
     "@types/node": "npm:^24.1.0"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^16.1.2"

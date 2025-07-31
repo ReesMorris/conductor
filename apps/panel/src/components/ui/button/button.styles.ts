@@ -45,10 +45,10 @@ export const styles = {
     variants: {
       variant: {
         primary: {
-          '--button-fg': '{colors.foreground}',
-          '--button-bg': '{colors.purple.800}',
-          '--button-bg-hover': '{colors.purple.700}',
-          '--button-focus-color': '{colors.purple.800}',
+          '--button-fg': '{colors.primary.contrast}',
+          '--button-bg': '{colors.primary}',
+          '--button-bg-hover': '{colors.primary.hover}',
+          '--button-focus-color': '{colors.primary}',
 
           _active: {
             transform: 'translateY(0.125rem)'

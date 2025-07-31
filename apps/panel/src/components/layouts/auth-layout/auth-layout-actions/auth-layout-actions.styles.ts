@@ -8,6 +8,6 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     marginInline: 'auto',
-    gap: '4'
+    gap: '2'
   })
 };

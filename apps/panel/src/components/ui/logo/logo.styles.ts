@@ -7,7 +7,7 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 'square',
-    backgroundColor: 'black/35',
+    backgroundColor: 'glass.light',
     userSelect: 'none',
     fontWeight: 'black',
     fontSize: 'xl'

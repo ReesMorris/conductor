@@ -3,17 +3,17 @@ import { cva } from '@/styled-system/css';
 export const styles = {
   link: cva({
     base: {
-      color: 'purple.400',
+      color: 'purple.900',
       cursor: 'pointer',
       fontWeight: 'medium',
       textUnderlineOffset: '5px',
       textDecorationThickness: '1px',
       textDecorationLine: 'underline',
-      transitionProperty: 'color',
+      transitionProperty: 'opacity',
       transitionDuration: 'normal',
 
       _hover: {
-        color: 'purple.300',
+        opacity: '0.85',
         textDecorationColor: 'current/95',
         textDecorationThickness: '1.5px'
       },
@@ -22,7 +22,7 @@ export const styles = {
         outlineWidth: '2',
         outlineOffset: '1',
         outlineStyle: 'solid',
-        outlineColor: 'purple.300'
+        outlineColor: 'purple.900'
       }
     },
     variants: {

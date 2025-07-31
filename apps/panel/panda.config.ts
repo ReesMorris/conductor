@@ -36,8 +36,8 @@ export default defineConfig({
 
   // The css selectors or media queries shortcuts
   conditions: {
-    light: `[${THEME_DATA_ATTRIBUTE}=light] &`,
-    dark: `[${THEME_DATA_ATTRIBUTE}=dark] &`
+    light: '.light &',
+    dark: '.dark &'
   },
 
   // The output directory for your css system

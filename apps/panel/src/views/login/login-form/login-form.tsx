@@ -12,6 +12,7 @@ import {
 import { useAuth } from '@/hooks';
 import { getAuthErrorKey } from '@/i18n/mappings';
 import { useRouter } from '@/i18n/navigation';
+import { VisuallyHidden } from '@/styled-system/jsx';
 import { route } from '@/utils/route';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MailIcon } from 'lucide-react';
@@ -82,7 +83,9 @@ export const LoginForm: React.FC = () => {
         label={t('password.label')}
         labelSuffix={
           <Link href={route('FORGOT_PASSWORD')} className={styles.forgotLink}>
-            {t('forgot')}
+            {t.rich('forgot', {
+              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
+            })}
           </Link>
         }
         errorMessage={errors.password?.message}

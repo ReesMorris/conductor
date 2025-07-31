@@ -34,14 +34,14 @@ export const styles = {
     },
 
     _invalid: {
-      borderColor: 'red.400',
+      borderColor: 'red.600',
 
       _hover: {
-        borderColor: 'red.500'
+        borderColor: 'red.800'
       },
       _focus: {
-        outlineColor: 'red.500',
-        borderColor: 'red.500'
+        outlineColor: 'red.800',
+        borderColor: 'red.800'
       }
     },
 
