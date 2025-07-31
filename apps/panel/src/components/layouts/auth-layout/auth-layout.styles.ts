@@ -20,7 +20,6 @@ export const styles = {
     borderRadius: '2xl',
     padding: '8',
     boxShadow: '2xl',
-    boxShadowColor: 'black/20',
     inlineSize: '[min(100vw, 28rem)]',
 
     mobileMediumDown: {

@@ -14,7 +14,6 @@ export const styles = {
       zIndex: 'dropdown',
       backdropFilter: 'auto',
       backdropBlur: 'xl',
-      boxShadowColor: 'black/20',
 
       _open: {
         _motionSafe: {

@@ -5,6 +5,6 @@ export const styles = {
     display: 'flex',
     inlineSize: '[min(100vw, {sizes.wrapper})]',
     marginInline: 'auto',
-    paddingInline: '2'
+    paddingInline: '6'
   })
 };

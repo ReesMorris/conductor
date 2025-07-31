@@ -16,7 +16,7 @@ export const styles = sva({
     overlay: {
       position: 'fixed',
       inset: '0',
-      backgroundColor: 'background.overlay',
+      // backgroundColor: 'background.overlay',
       zIndex: 'overlay',
 
       _open: {
@@ -60,7 +60,7 @@ export const styles = sva({
       maxBlockSize: '[85vh]',
       padding: '6',
       borderRadius: 'md',
-      backgroundColor: 'background',
+      // backgroundColor: 'background',
       boxShadow: 'lg',
       outline: 'none',
       textStyle: 'sm'
@@ -71,7 +71,7 @@ export const styles = sva({
       gap: '2'
     },
     description: {
-      color: 'foreground.muted'
+      // color: 'foreground.muted'
     }
   }
 });

@@ -2,9 +2,9 @@ import { css } from '@/styled-system/css';
 
 export const styles = {
   select: css({
-    blockSize: 'ui',
+    blockSize: 'ui.md',
     inlineSize: '48',
-    backgroundColor: 'background.elevated',
+    // backgroundColor: 'background.elevated',
     borderRadius: 'md',
     paddingInline: '2'
   })

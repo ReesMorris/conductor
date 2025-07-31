@@ -1,4 +1,5 @@
-import { Avatar, DropdownMenu } from '@/components/ui';
+import { Avatar, Button } from '@/components/ui';
+import { styles } from './user-menu-trigger.styles';
 import type { UserMenuTriggerProps } from './user-menu-trigger.types';
 
 export const UserMenuTrigger: React.FC<UserMenuTriggerProps> = ({
@@ -8,12 +9,8 @@ export const UserMenuTrigger: React.FC<UserMenuTriggerProps> = ({
   ...props
 }) => {
   return (
-    <DropdownMenu.Trigger
-      startElement={<Avatar size='xs' src={profilePicture} />}
-      isOpen={isOpen}
-      {...props}
-    >
-      {name}
-    </DropdownMenu.Trigger>
+    <Button variant='ghost' {...props} className={styles.button}>
+      <Avatar />
+    </Button>
   );
 };

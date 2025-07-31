@@ -47,7 +47,7 @@
     "account_settings": "Account Settings",
     "toggle_theme": "Toggle Theme",
     "change_language": "Change Language…",
-    "admin_panel": "Admin Panel",
+    "server_settings": "Server Settings",
     "logout": "Log Out"
   },
   "auth": {
@@ -83,5 +83,11 @@
     "label": "Change to {theme} mode",
     "light": "Light",
     "dark": "Dark"
+  },
+  "dashboard": {
+    "navigation": {
+      "servers": "Servers",
+      "settings": "Settings"
+    }
   }
 }

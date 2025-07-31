@@ -57,6 +57,7 @@ export const UserMenu = () => {
         <div className={styles.email}>{session.user.email}</div>
       </div>
 
+      <DropdownMenu.Separator />
       <DropdownMenu.Item disabled href={route('ACCOUNT')}>
         {t('account_settings')}
       </DropdownMenu.Item>
@@ -79,7 +80,9 @@ export const UserMenu = () => {
       <DropdownMenu.Separator />
       {session.user.role === 'admin' && (
         <>
-          <DropdownMenu.Item disabled>{t('admin_panel')}</DropdownMenu.Item>
+          <DropdownMenu.Item href={route('SERVER_SETTINGS')}>
+            {t('server_settings')}
+          </DropdownMenu.Item>
           <DropdownMenu.Separator />
         </>
       )}
