@@ -6,6 +6,7 @@ export type RouteParams = {
   HOME: NoUrlParams;
   LOGIN: NoUrlParams;
   REGISTER: NoUrlParams;
+  FORGOT_PASSWORD: NoUrlParams;
   ACCOUNT: NoUrlParams;
   HEALTH_CHECK: NoUrlParams;
   _PLACEHOLDER: { name: UrlParam };
@@ -15,6 +16,7 @@ export const Routes: Record<keyof RouteParams, string> = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
   ACCOUNT: '/account',
   HEALTH_CHECK: '/health',
   _PLACEHOLDER: '/:name' // Example placeholder route

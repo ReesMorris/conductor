@@ -1,7 +1,6 @@
 'use client';
 
 import { useField, useInputGroup } from '@/hooks';
-import { cx } from '@/styled-system/css';
 import { styles } from './input.styles';
 import type { InputProps } from './input.types';
 

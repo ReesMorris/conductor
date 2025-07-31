@@ -5,6 +5,11 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string;
 
   /**
+   * Optional content to display on the right side of the label
+   */
+  labelSuffix?: React.ReactNode;
+
+  /**
    * The help text for the field
    */
   helpText?: string;

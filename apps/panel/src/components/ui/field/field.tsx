@@ -10,6 +10,7 @@ import { generateIds } from './utils';
 
 export const Field: React.FC<FieldProps> = ({
   label,
+  labelSuffix,
   helpText,
   errorMessage,
   disabled,
@@ -38,9 +39,12 @@ export const Field: React.FC<FieldProps> = ({
         className={cx(styles.field, className)}
         data-disabled={disabled || undefined}
       >
-        <Label id={labelId} htmlFor={controlId} disabled={disabled}>
-          {label}
-        </Label>
+        <div className={styles.labelContainer}>
+          <Label id={labelId} htmlFor={controlId} disabled={disabled}>
+            {label}
+          </Label>
+          {labelSuffix}
+        </div>
         {children}
 
         <div

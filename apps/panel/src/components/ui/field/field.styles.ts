@@ -10,6 +10,12 @@ export const styles = {
       cursor: 'not-allowed'
     }
   }),
+  labelContainer: css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '2'
+  }),
   fieldDescription: css({
     _disabled: {
       opacity: 'disabled'

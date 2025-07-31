@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Field, Form, Input, InputGroup } from '@/components/ui';
+import { Button, Field, Form, Input, InputGroup, Link } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { getAuthErrorKey } from '@/i18n/mappings';
 import { useRouter } from '@/i18n/navigation';
@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { type LoginFormData, loginFormSchema } from './login-form.schema';
+import { styles } from './login-form.styles';
 
 export const LoginForm: React.FC = () => {
   const t = useTranslations('login_page.form');
@@ -65,6 +66,11 @@ export const LoginForm: React.FC = () => {
 
       <Field
         label={t('password.label')}
+        labelSuffix={
+          <Link href={route('FORGOT_PASSWORD')} className={styles.forgotLink}>
+            {t('forgot')}
+          </Link>
+        }
         errorMessage={errors.password?.message}
       >
         <InputGroup iconStart={<LockIcon />}>
