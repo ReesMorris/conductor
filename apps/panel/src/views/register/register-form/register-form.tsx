@@ -16,7 +16,7 @@ import {
 
 export const RegisterForm: React.FC = () => {
   const t = useTranslations('register_page.form');
-  const tAuth = useTranslations();
+  const tAuth = useTranslations('auth');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
@@ -27,7 +27,15 @@ export const RegisterForm: React.FC = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<RegisterFormData>({
-    resolver: zodResolver(registerFormSchema)
+    resolver: zodResolver(
+      registerFormSchema({
+        emailRequired: tAuth('errors.email_required'),
+        invalidEmail: tAuth('errors.invalid_email'),
+        nameRequired: tAuth('errors.name_required'),
+        nameMinLength: tAuth('errors.name_min_length'),
+        passwordRequired: tAuth('errors.password_required')
+      })
+    )
   });
 
   const onSubmit = async (data: RegisterFormData) => {
@@ -49,7 +57,7 @@ export const RegisterForm: React.FC = () => {
         router.push(route('HOME'));
       }
     } catch {
-      setAuthError(tAuth('auth.errors.generic'));
+      setAuthError(tAuth('errors.generic'));
       setIsSubmitting(false);
     }
   };

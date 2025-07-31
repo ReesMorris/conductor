@@ -1,14 +1,24 @@
 import { z } from 'zod';
 
+interface SchemaMessages {
+  emailRequired: string;
+  invalidEmail: string;
+  passwordRequired: string;
+}
+
 /**
  * Schema for login form validation
  */
-export const loginFormSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('Invalid email address'),
-  password: z.string().min(1, 'Password is required')
-});
+export const loginFormSchema = (messages: SchemaMessages) =>
+  z.object({
+    email: z
+      .string()
+      .min(1, messages.emailRequired)
+      .email(messages.invalidEmail),
+    password: z.string().min(1, messages.passwordRequired)
+  });
 
 /**
  * Login form data type
  */
-export type LoginFormData = z.infer<typeof loginFormSchema>;
+export type LoginFormData = z.infer<ReturnType<typeof loginFormSchema>>;

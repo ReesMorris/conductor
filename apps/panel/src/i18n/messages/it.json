@@ -7,8 +7,8 @@
       "title": "Accedi"
     },
     "form": {
-      "title": "Bentornato",
-      "subtitle": "Accedi per continuare",
+      "title": "Benvenuto su {appName}",
+      "subtitle": "Accedi al tuo account",
       "email": {
         "label": "Indirizzo Email",
         "placeholder": "steve@minecraft.net"
@@ -16,8 +16,9 @@
       "password": {
         "label": "Password"
       },
+      "forgot": "Dimenticata?",
       "submit": "Accedi",
-      "register_link": "Non hai un account?"
+      "register_link": "Non hai un account? <link>Crea un account</link>"
     }
   },
   "register_page": {
@@ -28,18 +29,18 @@
       "title": "Crea Account",
       "subtitle": "Crea il tuo account per iniziare",
       "name": {
-        "label": "Nome",
-        "placeholder": "Steve"
+        "label": "Il Tuo Nome",
+        "placeholder": "Alex Smith"
       },
       "email": {
         "label": "Indirizzo Email",
-        "placeholder": "steve@minecraft.net"
+        "placeholder": "alex.smith@example.com"
       },
       "password": {
         "label": "Password"
       },
       "submit": "Crea Account",
-      "login_link": "Hai già un account?"
+      "login_link": "Hai già un account? <link>Accedi</link>"
     }
   },
   "user_menu": {
@@ -52,9 +53,9 @@
   "auth": {
     "errors": {
       "generic": "Si è verificato un errore. Riprova.",
-      "invalid_credentials": "Email o password errata",
+      "invalid_credentials": "Email o password errati",
       "user_not_found": "Nessun account trovato con questa email",
-      "invalid_email_or_password": "Email o password errata",
+      "invalid_email_or_password": "Email o password errati",
       "account_locked": "Il tuo account è stato bloccato. Contatta l'assistenza.",
       "account_not_verified": "Verifica la tua email prima di accedere",
       "user_already_exists": "Esiste già un account con questa email",
@@ -64,11 +65,18 @@
       "invalid_token": "Token non valido o scaduto",
       "too_many_attempts": "Troppi tentativi. Riprova più tardi.",
       "network_error": "Errore di rete. Controlla la tua connessione.",
-      "server_error": "Errore del server. Riprova più tardi."
+      "server_error": "Errore del server. Riprova più tardi.",
+      "email_required": "L'email è obbligatoria",
+      "password_required": "La password è obbligatoria",
+      "name_required": "Il nome è obbligatorio"
     }
   },
   "language_selector": {
-    "dialog_title": "Seleziona Lingua",
-    "dialog_description": "Scegli la tua lingua preferita"
+    "label": "Cambia Lingua"
+  },
+  "theme_toggle": {
+    "label": "Cambia a modalità {theme}",
+    "light": "Chiara",
+    "dark": "Scura"
   }
 }

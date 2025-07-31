@@ -65,7 +65,10 @@
       "invalid_token": "Invalid or expired token",
       "too_many_attempts": "Too many attempts. Please try again later.",
       "network_error": "Network error. Please check your connection.",
-      "server_error": "Server error. Please try again later."
+      "server_error": "Server error. Please try again later.",
+      "email_required": "Email is required",
+      "password_required": "Password is required",
+      "name_required": "Name is required"
     }
   },
   "language_selector": {
