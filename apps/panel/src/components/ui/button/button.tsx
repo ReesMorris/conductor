@@ -5,6 +5,7 @@ import type { ButtonProps } from './button.types';
 
 export const Button: React.FC<ButtonProps> = ({
   size,
+  shape,
   variant,
   isLoading,
   className,
@@ -18,7 +19,11 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
       aria-busy={isLoading || undefined}
       disabled={disabled}
-      className={cx('group', styles.button({ size, variant }), className)}
+      className={cx(
+        'group',
+        styles.button({ size, shape, variant }),
+        className
+      )}
     >
       <div className={cx(styles.content, contentClassName)}>
         {props.children}

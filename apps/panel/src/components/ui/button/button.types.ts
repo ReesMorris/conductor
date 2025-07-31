@@ -1,6 +1,7 @@
 import type { styles } from './button.styles';
 
 export type ButtonVariant = (typeof styles.button.variantMap.variant)[number];
+export type ButtonShape = (typeof styles.button.variantMap.shape)[number];
 export type ButtonSize = (typeof styles.button.variantMap.size)[number];
 
 export interface ButtonProps
@@ -10,6 +11,12 @@ export interface ButtonProps
    * @default 'md'
    */
   size?: ButtonSize;
+
+  /**
+   * The shape of the button.
+   * @default 'rounded'
+   */
+  shape?: ButtonShape;
 
   /**
    * The variant of the button, which determines its style.

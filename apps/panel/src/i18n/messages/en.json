@@ -90,6 +90,13 @@
       "settings": "Settings"
     }
   },
+  "file_upload": {
+    "validation": {
+      "invalid_type": "File type must be one of: {extensions}",
+      "file_too_large": "File must be less than {maxSize} bytes",
+      "file_too_small": "File must be at least {minSize} bytes"
+    }
+  },
   "settings": {
     "navigation": {
       "personal": "Personal",
@@ -102,6 +109,14 @@
     }
   },
   "profile_settings": {
-    "title": "Profile / Settings"
+    "title": "Profile / Settings",
+    "profile_photo": {
+      "title": "Profile Photo",
+      "label": "Upload a new photo",
+      "help_text": "JPG, PNG or GIF. Max size 2MB.",
+      "upload_button": "Upload Photo",
+      "change_button": "Change Photo",
+      "remove_button": "Remove Photo"
+    }
   }
 }

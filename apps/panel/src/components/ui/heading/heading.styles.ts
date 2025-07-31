@@ -2,6 +2,9 @@ import { cva } from '@/styled-system/css';
 
 export const styles = {
   heading: cva({
+    base: {
+      marginBlockEnd: '4'
+    },
     variants: {
       level: {
         1: { textStyle: 'h1' },

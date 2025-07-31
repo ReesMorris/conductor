@@ -23,12 +23,13 @@ export const styles = sva({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'glass.dark',
-      color: 'foreground.subtle',
+      backgroundColor: 'primary',
+      color: 'primary.contrast',
       fontWeight: 'medium',
 
       _icon: {
-        transform: 'scale(0.75)'
+        inlineSize: '[1.6em]',
+        blockSize: '[1.6em]'
       }
     }
   },
@@ -67,6 +68,13 @@ export const styles = sva({
           inlineSize: '16',
           blockSize: '16',
           textStyle: 'lg'
+        }
+      },
+      '2xl': {
+        root: {
+          inlineSize: '20',
+          blockSize: '20',
+          textStyle: 'xl'
         }
       }
     },

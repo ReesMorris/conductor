@@ -1,3 +1,5 @@
+import { ProfilePhoto } from './profile-photo';
+
 export const Page = () => {
-  return <p>profile settings page</p>;
+  return <ProfilePhoto />;
 };

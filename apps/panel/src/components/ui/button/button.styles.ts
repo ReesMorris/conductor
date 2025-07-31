@@ -4,7 +4,7 @@ export const styles = {
   button: cva({
     base: {
       position: 'relative',
-      borderRadius: 'lg',
+      borderRadius: 'var(--button-radius)',
       blockSize: 'var(--button-height)',
       textStyle: 'sm',
       fontWeight: 'medium',
@@ -66,21 +66,52 @@ export const styles = {
           '--button-bg': 'transparent',
           '--button-bg-hover': '{colors.glass.dark}',
           '--button-focus-color': '{colors.glass.darker}'
+        },
+        destructive: {
+          '--button-fg': '{colors.red.900}',
+          '--button-bg': '{colors.red.900/10}',
+          '--button-bg-hover': '{colors.red.900/20}',
+          '--button-focus-color': '{colors.red.900}',
+          '--button-border': '{colors.red.900/20}'
         }
       },
       size: {
+        xs: {
+          '--button-height': 'sizes.ui.xs',
+          '--button-padding': '{spacing.2}',
+          '--button-gap': '{spacing.1}'
+        },
         sm: {
           '--button-height': 'sizes.ui.sm',
-          '--button-padding': '{spacing.3}'
+          '--button-padding': '{spacing.3}',
+          '--button-gap': '{spacing.2}'
         },
         md: {
           '--button-height': 'sizes.ui.md',
-          '--button-padding': '{spacing.3}'
+          '--button-padding': '{spacing.3.5}',
+          '--button-gap': '{spacing.3}'
+        },
+        lg: {
+          '--button-height': 'sizes.ui.lg',
+          '--button-padding': '{spacing.4}',
+          '--button-gap': '{spacing.4}'
+        }
+      },
+      shape: {
+        square: {
+          '--button-radius': '0'
+        },
+        rounded: {
+          '--button-radius': '{radii.lg}'
+        },
+        circle: {
+          '--button-radius': '{radii.full}'
         }
       }
     },
     defaultVariants: {
       variant: 'primary',
+      shape: 'rounded',
       size: 'md'
     }
   }),
@@ -88,7 +119,7 @@ export const styles = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '2',
+    gap: 'var(--button-gap)',
     blockSize: 'full',
     inlineSize: 'full',
     opacity: '1',
