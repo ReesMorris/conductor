@@ -1,3 +1,4 @@
+import { ThemeToggle } from '@/components/features/theme-toggle';
 import { Heading, Logo } from '@/components/ui';
 import { styles } from './auth-layout.styles';
 import type { AuthLayoutProps } from './auth-layout.types';
@@ -29,6 +30,9 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
         </div>
       )}
 
+      <div className={styles.actions}>
+        <ThemeToggle />
+      </div>
       {/* <div className={styles.actionRow}>
         <ThemeToggle className={styles.actionRowButton} />
         <LanguageSelector triggerClassName={styles.actionRowButton} />

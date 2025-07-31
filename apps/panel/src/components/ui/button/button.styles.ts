@@ -4,16 +4,18 @@ export const styles = {
   button: cva({
     base: {
       position: 'relative',
-      blockSize: 'ui',
-      borderRadius: 'md',
+      borderRadius: 'lg',
+      blockSize: 'var(--button-height)',
       textStyle: 'sm',
       fontWeight: 'medium',
       cursor: 'pointer',
       borderWidth: '1',
       borderStyle: 'solid',
-      borderColor: 'transparent',
+      borderColor: 'var(--button-border, transparent)',
       backgroundColor: 'var(--button-bg)',
       color: 'var(--button-fg)',
+      backdropFilter: 'auto',
+      backdropBlur: 'md',
       transitionProperty: 'border-color, background-color, transform',
       transitionDuration: 'normal',
       transitionTimingFunction: 'in-out',
@@ -46,14 +48,29 @@ export const styles = {
     variants: {
       variant: {
         primary: {
-          '--button-fg': 'colors.foreground',
-          '--button-bg': 'colors.purple.800',
-          '--button-bg-hover': 'colors.purple.700'
+          '--button-fg': '{colors.foreground}',
+          '--button-bg': '{colors.purple.800}',
+          '--button-bg-hover': '{colors.purple.700}'
+        },
+        outlined: {
+          '--button-fg': '{colors.foreground.subtle}',
+          '--button-bg': '{colors.foreground/5}',
+          '--button-border': '{colors.foreground/10}',
+          '--button-bg-hover': '{colors.foreground/10}'
+        }
+      },
+      size: {
+        sm: {
+          '--button-height': 'sizes.ui.sm'
+        },
+        md: {
+          '--button-height': 'sizes.ui.md'
         }
       }
     },
     defaultVariants: {
-      variant: 'primary'
+      variant: 'primary',
+      size: 'md'
     }
   }),
   content: css({

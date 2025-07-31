@@ -5,7 +5,7 @@ export const styles = {
     display: 'flex',
     inlineSize: 'full',
     borderRadius: 'md',
-    blockSize: 'ui',
+    blockSize: 'ui.md',
     paddingInline: '3',
     textStyle: 'sm',
     borderWidth: '1',

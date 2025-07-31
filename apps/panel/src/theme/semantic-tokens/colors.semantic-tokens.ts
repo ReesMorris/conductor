@@ -1,7 +1,10 @@
 import { defineSemanticTokens } from '@pandacss/dev';
 
 export const semanticColors = defineSemanticTokens.colors({
-  foreground: { value: { _light: '', _dark: '{colors.white}' } },
+  foreground: {
+    DEFAULT: { value: { _light: '', _dark: '{colors.white}' } },
+    subtle: { value: { _light: '', _dark: '{colors.white/70}' } }
+  },
   background: {
     from: { value: { _light: '', _dark: '#1a0f2e' } },
     via: { value: { _light: '', _dark: '#150a28' } },

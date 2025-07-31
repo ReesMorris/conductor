@@ -1,5 +1,6 @@
 'use client';
 
+import { IconButton } from '@/components/ui';
 import { useTheme } from '@/hooks';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -11,8 +12,10 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ ...props }) => {
   const isDarkMode = theme === 'dark';
 
   return (
-    <button
+    <IconButton
       type='button'
+      size='sm'
+      variant='outlined'
       onClick={toggleTheme}
       aria-label={t('label', {
         theme: isDarkMode ? t('light') : t('dark')
@@ -20,6 +23,6 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ ...props }) => {
       {...props}
     >
       {isDarkMode ? <SunIcon /> : <MoonIcon />}
-    </button>
+    </IconButton>
   );
 };

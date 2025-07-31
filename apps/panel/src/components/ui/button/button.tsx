@@ -4,9 +4,11 @@ import { styles } from './button.styles';
 import type { ButtonProps } from './button.types';
 
 export const Button: React.FC<ButtonProps> = ({
+  size,
   variant,
   isLoading,
   className,
+  contentClassName,
   ...props
 }) => {
   const disabled = props.disabled || isLoading;
@@ -16,9 +18,11 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
       aria-busy={isLoading || undefined}
       disabled={disabled}
-      className={cx('group', styles.button({ variant }), className)}
+      className={cx('group', styles.button({ size, variant }), className)}
     >
-      <div className={styles.content}>{props.children}</div>
+      <div className={cx(styles.content, contentClassName)}>
+        {props.children}
+      </div>
       <div className={styles.loadingSpinner}>
         <LoaderCircle />
       </div>

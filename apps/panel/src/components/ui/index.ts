@@ -6,6 +6,7 @@ export * from './dropdown-menu';
 export * from './field';
 export * from './form';
 export * from './heading';
+export * from './icon-button';
 export * from './input';
 export * from './input-group';
 export * from './label';
