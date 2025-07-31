@@ -20,7 +20,8 @@ export const styles = {
     fontWeight: 'bold',
     color: 'foreground',
     marginBlockEnd: '1',
-    letterSpacing: 'tight'
+    letterSpacing: 'tight',
+    lineHeight: 'tight'
   }),
   subtitle: css({
     color: 'foreground/40',

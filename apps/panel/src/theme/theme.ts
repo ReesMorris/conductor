@@ -1,4 +1,5 @@
 import type { ExtendableTheme } from '@pandacss/types';
+import { breakpoints } from './breakpoints';
 import { semanticColors } from './semantic-tokens/colors.semantic-tokens';
 import { semanticFontSizes } from './semantic-tokens/font-sizes.semantic-tokens';
 import { semanticFonts } from './semantic-tokens/fonts.semantic-tokens';
@@ -19,6 +20,7 @@ import { zIndices } from './tokens/z-indices.tokens';
  */
 export const theme: ExtendableTheme = {
   extend: {
+    breakpoints,
     keyframes,
     textStyles,
     tokens: {

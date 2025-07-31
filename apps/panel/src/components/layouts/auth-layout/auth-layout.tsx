@@ -11,15 +11,16 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
   footer
 }) => {
   return (
-    <main className={styles.wrapper}>
-      <div className={styles.content}>
-        <AuthLayoutHeader title={title} subtitle={subtitle} />
-        {children}
-      </div>
-
-      {footer && <AuthLayoutFooter>{footer}</AuthLayoutFooter>}
-
+    <div className={styles.wrapper}>
       <AuthLayoutActions />
-    </main>
+      <main>
+        <div className={styles.content}>
+          <AuthLayoutHeader title={title} subtitle={subtitle} />
+          {children}
+        </div>
+
+        {footer && <AuthLayoutFooter>{footer}</AuthLayoutFooter>}
+      </main>
+    </div>
   );
 };

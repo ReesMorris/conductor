@@ -6,7 +6,7 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center'
+    paddingBlockEnd: '10'
   }),
   content: css({
     display: 'flex',
@@ -21,6 +21,12 @@ export const styles = {
     padding: '8',
     boxShadow: '2xl',
     boxShadowColor: 'black/20',
-    inlineSize: '[28rem]'
+    inlineSize: '[min(100vw, 28rem)]',
+
+    mobileMediumDown: {
+      inlineSize: 'full',
+      borderRadius: '[0]',
+      borderInlineWidth: '0'
+    }
   })
 };

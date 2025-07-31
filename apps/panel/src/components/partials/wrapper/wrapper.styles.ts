@@ -3,7 +3,7 @@ import { css } from '@/styled-system/css';
 export const styles = {
   wrapper: css({
     display: 'flex',
-    maxInlineSize: 'wrapper',
+    inlineSize: '[min(100vw, {sizes.wrapper})]',
     marginInline: 'auto',
     paddingInline: '2'
   })

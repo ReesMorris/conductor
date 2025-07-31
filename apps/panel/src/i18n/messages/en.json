@@ -29,12 +29,12 @@
       "title": "Create Account",
       "subtitle": "Create your account to get started",
       "name": {
-        "label": "First Name",
-        "placeholder": "Steve"
+        "label": "Your Name",
+        "placeholder": "Alex Smith"
       },
       "email": {
         "label": "Email Address",
-        "placeholder": "steve@minecraft.net"
+        "placeholder": "alex.smith@example.com"
       },
       "password": {
         "label": "Password"

@@ -11,7 +11,9 @@ export const Page = () => {
     <AuthLayout
       title={t('form.title')}
       subtitle={t('form.subtitle')}
-      footer={<Link href={route('LOGIN')}>{t('form.login_link')}</Link>}
+      footer={t.rich('form.login_link', {
+        link: text => <Link href={route('LOGIN')}>{text}</Link>
+      })}
     >
       <RegisterForm />
     </AuthLayout>
