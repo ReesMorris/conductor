@@ -25,10 +25,6 @@ export const styles = {
         backgroundColor: 'var(--button-bg-hover)'
       },
 
-      _active: {
-        transform: 'translateY(0.125rem)'
-      },
-
       _disabled: {
         opacity: 'disabled',
         cursor: 'not-allowed'
@@ -52,12 +48,22 @@ export const styles = {
           '--button-fg': '{colors.foreground}',
           '--button-bg': '{colors.purple.800}',
           '--button-bg-hover': '{colors.purple.700}',
-          '--button-focus-color': '{colors.purple.800}'
+          '--button-focus-color': '{colors.purple.800}',
+
+          _active: {
+            transform: 'translateY(0.125rem)'
+          }
         },
         outlined: {
           '--button-fg': '{colors.foreground.subtle}',
           '--button-bg': '{colors.foreground/5}',
           '--button-border': '{colors.foreground/10}',
+          '--button-bg-hover': '{colors.foreground/10}',
+          '--button-focus-color': '{colors.foreground/30}'
+        },
+        ghost: {
+          '--button-fg': '{colors.foreground}',
+          '--button-bg': 'transparent',
           '--button-bg-hover': '{colors.foreground/10}',
           '--button-focus-color': '{colors.foreground/30}'
         }

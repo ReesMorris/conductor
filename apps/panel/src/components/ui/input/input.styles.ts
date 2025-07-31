@@ -54,10 +54,10 @@ export const styles = {
       color: 'foreground/40'
     },
 
-    '&[data-has-start-icon]': {
+    '&[data-has-start-element]': {
       paddingInlineStart: '10'
     },
-    '&[data-has-end-icon]': {
+    '&[data-has-end-element]': {
       paddingInlineEnd: '10'
     }
   })

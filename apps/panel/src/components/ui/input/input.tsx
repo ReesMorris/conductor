@@ -19,8 +19,8 @@ export const Input: React.FC<InputProps> = ({ className, ...props }) => {
       aria-required={fieldContext?.isRequired || undefined}
       disabled={props.disabled || fieldContext?.isDisabled || undefined}
       readOnly={props.readOnly || fieldContext?.isReadOnly || undefined}
-      data-has-start-icon={inputGroupContext?.hasIconStart || undefined}
-      data-has-end-icon={inputGroupContext?.hasIconEnd || undefined}
+      data-has-start-element={inputGroupContext?.hasElementStart || undefined}
+      data-has-end-element={inputGroupContext?.hasElementEnd || undefined}
       className={styles.input}
     />
   );

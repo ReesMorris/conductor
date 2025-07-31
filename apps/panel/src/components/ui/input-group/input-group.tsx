@@ -7,32 +7,32 @@ import { styles } from './input-group.styles';
 import type { InputGroupProps } from './input-group.types';
 
 export const InputGroup: React.FC<InputGroupProps> = ({
-  iconStart,
-  iconEnd,
+  startElement,
+  endElement,
   children,
   className,
   ...props
 }) => {
   const contextValue = useMemo(
     () => ({
-      hasIconStart: !!iconStart,
-      hasIconEnd: !!iconEnd
+      hasElementStart: !!startElement,
+      hasElementEnd: !!endElement
     }),
-    [iconStart, iconEnd]
+    [startElement, endElement]
   );
 
   return (
     <InputGroupContext value={contextValue}>
       <div {...props} className={cx(styles.container, className)}>
-        {iconStart && (
+        {startElement && (
           <div className={styles.icon} data-position='start'>
-            {iconStart}
+            {startElement}
           </div>
         )}
         {children}
-        {iconEnd && (
+        {endElement && (
           <div className={styles.icon} data-position='end'>
-            {iconEnd}
+            {endElement}
           </div>
         )}
       </div>

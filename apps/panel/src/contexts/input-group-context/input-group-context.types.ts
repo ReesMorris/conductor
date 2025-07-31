@@ -1,11 +1,11 @@
 export interface InputGroupContextValue {
   /**
-   * Whether the input group has an icon at the start
+   * Whether the input group has an icon or element at the start
    */
-  hasIconStart: boolean;
+  hasElementStart: boolean;
 
   /**
-   * Whether the input group has an icon at the end
+   * Whether the input group has an icon or element at the end
    */
-  hasIconEnd: boolean;
+  hasElementEnd: boolean;
 }

@@ -6,6 +6,10 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 'square',
-    paddingInline: '0'
+    paddingInline: '0',
+
+    _active: {
+      transform: 'scale(0.95)'
+    }
   })
 };

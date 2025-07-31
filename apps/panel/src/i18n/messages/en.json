@@ -71,6 +71,11 @@
       "name_required": "Name is required"
     }
   },
+  "password_input": {
+    "show_password": "Show Password",
+    "hide_password": "Hide Password",
+    "placeholder": "Password"
+  },
   "language_selector": {
     "label": "Change Language"
   },

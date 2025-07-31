@@ -1,12 +1,20 @@
 'use client';
 
-import { Button, Field, Form, Input, InputGroup, Link } from '@/components/ui';
+import {
+  Button,
+  Field,
+  Form,
+  Input,
+  InputGroup,
+  Link,
+  PasswordInput
+} from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { getAuthErrorKey } from '@/i18n/mappings';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LockIcon, MailIcon } from 'lucide-react';
+import { MailIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -61,7 +69,7 @@ export const LoginForm: React.FC = () => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)} errorMessage={authError}>
       <Field label={t('email.label')} errorMessage={errors.email?.message}>
-        <InputGroup iconStart={<MailIcon />}>
+        <InputGroup startElement={<MailIcon />}>
           <Input
             {...register('email')}
             placeholder={t('email.placeholder')}
@@ -79,14 +87,10 @@ export const LoginForm: React.FC = () => {
         }
         errorMessage={errors.password?.message}
       >
-        <InputGroup iconStart={<LockIcon />}>
-          <Input
-            {...register('password')}
-            type='password'
-            placeholder='••••••••••'
-            autoComplete='current-password'
-          />
-        </InputGroup>
+        <PasswordInput
+          {...register('password')}
+          autoComplete='current-password'
+        />
       </Field>
 
       <Button type='submit' isLoading={isSubmitting}>

@@ -13,15 +13,15 @@ export const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    pointerEvents: 'none',
     color: 'foreground',
     opacity: '0.4',
 
     '&[data-position="start"]': {
+      pointerEvents: 'none',
       insetInlineStart: '3'
     },
     '&[data-position="end"]': {
-      insetInlineEnd: '3'
+      insetInlineEnd: '1.5'
     },
 
     _icon: {

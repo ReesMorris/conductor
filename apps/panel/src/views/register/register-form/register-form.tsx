@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Field, Form, Input } from '@/components/ui';
+import { Button, Field, Form, Input, PasswordInput } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { getAuthErrorKey } from '@/i18n/mappings';
 import { useRouter } from '@/i18n/navigation';
@@ -84,12 +84,7 @@ export const RegisterForm: React.FC = () => {
         label={t('password.label')}
         errorMessage={errors.password?.message}
       >
-        <Input
-          {...register('password')}
-          type='password'
-          placeholder='••••••••••'
-          autoComplete='new-password'
-        />
+        <PasswordInput {...register('password')} autoComplete='new-password' />
       </Field>
 
       <Button type='submit' isLoading={isSubmitting}>

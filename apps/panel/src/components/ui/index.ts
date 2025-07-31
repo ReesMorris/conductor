@@ -12,3 +12,4 @@ export * from './input-group';
 export * from './label';
 export * from './link';
 export * from './logo';
+export * from './password-input';
