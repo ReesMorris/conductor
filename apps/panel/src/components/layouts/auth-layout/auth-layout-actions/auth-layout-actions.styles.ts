@@ -6,7 +6,7 @@ export const styles = {
     inlineSize: 'full',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     marginInline: 'auto',
     gap: '4'
   })
