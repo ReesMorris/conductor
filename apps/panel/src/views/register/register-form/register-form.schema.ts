@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 interface SchemaMessages {
   nameRequired: string;
-  nameMinLength: string;
   emailRequired: string;
   invalidEmail: string;
   passwordRequired: string;

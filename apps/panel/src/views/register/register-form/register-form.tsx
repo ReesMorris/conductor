@@ -32,7 +32,6 @@ export const RegisterForm: React.FC = () => {
         emailRequired: tAuth('errors.email_required'),
         invalidEmail: tAuth('errors.invalid_email'),
         nameRequired: tAuth('errors.name_required'),
-        nameMinLength: tAuth('errors.name_min_length'),
         passwordRequired: tAuth('errors.password_required')
       })
     )
