@@ -17,7 +17,7 @@
         "label": "Password"
       },
       "submit": "Login",
-      "register_link": "Don't have an account?"
+      "register_link": "Don't have an account? <link>Create an account</link>"
     }
   },
   "register_page": {
@@ -39,7 +39,7 @@
         "label": "Password"
       },
       "submit": "Create Account",
-      "login_link": "Already have an account?"
+      "login_link": "Already have an account? <link>Log in</link>"
     }
   },
   "user_menu": {

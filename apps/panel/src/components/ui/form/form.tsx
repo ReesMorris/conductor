@@ -13,8 +13,7 @@ export const Form: React.FC<FormProps> = ({
   return (
     <form {...props} className={cx(styles.form, className)}>
       {errorMessage && (
-        <Alert color='error' variant='outlined' className={styles.alert}>
-          <AlertTriangle />
+        <Alert color='error' icon={<AlertTriangle />}>
           {errorMessage}
         </Alert>
       )}

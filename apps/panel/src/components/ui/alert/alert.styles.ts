@@ -1,57 +1,57 @@
-import { cva } from '@/styled-system/css';
+import { sva } from '@/styled-system/css';
 
-export const styles = {
-  alert: cva({
-    base: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '2',
-      paddingBlock: '2',
-      paddingInline: '6',
-      textStyle: 'sm',
+export const styles = sva({
+  slots: ['container', 'content', 'icon', 'title', 'description'],
+  base: {
+    container: {
+      color: 'var(--alert-text)',
+      backgroundColor: 'var(--alert-bg)',
       borderWidth: '1',
       borderStyle: 'solid',
-      borderColor: 'transparent',
-      borderRadius: 'md',
-      textAlign: 'center',
-
+      borderColor: 'var(--alert-border)',
+      borderRadius: 'lg',
+      padding: '4'
+    },
+    content: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '3'
+    },
+    icon: {
       _icon: {
         flexShrink: '0',
-        inlineSize: '3.5',
-        blockSize: '3.5'
+        inlineSize: '5',
+        blockSize: '5'
       }
     },
-    variants: {
-      color: {
-        info: {
-          // colorPalette: 'info'
-        },
-        warning: {
-          // colorPalette: 'warning'
-        },
-        error: {
-          colorPalette: 'danger'
-        }
-      },
-      variant: {
-        outlined: {
-          color: 'colorPalette.foreground',
-          borderColor: 'colorPalette.border'
-        },
-        solid: {
-          color: 'colorPalette.foreground.onSolid',
-          backgroundColor: 'colorPalette.background.solid'
-        },
-        subtle: {
-          color: 'colorPalette.foreground.onSubtle',
-          backgroundColor: 'colorPalette.background.subtle'
-        }
+    title: {
+      fontWeight: 'medium',
+      textStyle: 'sm',
+      marginBlockEnd: '1',
+
+      _empty: {
+        display: 'none'
       }
     },
-    defaultVariants: {
-      color: 'info',
-      variant: 'outlined'
+    description: {
+      color: 'var(--alert-description)',
+      textStyle: 'sm',
+      lineHeight: 'relaxed'
     }
-  })
-};
+  },
+  variants: {
+    color: {
+      error: {
+        container: {
+          '--alert-text': '{colors.red.400}',
+          '--alert-description': '{colors.red.400/70}',
+          '--alert-bg': '{colors.red.500/10}',
+          '--alert-border': '{colors.red.500/20}'
+        }
+      }
+    }
+  },
+  defaultVariants: {
+    color: 'error'
+  }
+});

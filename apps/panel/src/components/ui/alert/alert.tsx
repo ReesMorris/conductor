@@ -4,18 +4,27 @@ import type { AlertProps } from './alert.types';
 
 export const Alert: React.FC<AlertProps> = ({
   color,
-  variant,
+  icon,
+  title,
   children,
   className,
   ...props
 }) => {
+  const classes = styles({ color });
+
   return (
     <div
       aria-live='assertive'
       {...props}
-      className={cx(styles.alert({ color, variant }), className)}
+      className={cx(classes.container, className)}
     >
-      {children}
+      <div className={classes.content}>
+        <div className={classes.icon}>{icon}</div>
+        <div>
+          <p className={classes.title}>{title}</p>
+          <p className={classes.description}>{children}</p>
+        </div>
+      </div>
     </div>
   );
 };

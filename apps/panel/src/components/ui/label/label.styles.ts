@@ -2,12 +2,11 @@ import { css } from '@/styled-system/css';
 
 export const styles = {
   label: css({
-    color: 'foreground',
     display: 'inline-flex',
     inlineSize: 'fit',
+    color: 'foreground/80',
     textStyle: 'sm',
     fontWeight: 'medium',
-    letterSpacing: 'wide',
 
     _disabled: {
       cursor: 'not-allowed',

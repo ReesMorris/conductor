@@ -1,6 +1,4 @@
-import logoImage from '@/public/images/logo.webp';
 import { cx } from '@/styled-system/css';
-import Image from 'next/image';
 import { styles } from './logo.styles';
 import type { LogoProps } from './logo.types';
 
@@ -10,14 +8,13 @@ export const Logo: React.FC<LogoProps> = ({
   ...props
 }) => {
   return (
-    <Image
+    <div
       {...props}
-      src={logoImage}
-      alt='Conductor Logo'
-      width={size}
-      height={size}
+      style={{ inlineSize: size, blockSize: size }}
       className={cx(styles.logo, className)}
       draggable={false}
-    />
+    >
+      C
+    </div>
   );
 };

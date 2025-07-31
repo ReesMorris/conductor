@@ -1,7 +1,4 @@
-import { LanguageSelector } from '@/components/features/language-selector';
-import { ThemeToggle } from '@/components/features/theme-toggle';
-import { Heading } from '@/components/ui';
-import { VisuallyHidden } from '@/styled-system/jsx';
+import { Heading, Logo } from '@/components/ui';
 import { styles } from './auth-layout.styles';
 import type { AuthLayoutProps } from './auth-layout.types';
 
@@ -13,26 +10,29 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
 }) => {
   return (
     <main className={styles.wrapper}>
-      <header className={styles.header}>
-        <Heading level={1}>{title}</Heading>
-        {subtitle && (
-          <VisuallyHidden>
-            <Heading level={2}>{subtitle}</Heading>
-          </VisuallyHidden>
-        )}
-      </header>
       <div className={styles.content}>
+        <header className={styles.header}>
+          <Logo size={64} className={styles.logo} />
+          <Heading unstyled level={1} className={styles.title}>
+            {title}
+          </Heading>
+          <Heading unstyled level={2} className={styles.subtitle}>
+            {subtitle}
+          </Heading>
+        </header>
         {children}
-        {footer && (
-          <div className={styles.footer}>
-            <p className={styles.footerText}>{footer}</p>
-          </div>
-        )}
       </div>
-      <div className={styles.actionRow}>
+
+      {footer && (
+        <div className={styles.footer}>
+          <div className={styles.footerText}>{footer}</div>
+        </div>
+      )}
+
+      {/* <div className={styles.actionRow}>
         <ThemeToggle className={styles.actionRowButton} />
         <LanguageSelector triggerClassName={styles.actionRowButton} />
-      </div>
+      </div> */}
     </main>
   );
 };

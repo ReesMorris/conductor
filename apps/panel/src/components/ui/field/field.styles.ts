@@ -17,10 +17,10 @@ export const styles = {
   }),
   helpText: css({
     textStyle: 'xs',
-    color: 'foreground.muted'
+    color: 'foreground/40'
   }),
   errorText: css({
     textStyle: 'xs',
-    color: 'danger.foreground'
+    color: 'red.400'
   })
 };

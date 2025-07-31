@@ -203,6 +203,7 @@ __metadata:
     "@biomejs/biome": "npm:^2.1.2"
     "@hookform/resolvers": "npm:^5.2.0"
     "@pandacss/dev": "npm:^0.54.0"
+    "@radix-ui/colors": "npm:^3.0.0"
     "@t3-oss/env-nextjs": "npm:^0.13.8"
     "@types/node": "npm:^24.1.0"
     "@types/react": "npm:^19.1.8"
@@ -1284,6 +1285,13 @@ __metadata:
   dependencies:
     "@prisma/debug": "npm:6.12.0"
   checksum: 10c0/b4071fd01f0cdb63e881ecf16ef1c1cb402f9ee5eabbbb995f8009375ddc7ebe7a95c020eb1c210634d654f273a6e26bb67edbb1592db6d244bfbe2ab6e4e282
+  languageName: node
+  linkType: hard
+
+"@radix-ui/colors@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@radix-ui/colors@npm:3.0.0"
+  checksum: 10c0/612c6bb4efe987f2d49aaca2f785687d08150da59a248328bc2b4e187ece4ef731c1dc5c6a9430fffcac4af9e65cf2f89ceb9806f8809940c9eb238b79d2cf2f
   languageName: node
   linkType: hard
 

@@ -4,9 +4,6 @@ export const styles = {
   form: css({
     display: 'flex',
     flexDirection: 'column',
-    gap: '4'
-  }),
-  alert: css({
-    marginBlockEnd: '4'
+    gap: '5'
   })
 };
