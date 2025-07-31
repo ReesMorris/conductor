@@ -1,6 +1,5 @@
 import { globalStyles } from '@/theme/global.styles';
 import { theme } from '@/theme/theme';
-import { THEME_DATA_ATTRIBUTE } from '@/theme/theme.constants';
 import { defineConfig } from '@pandacss/dev';
 
 export default defineConfig({

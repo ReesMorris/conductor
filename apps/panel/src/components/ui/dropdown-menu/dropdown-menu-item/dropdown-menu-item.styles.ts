@@ -51,6 +51,7 @@ export const styles = {
     blockSize: '4',
     flexShrink: '0',
     color: 'foreground',
+    opacity: '0.7',
 
     _current: {
       color: 'purple.900'

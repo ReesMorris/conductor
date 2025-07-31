@@ -1,6 +1,4 @@
-import { Avatar, Button } from '@/components/ui';
-import { ChevronDown } from 'lucide-react';
-import { styles } from './user-menu-trigger.styles';
+import { Avatar, DropdownMenu } from '@/components/ui';
 import type { UserMenuTriggerProps } from './user-menu-trigger.types';
 
 export const UserMenuTrigger: React.FC<UserMenuTriggerProps> = ({
@@ -10,12 +8,12 @@ export const UserMenuTrigger: React.FC<UserMenuTriggerProps> = ({
   ...props
 }) => {
   return (
-    <Button type='button' variant='outlined' {...props}>
-      <Avatar size='xs' src={profilePicture} />
-      <span>{name}</span>
-      <div className={styles.chevron} data-open={isOpen || undefined}>
-        <ChevronDown />
-      </div>
-    </Button>
+    <DropdownMenu.Trigger
+      startElement={<Avatar size='xs' src={profilePicture} />}
+      isOpen={isOpen}
+      {...props}
+    >
+      {name}
+    </DropdownMenu.Trigger>
   );
 };

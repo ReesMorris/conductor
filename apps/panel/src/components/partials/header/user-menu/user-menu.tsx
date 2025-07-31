@@ -7,6 +7,7 @@ import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
 import { GlobeIcon, LogOutIcon, MoonIcon, SunIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 import { styles } from './user-menu.styles';
 import { UserMenuTrigger } from './user-menu-trigger';
 
@@ -15,6 +16,7 @@ export const UserMenu = () => {
   const auth = useAuth();
   const { data: session } = useSession();
   const { toggleTheme, theme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
   // If no session, don't render the menu
@@ -37,9 +39,11 @@ export const UserMenu = () => {
   return (
     <DropdownMenu.Root
       triggerAsChild
+      open={isOpen}
+      onOpenChange={setIsOpen}
       trigger={
         <UserMenuTrigger
-          isOpen
+          isOpen={isOpen}
           profilePicture={session.user.image}
           name={session.user.name}
         />

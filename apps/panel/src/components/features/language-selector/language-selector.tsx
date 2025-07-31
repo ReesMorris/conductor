@@ -19,6 +19,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   const router = useRouter();
   const pathname = usePathname();
 
+  // Function to handle language change
   const handleLanguageChange = (newLocale: string) => {
     router.replace(
       { pathname },
@@ -29,12 +30,24 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     );
   };
 
+  // Find the current language name based on the locale
+  const currentLanguageName = LANGUAGES.find(language => {
+    return language.code === locale;
+  })?.nativeName;
+
   return (
     <DropdownMenu.Root
       open={isOpen}
       onOpenChange={setIsOpen}
       triggerAsChild={triggerAsChild}
-      trigger={trigger ?? <LanguageSelectorTrigger isOpen={isOpen} />}
+      trigger={
+        trigger ?? (
+          <LanguageSelectorTrigger
+            isOpen={isOpen}
+            currentLanguageName={currentLanguageName}
+          />
+        )
+      }
       aria-label={t('label')}
       sideOffset={10}
       align='end'

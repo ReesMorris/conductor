@@ -12,15 +12,15 @@ export const semanticColors = defineSemanticTokens.colors({
     to: { value: { _light: '#e9d5ff', _dark: '#0f0a1f' } }
   },
   glass: {
-    light: { value: { _light: '{colors.black/3}', _dark: '{colors.white/3}' } },
+    light: { value: { _light: '{colors.black/2}', _dark: '{colors.white/3}' } },
     medium: {
-      value: { _light: '{colors.black/5}', _dark: '{colors.white/5}' }
+      value: { _light: '{colors.black/3}', _dark: '{colors.white/5}' }
     },
     dark: {
-      value: { _light: '{colors.black/20}', _dark: '{colors.white/15}' }
+      value: { _light: '{colors.black/7}', _dark: '{colors.white/15}' }
     },
     darker: {
-      value: { _light: '{colors.black/35}', _dark: '{colors.white/25}' }
+      value: { _light: '{colors.black/10}', _dark: '{colors.white/25}' }
     }
   },
 
