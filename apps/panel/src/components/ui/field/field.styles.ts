@@ -10,11 +10,25 @@ export const styles = {
       cursor: 'not-allowed'
     }
   }),
+  fieldWrapper: css({
+    display: 'grid',
+    gridTemplateColumns: '1fr auto',
+    gridTemplateRows: 'auto auto',
+    gap: '1.5',
+    alignItems: 'start'
+  }),
   labelContainer: css({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '2'
+    gridColumn: '1',
+    gridRow: '1'
+  }),
+  labelSuffix: css({
+    gridColumn: '2',
+    gridRow: '1',
+    justifySelf: 'end'
+  }),
+  inputWrapper: css({
+    gridColumn: '1 / -1',
+    gridRow: '2'
   }),
   fieldDescription: css({
     _disabled: {

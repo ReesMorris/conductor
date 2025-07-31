@@ -39,13 +39,17 @@ export const Field: React.FC<FieldProps> = ({
         className={cx(styles.field, className)}
         data-disabled={disabled || undefined}
       >
-        <div className={styles.labelContainer}>
-          <Label id={labelId} htmlFor={controlId} disabled={disabled}>
-            {label}
-          </Label>
-          {labelSuffix}
+        <div className={styles.fieldWrapper}>
+          <div className={styles.labelContainer}>
+            <Label id={labelId} htmlFor={controlId} disabled={disabled}>
+              {label}
+            </Label>
+          </div>
+          <div className={styles.inputWrapper}>{children}</div>
+          {labelSuffix && (
+            <div className={styles.labelSuffix}>{labelSuffix}</div>
+          )}
         </div>
-        {children}
 
         <div
           className={styles.fieldDescription}
