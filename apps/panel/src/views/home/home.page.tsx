@@ -1,3 +1,5 @@
+import { Main } from '@/components/partials';
+
 export const Page = () => {
-  return <div>home page</div>;
+  return <Main>home page</Main>;
 };

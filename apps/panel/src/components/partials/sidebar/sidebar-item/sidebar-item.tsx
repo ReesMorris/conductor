@@ -4,10 +4,10 @@ import { Link } from '@/components/ui';
 import { useSession } from '@/hooks';
 import { usePathname } from '@/i18n/navigation';
 import { isPageCurrent } from '@/utils/is-page-current';
-import { styles } from './navigation-item.styles';
-import type { NavigationItemProps } from './navigation-item.types';
+import { styles } from './sidebar-item.styles';
+import type { SidebarItemProps } from './sidebar-item.types';
 
-export const NavigationItem: React.FC<NavigationItemProps> = ({
+export const SidebarItem: React.FC<SidebarItemProps> = ({
   href,
   icon,
   label,

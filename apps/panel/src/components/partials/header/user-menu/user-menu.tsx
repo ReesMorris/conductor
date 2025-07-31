@@ -80,8 +80,8 @@ export const UserMenu = () => {
       <DropdownMenu.Separator />
       {session.user.role === 'admin' && (
         <>
-          <DropdownMenu.Item href={route('SERVER_SETTINGS')}>
-            {t('server_settings')}
+          <DropdownMenu.Item href={route('WORKSPACE_GENERAL_SETTINGS')}>
+            {t('workspace_settings')}
           </DropdownMenu.Item>
           <DropdownMenu.Separator />
         </>

@@ -10,7 +10,11 @@ export type RouteParams = {
   ACCOUNT: NoUrlParams;
   HEALTH_CHECK: NoUrlParams;
   SERVERS: NoUrlParams;
-  SERVER_SETTINGS: NoUrlParams;
+  USER_PROFILE_SETTINGS: NoUrlParams;
+  USER_PREFERENCES_SETTINGS: NoUrlParams;
+  USER_SECURITY_SETTINGS: NoUrlParams;
+  WORKSPACE_GENERAL_SETTINGS: NoUrlParams;
+  WORKSPACE_USERS_SETTINGS: NoUrlParams;
   _PLACEHOLDER: { name: UrlParam };
 };
 
@@ -22,6 +26,10 @@ export const Routes: Record<keyof RouteParams, string> = {
   ACCOUNT: '/account',
   HEALTH_CHECK: '/health',
   SERVERS: '/', // this is the first dashboard route
-  SERVER_SETTINGS: '/settings',
+  USER_PROFILE_SETTINGS: '/settings',
+  USER_PREFERENCES_SETTINGS: '/settings/preferences',
+  USER_SECURITY_SETTINGS: '/settings/security',
+  WORKSPACE_GENERAL_SETTINGS: '/settings/workspace',
+  WORKSPACE_USERS_SETTINGS: '/settings/users',
   _PLACEHOLDER: '/:name' // Example placeholder route
 } as const;

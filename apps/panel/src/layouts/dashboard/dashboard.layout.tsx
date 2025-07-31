@@ -1,4 +1,4 @@
-import { Header, Main, Navigation, Wrapper } from '@/components/partials';
+import { Header, Navigation, Wrapper } from '@/components/partials';
 import { route } from '@/utils/route';
 import { ServerIcon, SettingsIcon } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
@@ -22,13 +22,11 @@ export const Layout: React.FC<LayoutProps> = async ({ children }) => {
         />
         <Navigation.Item
           icon={<SettingsIcon />}
-          href={route('SERVER_SETTINGS')}
+          href={route('USER_PROFILE_SETTINGS')}
           label={t('settings')}
         />
       </Navigation.Root>
-      <Main>
-        <Wrapper>{children}</Wrapper>
-      </Main>
+      <Wrapper>{children}</Wrapper>
     </>
   );
 };

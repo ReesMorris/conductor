@@ -47,7 +47,7 @@
     "account_settings": "Account Settings",
     "toggle_theme": "Toggle Theme",
     "change_language": "Change Language…",
-    "server_settings": "Server Settings",
+    "workspace_settings": "Workspace Settings",
     "logout": "Log Out"
   },
   "auth": {
@@ -89,5 +89,19 @@
       "servers": "Servers",
       "settings": "Settings"
     }
+  },
+  "settings": {
+    "navigation": {
+      "personal": "Personal",
+      "workspace": "Workspace",
+      "profile": "Profile",
+      "preferences": "Preferences",
+      "security": "Security",
+      "general_settings": "General Settings",
+      "users": "Users"
+    }
+  },
+  "profile_settings": {
+    "title": "Profile / Settings"
   }
 }
