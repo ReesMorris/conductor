@@ -8,7 +8,7 @@
     },
     "form": {
       "title": "Welcome to {appName}",
-      "subtitle": "Sign in to your game server management panel",
+      "subtitle": "Sign in to your account",
       "email": {
         "label": "Email Address",
         "placeholder": "steve@minecraft.net"

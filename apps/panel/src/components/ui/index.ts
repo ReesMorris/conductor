@@ -7,6 +7,7 @@ export * from './field';
 export * from './form';
 export * from './heading';
 export * from './input';
+export * from './input-group';
 export * from './label';
 export * from './link';
 export * from './logo';

@@ -52,6 +52,13 @@ export const styles = {
 
     _placeholder: {
       color: 'foreground/40'
+    },
+
+    '&[data-has-start-icon]': {
+      paddingInlineStart: '10'
+    },
+    '&[data-has-end-icon]': {
+      paddingInlineEnd: '10'
     }
   })
 };

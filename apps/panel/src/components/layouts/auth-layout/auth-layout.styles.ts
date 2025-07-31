@@ -42,7 +42,7 @@ export const styles = {
     textStyle: '2xl',
     fontWeight: 'bold',
     color: 'foreground',
-    marginBlockEnd: '2',
+    marginBlockEnd: '1',
     letterSpacing: 'tight'
   }),
   subtitle: css({
