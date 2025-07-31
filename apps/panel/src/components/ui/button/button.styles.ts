@@ -16,6 +16,7 @@ export const styles = {
       color: 'var(--button-fg)',
       backdropFilter: 'auto',
       backdropBlur: 'md',
+      paddingInline: 'var(--button-padding)',
       transitionProperty: 'border-color, background-color, transform',
       transitionDuration: 'normal',
       transitionTimingFunction: 'in-out',
@@ -42,7 +43,7 @@ export const styles = {
         outlineWidth: '2',
         outlineOffset: '0.5',
         outlineStyle: 'solid',
-        outlineColor: 'var(--button-bg)'
+        outlineColor: 'var(--button-focus-color)'
       }
     },
     variants: {
@@ -50,21 +51,25 @@ export const styles = {
         primary: {
           '--button-fg': '{colors.foreground}',
           '--button-bg': '{colors.purple.800}',
-          '--button-bg-hover': '{colors.purple.700}'
+          '--button-bg-hover': '{colors.purple.700}',
+          '--button-focus-color': '{colors.purple.800}'
         },
         outlined: {
           '--button-fg': '{colors.foreground.subtle}',
           '--button-bg': '{colors.foreground/5}',
           '--button-border': '{colors.foreground/10}',
-          '--button-bg-hover': '{colors.foreground/10}'
+          '--button-bg-hover': '{colors.foreground/10}',
+          '--button-focus-color': '{colors.foreground/30}'
         }
       },
       size: {
         sm: {
-          '--button-height': 'sizes.ui.sm'
+          '--button-height': 'sizes.ui.sm',
+          '--button-padding': '{spacing.3}'
         },
         md: {
-          '--button-height': 'sizes.ui.md'
+          '--button-height': 'sizes.ui.md',
+          '--button-padding': '{spacing.3}'
         }
       }
     },
@@ -78,6 +83,7 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     gap: '2',
+    blockSize: 'full',
     inlineSize: 'full',
     opacity: '1',
     transitionProperty: 'opacity',
@@ -87,6 +93,11 @@ export const styles = {
     '.group:is([aria-busy]) &': {
       pointerEvents: 'none',
       opacity: '0'
+    },
+
+    _icon: {
+      inlineSize: '[1.2em]',
+      blockSize: '[1.2em]'
     }
   }),
   loadingSpinner: css({

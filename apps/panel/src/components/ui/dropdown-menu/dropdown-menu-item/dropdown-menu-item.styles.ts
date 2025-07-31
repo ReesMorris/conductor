@@ -6,8 +6,8 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: '2',
-    padding: '2',
-    paddingInline: '3',
+    paddingInline: '4',
+    paddingBlock: '2',
     inlineSize: 'full',
     textStyle: 'sm',
     cursor: 'pointer',
@@ -18,16 +18,25 @@ export const styles = {
     transitionTimingFunction: 'in-out',
 
     _hover: {
-      backgroundColor: 'background.secondary'
+      backgroundColor: 'purple.400/10'
     },
 
     _focus: {
-      backgroundColor: 'background.secondary'
+      backgroundColor: 'purple.400/10'
     },
 
     _disabled: {
       opacity: 'disabled',
       cursor: 'not-allowed',
+
+      _hover: {
+        backgroundColor: 'transparent'
+      }
+    },
+
+    _loading: {
+      opacity: 'loading',
+      cursor: 'wait',
 
       _hover: {
         backgroundColor: 'transparent'
@@ -41,11 +50,21 @@ export const styles = {
     inlineSize: '4',
     blockSize: '4',
     flexShrink: '0',
-    color: 'foreground'
+    color: 'foreground',
+
+    _current: {
+      color: 'purple.400'
+    }
   }),
   content: css({
     flex: '1',
-    color: 'foreground',
-    textAlign: 'start'
+    textAlign: 'start',
+    textStyle: 'sm',
+    fontWeight: 'medium',
+    color: 'foreground/80',
+
+    _hover: {
+      color: 'foreground'
+    }
   })
 };

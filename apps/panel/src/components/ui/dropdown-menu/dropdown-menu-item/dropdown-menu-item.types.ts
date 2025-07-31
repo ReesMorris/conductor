@@ -21,4 +21,14 @@ export interface DropdownMenuItemProps
    * Additional CSS class names
    */
   className?: string;
+
+  /**
+   * Indicates if the item is currently selected
+   */
+  'aria-current'?: boolean;
+
+  /**
+   * Indicates if the item is loading
+   */
+  isLoading?: boolean;
 }

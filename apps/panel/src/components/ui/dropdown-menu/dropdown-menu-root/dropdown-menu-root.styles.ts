@@ -3,15 +3,18 @@ import { css, cva } from '@/styled-system/css';
 export const styles = {
   root: cva({
     base: {
-      minInlineSize: '28',
-      backgroundColor: 'background',
+      minInlineSize: '48',
+      backgroundColor: 'glass.light',
       borderRadius: 'lg',
       paddingBlock: '2',
-      boxShadow: 'lg',
+      boxShadow: '2xl',
       borderWidth: '1',
       borderStyle: 'solid',
-      borderColor: 'border',
+      borderColor: 'foreground/10',
       zIndex: 'dropdown',
+      backdropFilter: 'auto',
+      backdropBlur: 'xl',
+      boxShadowColor: 'black/20',
 
       _open: {
         _motionSafe: {

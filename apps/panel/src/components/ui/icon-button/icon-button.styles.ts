@@ -6,11 +6,6 @@ export const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 'square',
-    padding: '0',
-
-    _icon: {
-      inlineSize: '[55%]',
-      blockSize: '[55%]'
-    }
+    paddingInline: '0'
   })
 };

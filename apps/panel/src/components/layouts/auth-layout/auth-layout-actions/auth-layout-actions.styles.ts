@@ -6,6 +6,6 @@ export const styles = {
     insetBlockStart: '6',
     insetInlineEnd: '6',
     display: 'flex',
-    gap: '2'
+    gap: '4'
   })
 };

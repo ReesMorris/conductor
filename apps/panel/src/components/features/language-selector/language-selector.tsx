@@ -1,69 +1,49 @@
 'use client';
 
-import { Dialog } from '@/components/ui';
+import { DropdownMenu } from '@/components/ui';
 import { usePathname, useRouter } from '@/i18n/navigation';
-import { CheckIcon } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useTransition } from 'react';
-import { DefaultTrigger } from './default-trigger';
+import { useState } from 'react';
 import { LANGUAGES } from './language-selector.constants';
-import { styles } from './language-selector.styles';
-import type { LanguageSelectorProps } from './language-selector.types';
+import { LanguageSelectorTrigger } from './language-selector-trigger';
 
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
-  trigger,
-  triggerAsChild,
-  triggerClassName,
-  onLanguageChange,
-  ...props
-}) => {
+export const LanguageSelector: React.FC = ({ ...props }) => {
   const t = useTranslations('language_selector');
+  const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
 
   const handleLanguageChange = (newLocale: string) => {
-    startTransition(() => {
-      router.replace(
-        { pathname },
-        // @ts-expect-error -- TypeScript will validate that only known `params`
-        // are used in combination with a given `pathname`. Since the two will
-        // always match for the current route, we can skip runtime checks.
-        { locale: newLocale }
-      );
-      onLanguageChange?.(newLocale);
-    });
+    router.replace(
+      { pathname },
+      // @ts-expect-error -- TypeScript will validate that only known `params`
+      // are used in combination with a given `pathname`. Since the two will
+      // always match for the current route, we can skip runtime checks.
+      { locale: newLocale }
+    );
   };
 
   return (
-    <Dialog
-      trigger={trigger || <DefaultTrigger className={triggerClassName} />}
-      triggerAsChild={trigger ? triggerAsChild : true}
-      title={t('dialog_title')}
-      description={t('dialog_description')}
+    <DropdownMenu.Root
+      open={isOpen}
+      onOpenChange={setIsOpen}
+      triggerAsChild
+      trigger={<LanguageSelectorTrigger isOpen={isOpen} />}
+      aria-label={t('label')}
+      sideOffset={10}
+      align='end'
       {...props}
     >
-      <div className={styles.languageList}>
-        {LANGUAGES.map(language => (
-          <button
-            key={language.code}
-            type='button'
-            onClick={() => handleLanguageChange(language.code)}
-            disabled={isPending}
-            data-loading={isPending || undefined}
-            data-selected={language.code === locale || undefined}
-            className={styles.languageItem}
-          >
-            <div className={styles.languageInfo}>
-              <span>{language.nativeName}</span>
-            </div>
-            {language.code === locale && (
-              <CheckIcon className={styles.languageCheck} />
-            )}
-          </button>
-        ))}
-      </div>
-    </Dialog>
+      {LANGUAGES.map(language => (
+        <DropdownMenu.Item
+          key={language.code}
+          onSelect={() => handleLanguageChange(language.code)}
+          aria-current={locale === language.code}
+        >
+          {language.nativeName}
+        </DropdownMenu.Item>
+      ))}
+    </DropdownMenu.Root>
   );
 };
