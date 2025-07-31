@@ -56,16 +56,16 @@ export const styles = {
         },
         outlined: {
           '--button-fg': '{colors.foreground.subtle}',
-          '--button-bg': '{colors.foreground/5}',
-          '--button-border': '{colors.foreground/10}',
-          '--button-bg-hover': '{colors.foreground/10}',
-          '--button-focus-color': '{colors.foreground/30}'
+          '--button-bg': '{colors.glass.medium}',
+          '--button-border': '{colors.glass.dark}',
+          '--button-bg-hover': '{colors.glass.dark}',
+          '--button-focus-color': '{colors.glass.darker}'
         },
         ghost: {
           '--button-fg': '{colors.foreground}',
           '--button-bg': 'transparent',
-          '--button-bg-hover': '{colors.foreground/10}',
-          '--button-focus-color': '{colors.foreground/30}'
+          '--button-bg-hover': '{colors.glass.dark}',
+          '--button-focus-color': '{colors.glass.darker}'
         }
       },
       size: {

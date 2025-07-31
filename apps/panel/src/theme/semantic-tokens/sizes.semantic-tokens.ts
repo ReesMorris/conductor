@@ -5,7 +5,7 @@ export const semanticSizes = defineSemanticTokens.sizes({
     sm: { value: '{sizes.9}' },
     md: { value: '{sizes.12}' }
   },
-  header: { value: '5rem' },
+  header: { value: '4.7rem' },
   sidebar: { value: '15rem' },
-  wrapper: { value: '72rem' }
+  wrapper: { value: '80rem' }
 });

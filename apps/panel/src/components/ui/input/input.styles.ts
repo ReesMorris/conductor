@@ -21,15 +21,15 @@ export const styles = {
     transitionTimingFunction: 'in-out',
 
     '&:not(:disabled):hover': {
-      borderColor: 'foreground/20'
+      borderColor: 'glass.dark'
     },
 
     _focus: {
       outlineOffset: '0',
       outlineWidth: '1',
       outlineStyle: 'solid',
-      outlineColor: 'foreground/20',
-      borderColor: 'foreground/20',
+      outlineColor: 'glass.dark',
+      borderColor: 'glass.dark',
       backgroundColor: 'glass.medium'
     },
 

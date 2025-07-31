@@ -23,8 +23,8 @@ export const styles = sva({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'background.elevated',
-      color: 'foreground.muted',
+      backgroundColor: 'glass.dark',
+      color: 'foreground.subtle',
       fontWeight: 'medium',
 
       _icon: {
@@ -34,6 +34,13 @@ export const styles = sva({
   },
   variants: {
     size: {
+      xs: {
+        root: {
+          inlineSize: '6',
+          blockSize: '6',
+          textStyle: 'xs'
+        }
+      },
       sm: {
         root: {
           inlineSize: '8',

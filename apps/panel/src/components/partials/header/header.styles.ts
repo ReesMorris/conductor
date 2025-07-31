@@ -3,10 +3,10 @@ import { css } from '@/styled-system/css';
 export const styles = {
   header: css({
     blockSize: 'header',
-    position: 'fixed',
-    insetBlockStart: '0',
-    insetInline: '0',
-    zIndex: 'above'
+    backgroundColor: 'glass.light',
+    borderBlockEndWidth: '1',
+    borderBlockEndStyle: 'solid',
+    borderBlockEndColor: 'glass.medium'
   }),
   content: css({
     display: 'flex',
@@ -27,6 +27,6 @@ export const styles = {
     blockSize: 'full',
     display: 'flex',
     alignItems: 'center',
-    gap: '6'
+    gap: '4'
   })
 };

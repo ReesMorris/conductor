@@ -14,7 +14,7 @@ export const styles = {
     lineClamp: '1'
   }),
   email: css({
-    color: 'foreground.muted',
+    color: 'foreground.subtle',
     textStyle: 'sm',
     lineClamp: '1'
   })

@@ -16,6 +16,7 @@ export const styles = {
   }),
   name: css({
     fontWeight: 'black',
-    letterSpacing: 'tight'
+    letterSpacing: 'tight',
+    textStyle: 'lg'
   })
 };

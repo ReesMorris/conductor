@@ -5,9 +5,14 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { LANGUAGES } from './language-selector.constants';
+import type { LanguageSelectorProps } from './language-selector.types';
 import { LanguageSelectorTrigger } from './language-selector-trigger';
 
-export const LanguageSelector: React.FC = ({ ...props }) => {
+export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+  trigger,
+  triggerAsChild = true,
+  ...props
+}) => {
   const t = useTranslations('language_selector');
   const [isOpen, setIsOpen] = useState(false);
   const locale = useLocale();
@@ -28,8 +33,8 @@ export const LanguageSelector: React.FC = ({ ...props }) => {
     <DropdownMenu.Root
       open={isOpen}
       onOpenChange={setIsOpen}
-      triggerAsChild
-      trigger={<LanguageSelectorTrigger isOpen={isOpen} />}
+      triggerAsChild={triggerAsChild}
+      trigger={trigger ?? <LanguageSelectorTrigger isOpen={isOpen} />}
       aria-label={t('label')}
       sideOffset={10}
       align='end'
