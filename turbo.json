@@ -1,16 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env.dev"],
-  "globalEnv": [
-    "LOG_LEVEL",
-    "LOG_REQUESTS",
-    "API_URL",
-    "DATABASE_URL",
-    "BETTER_AUTH_URL",
-    "BETTER_AUTH_SECRET",
-    "FRONTEND_URL",
-    "TIMEZONE"
-  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
