@@ -27,13 +27,14 @@ export const ProfilePhoto: React.FC = () => {
     setIsUploading(true);
     try {
       // Step 1: Get presigned URL from our API
-      const { uploadUrl, fileUrl } = await getPresignedUrl.mutateAsync({
+      const { uploadUrl, key } = await getPresignedUrl.mutateAsync({
         fileName: file.name,
         fileType: file.type,
         fileSize: file.size
       });
 
       // Step 2: Upload file to S3/MinIO
+      // TODO: Use BetterFetch (?)
       const uploadResponse = await fetch(uploadUrl, {
         method: 'PUT',
         body: file,
@@ -46,10 +47,8 @@ export const ProfilePhoto: React.FC = () => {
         throw new Error('Failed to upload file');
       }
 
-      // Step 3: Update user profile with new photo URL
-      await updatePhoto.mutateAsync({
-        photoUrl: fileUrl
-      });
+      // Step 3: Confirm upload and update user profile
+      await updatePhoto.mutateAsync({ key });
 
       // TODO: Show success toast
       console.log('Photo uploaded successfully');
