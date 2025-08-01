@@ -29,6 +29,13 @@ until docker compose exec -T postgres pg_isready -U conductor > /dev/null 2>&1; 
 done
 echo "PostgreSQL is ready!"
 
+# Wait for MinIO to be ready
+echo "Waiting for MinIO to be ready..."
+until docker compose exec -T minio mc ready local > /dev/null 2>&1; do
+  sleep 1
+done
+echo "MinIO is ready!"
+
 # Run database migrations
 echo "Running database migrations..."
 yarn db:push --filter=@conductor/database >/dev/null 2>&1 && echo "✓ Database ready"

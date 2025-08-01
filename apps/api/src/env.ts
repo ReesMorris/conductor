@@ -26,7 +26,22 @@ export const env = createEnv({
       .min(32)
       .describe('Secret key for signing Better Auth tokens'),
     BETTER_AUTH_URL: z.url().describe('Base URL for Better Auth'),
-    FRONTEND_URL: z.url().describe('Frontend URL for CORS configuration')
+    FRONTEND_URL: z.url().describe('Frontend URL for CORS configuration'),
+    S3_ENDPOINT: z.url().describe('S3-compatible storage endpoint'),
+    S3_ACCESS_KEY_ID: z.string().describe('S3 access key ID'),
+    S3_SECRET_ACCESS_KEY: z.string().describe('S3 secret access key'),
+    S3_BUCKET_NAME: z.string().describe('S3 bucket name for uploads'),
+    S3_REGION: z.string().default('us-east-1').describe('S3 region'),
+    S3_USE_SSL: z
+      .string()
+      .transform(v => v === 'true')
+      .default(false)
+      .describe('Use SSL for S3 connections'),
+    S3_FORCE_PATH_STYLE: z
+      .string()
+      .transform(v => v === 'true')
+      .default(false)
+      .describe('Force path-style URLs (required for MinIO)')
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true
