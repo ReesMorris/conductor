@@ -2,7 +2,7 @@
 
 import { LanguageSelector } from '@/components/features/language-selector';
 import { DropdownMenu } from '@/components/ui';
-import { useAuth, useSession, useTheme } from '@/hooks';
+import { useAuth, useTheme, useUser } from '@/hooks';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
 import { GlobeIcon, LogOutIcon, MoonIcon, SunIcon } from 'lucide-react';
@@ -14,13 +14,13 @@ import { UserMenuTrigger } from './user-menu-trigger';
 export const UserMenu = () => {
   const t = useTranslations('user_menu');
   const auth = useAuth();
-  const { data: session } = useSession();
+  const { user } = useUser();
   const { toggleTheme, theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  // If no session, don't render the menu
-  if (!session) {
+  // If no user, don't render the menu
+  if (!user) {
     // TODO: Return skeleton avatar here
     return null;
   }
@@ -45,8 +45,8 @@ export const UserMenu = () => {
       trigger={
         <UserMenuTrigger
           isOpen={isOpen}
-          profilePicture={session.user.image}
-          name={session.user.name}
+          profilePicture={user.image}
+          name={user.name}
         />
       }
       align='end'
@@ -54,8 +54,8 @@ export const UserMenu = () => {
       className={styles.menu}
     >
       <div className={styles.accountHeader}>
-        <div className={styles.username}>{session.user.name}</div>
-        <div className={styles.email}>{session.user.email}</div>
+        <div className={styles.username}>{user.name}</div>
+        <div className={styles.email}>{user.email}</div>
       </div>
 
       <DropdownMenu.Separator />
@@ -79,7 +79,7 @@ export const UserMenu = () => {
         }
       />
       <DropdownMenu.Separator />
-      {session.user.role === 'admin' && (
+      {user.role === 'admin' && (
         <>
           <DropdownMenu.Item href={route('WORKSPACE_GENERAL_SETTINGS')}>
             {t('workspace_settings')}

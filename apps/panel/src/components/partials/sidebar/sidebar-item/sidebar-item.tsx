@@ -1,7 +1,7 @@
 'use client';
 
 import { Link } from '@/components/ui';
-import { useSession } from '@/hooks';
+import { useUser } from '@/hooks';
 import { usePathname } from '@/i18n/navigation';
 import { isPageCurrent } from '@/utils/is-page-current';
 import { styles } from './sidebar-item.styles';
@@ -14,10 +14,10 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   userRole: role
 }) => {
   const pathname = usePathname();
-  const { data } = useSession();
+  const { user } = useUser();
 
   // Make sure we have permission to see this item
-  if (role && (!data || data.user.role !== role)) {
+  if (role && user?.role !== role) {
     return null;
   }
 

@@ -8,7 +8,11 @@ export const styles = {
     gap: '6'
   }),
   avatarContainer: css({
-    position: 'relative'
+    position: 'relative',
+
+    _loading: {
+      opacity: 'disabled'
+    }
   }),
   content: css({
     marginBlockStart: '-2',

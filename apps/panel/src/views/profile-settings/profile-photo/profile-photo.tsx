@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, Button, Heading, IconButton, Label } from '@/components/ui';
-import { useFileUpload, useSession } from '@/hooks';
+import { useFileUpload, useUser } from '@/hooks';
 import { trpc } from '@/providers/trpc';
 import { TrashIcon, UploadIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -9,7 +9,7 @@ import { useId, useState } from 'react';
 import { styles } from './profile-photo.styles';
 
 export const ProfilePhoto: React.FC = () => {
-  const { data } = useSession();
+  const { user, updateUser } = useUser();
   const t = useTranslations('profile_settings.profile_photo');
   const inputId = useId();
   const [isUploading, setIsUploading] = useState(false);
@@ -48,7 +48,10 @@ export const ProfilePhoto: React.FC = () => {
       }
 
       // Step 3: Confirm upload and update user profile
-      await updatePhoto.mutateAsync({ key });
+      const result = await updatePhoto.mutateAsync({ key });
+
+      // Update the store with the new image URL
+      updateUser({ image: result.user.image });
 
       // TODO: Show success toast
       console.log('Photo uploaded successfully');
@@ -63,7 +66,6 @@ export const ProfilePhoto: React.FC = () => {
 
   const {
     selectedFiles,
-    previewUrls,
     fileInputRef,
     handleFileSelect,
     openFilePicker,
@@ -78,19 +80,17 @@ export const ProfilePhoto: React.FC = () => {
   });
 
   const selectedFile = selectedFiles[0];
-  const previewUrl = previewUrls[0];
 
   return (
     <>
       <Heading level={2}>{t('title')}</Heading>
 
       <div className={styles.row}>
-        <div className={styles.avatarContainer}>
-          <Avatar
-            size='2xl'
-            src={previewUrl || data?.user.image}
-            fallback={data?.user.name}
-          />
+        <div
+          className={styles.avatarContainer}
+          data-loading={isUploading || undefined}
+        >
+          <Avatar size='2xl' src={user?.image} fallback={user?.name} />
         </div>
         <div className={styles.content}>
           <div>
@@ -108,7 +108,7 @@ export const ProfilePhoto: React.FC = () => {
               onChange={handleFileSelect}
               className={styles.hiddenInput}
             />
-            {selectedFile ? (
+            {selectedFile || user?.image ? (
               <div className={styles.buttonGroup}>
                 <Button
                   variant='outlined'

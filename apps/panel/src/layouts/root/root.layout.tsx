@@ -6,6 +6,7 @@ import { AuthProvider } from '@/providers/auth';
 import { I18nProvider } from '@/providers/i18n';
 import { ThemeProvider } from '@/providers/theme';
 import { TrpcProvider } from '@/providers/trpc';
+import { UserProvider } from '@/providers/user.provider';
 import { cx } from '@/styled-system/css';
 import { geist, inter } from '@/theme/fonts';
 import { notFound } from 'next/navigation';
@@ -40,7 +41,9 @@ export const Layout = async ({ params, children }: LayoutProps) => {
         <I18nProvider locale={locale}>
           <AuthProvider>
             <TrpcProvider apiUrl={env.API_URL}>
-              <ThemeProvider>{children}</ThemeProvider>
+              <UserProvider>
+                <ThemeProvider>{children}</ThemeProvider>
+              </UserProvider>
             </TrpcProvider>
           </AuthProvider>
         </I18nProvider>
