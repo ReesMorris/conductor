@@ -10,7 +10,7 @@ export const UserMenuTrigger: React.FC<UserMenuTriggerProps> = ({
 }) => {
   return (
     <Button variant='ghost' {...props} className={styles.button}>
-      <Avatar />
+      <Avatar src={profilePicture} />
     </Button>
   );
 };

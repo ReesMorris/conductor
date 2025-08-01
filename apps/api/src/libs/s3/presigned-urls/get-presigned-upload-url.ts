@@ -38,7 +38,8 @@ export const getPresignedUploadUrl = async (
 
   const params: PutObjectCommandInput = {
     Bucket: bucket,
-    Key: key
+    Key: key,
+    ACL: 'public-read'
   };
 
   if (contentType) {

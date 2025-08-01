@@ -21,6 +21,7 @@ export const Avatar: React.FC<AvatarProps> = ({
         src={src ?? undefined}
         alt={alt}
         className={classes.image}
+        draggable={false}
       />
       <RadixAvatar.Fallback className={classes.fallback}>
         {fallback || <UserIcon />}

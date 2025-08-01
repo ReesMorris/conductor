@@ -21,6 +21,7 @@ export const UserMenu = () => {
 
   // If no session, don't render the menu
   if (!session) {
+    // TODO: Return skeleton avatar here
     return null;
   }
 

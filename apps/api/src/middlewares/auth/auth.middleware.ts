@@ -1,4 +1,5 @@
 import { auth } from '@/libs';
+import { transformS3Url } from '@/utils';
 import type { Context, Next } from 'hono';
 import type { AuthVariables } from './auth.types';
 
@@ -12,21 +13,6 @@ import type { AuthVariables } from './auth.types';
  * - Does not block requests - unauthenticated requests will have null user/session
  * - Extracts session from cookies/headers automatically via Better Auth
  * - Handles errors gracefully by setting null values
- *
- * @example
- * ```typescript
- * // Apply globally
- * app.use('*', authMiddleware);
- *
- * // Access in routes
- * app.get('/profile', (c) => {
- *   const user = c.get('user');
- *   if (!user) {
- *     return c.json({ error: 'Unauthorized' }, 401);
- *   }
- *   return c.json({ user });
- * });
- * ```
  *
  * @param c - Hono context object with AuthVariables
  * @param next - Next middleware function
@@ -47,7 +33,13 @@ export const authMiddleware = async (
       return next();
     }
 
-    c.set('user', session.user);
+    // Transform S3 key to URL for user image
+    const userWithUrl = {
+      ...session.user,
+      image: transformS3Url(session.user.image)
+    };
+
+    c.set('user', userWithUrl);
     c.set('session', session.session);
   } catch {
     // Authentication errors are non-blocking

@@ -1,5 +1,6 @@
 import { env } from '@/env';
 import { auth } from '@/libs';
+import { transformS3Url } from '@/utils';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 
@@ -18,7 +19,33 @@ authRoutes.use(
   })
 );
 
-// Handle all auth requests
-authRoutes.all('/*', c => {
-  return auth.handler(c.req.raw);
+// Handle all auth requests with response transformation
+authRoutes.all('/*', async c => {
+  const response = await auth.handler(c.req.raw);
+
+  // Clone the response to modify it
+  const body = await response.text();
+
+  try {
+    const data = JSON.parse(body);
+
+    // Transform image URLs in user objects
+    if (data?.user?.image) {
+      data.user.image = transformS3Url(data.user.image);
+    }
+
+    // Return modified response
+    return new Response(JSON.stringify(data), {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
+  } catch {
+    // If not JSON or no user data, return original response
+    return new Response(body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
+  }
 });

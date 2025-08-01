@@ -1,6 +1,7 @@
 import { prisma } from '@/libs/db';
 import { s3Service } from '@/libs/s3';
 import { protectedProcedure } from '@/trpc/procedures';
+import { transformS3Url } from '@/utils';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
@@ -35,16 +36,13 @@ export const uploadPhoto = protectedProcedure
         });
       }
 
-      // Get the public URL for the uploaded file
-      const fileUrl = s3Service.getFileUrl(key);
-
-      // Update user profile using Prisma
+      // Update user profile using Prisma - store only the S3 key
       const updatedUser = await prisma.user.update({
         where: {
           id: userId
         },
         data: {
-          image: fileUrl
+          image: key
         }
       });
 
@@ -57,9 +55,13 @@ export const uploadPhoto = protectedProcedure
 
       // TODO: Delete old profile photo if it exists
 
+      // Transform the S3 key to a full URL before returning
       return {
         success: true,
-        user: updatedUser
+        user: {
+          ...updatedUser,
+          image: transformS3Url(updatedUser.image)
+        }
       };
     } catch (error) {
       if (error instanceof TRPCError) {
