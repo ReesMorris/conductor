@@ -8,7 +8,7 @@ export const styles = {
     aspectRatio: 'square',
     paddingInline: '0',
 
-    _active: {
+    '&:not(:disabled):active': {
       transform: 'scale(0.95)'
     }
   })

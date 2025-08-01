@@ -2,15 +2,65 @@
 
 import { Avatar, Button, Heading, IconButton, Label } from '@/components/ui';
 import { useFileUpload, useSession } from '@/hooks';
+import { trpc } from '@/providers/trpc';
 import { TrashIcon, UploadIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import { styles } from './profile-photo.styles';
 
 export const ProfilePhoto: React.FC = () => {
   const { data } = useSession();
   const t = useTranslations('profile_settings.profile_photo');
   const inputId = useId();
+  const [isUploading, setIsUploading] = useState(false);
+
+  const getPresignedUrl = trpc.profile.getPresignedUrl.useMutation();
+  const updatePhoto = trpc.profile.uploadPhoto.useMutation();
+
+  // Function to handle file selection and upload
+  const onFileSelect = async (files: File[]) => {
+    const file = files[0];
+    if (!file) {
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      // Step 1: Get presigned URL from our API
+      const { uploadUrl, fileUrl } = await getPresignedUrl.mutateAsync({
+        fileName: file.name,
+        fileType: file.type,
+        fileSize: file.size
+      });
+
+      // Step 2: Upload file to S3/MinIO
+      const uploadResponse = await fetch(uploadUrl, {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type
+        }
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error('Failed to upload file');
+      }
+
+      // Step 3: Update user profile with new photo URL
+      await updatePhoto.mutateAsync({
+        photoUrl: fileUrl
+      });
+
+      // TODO: Show success toast
+      console.log('Photo uploaded successfully');
+    } catch (error) {
+      // TODO: Show error toast
+      console.error('Failed to upload photo:', error);
+      clearFiles();
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const {
     selectedFiles,
@@ -24,7 +74,8 @@ export const ProfilePhoto: React.FC = () => {
     validation: {
       acceptedTypes: ['image/jpeg', 'image/png', 'image/gif'],
       maxSize: 2 * 1024 * 1024 // 2MB
-    }
+    },
+    onFileSelect
   });
 
   const selectedFile = selectedFiles[0];
@@ -60,7 +111,11 @@ export const ProfilePhoto: React.FC = () => {
             />
             {selectedFile ? (
               <div className={styles.buttonGroup}>
-                <Button variant='outlined' onClick={openFilePicker}>
+                <Button
+                  variant='outlined'
+                  onClick={openFilePicker}
+                  isLoading={isUploading}
+                >
                   <UploadIcon />
                   {t('change_button')}
                 </Button>
@@ -68,12 +123,17 @@ export const ProfilePhoto: React.FC = () => {
                   variant='destructive'
                   aria-label={t('remove_button')}
                   onClick={clearFiles}
+                  disabled={isUploading}
                 >
                   <TrashIcon />
                 </IconButton>
               </div>
             ) : (
-              <Button variant='outlined' onClick={openFilePicker}>
+              <Button
+                variant='outlined'
+                onClick={openFilePicker}
+                disabled={isUploading}
+              >
                 <UploadIcon />
                 {t('upload_button')}
               </Button>

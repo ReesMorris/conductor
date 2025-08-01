@@ -16,7 +16,7 @@ export const getPresignedUrl = protectedProcedure
         .max(2 * 1024 * 1024) // 2MB max
     })
   )
-  .mutation(async ({ ctx, input }) => {
+  .mutation(({ ctx, input }) => {
     const { fileName, fileType, fileSize } = input;
     const userId = ctx.user.id;
 

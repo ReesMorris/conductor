@@ -10,7 +10,7 @@ export const uploadPhoto = protectedProcedure
       photoUrl: z.string().url()
     })
   )
-  .mutation(async ({ ctx, input }) => {
+  .mutation(({ ctx, input }) => {
     const { photoUrl } = input;
     const userId = ctx.user.id;
 
