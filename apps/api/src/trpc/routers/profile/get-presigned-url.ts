@@ -1,3 +1,4 @@
+import { s3Service } from '@/libs/s3';
 import { protectedProcedure } from '@/trpc/procedures';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -16,7 +17,7 @@ export const getPresignedUrl = protectedProcedure
         .max(2 * 1024 * 1024) // 2MB max
     })
   )
-  .mutation(({ ctx, input }) => {
+  .mutation(async ({ ctx, input }) => {
     const { fileName, fileType, fileSize } = input;
     const userId = ctx.user.id;
 
@@ -29,10 +30,32 @@ export const getPresignedUrl = protectedProcedure
       });
     }
 
-    // TODO: Implement MinIO presigned URL generation
-    // For now, return a placeholder
-    return {
-      uploadUrl: 'https://example.com/upload',
-      fileUrl: `https://example.com/profiles/${userId}/photo.jpg`
-    };
+    try {
+      // Generate a secure UUID-based key for the user's profile photo
+      const key = s3Service.generateKey({
+        prefix: `users/${userId}/profile`,
+        filename: fileName
+      });
+
+      // Get presigned URL
+      const uploadUrl = await s3Service.getPresignedUploadUrl({
+        key,
+        contentType: fileType,
+        contentLength: fileSize
+      });
+
+      // Get the final URL where the file will be accessible
+      const fileUrl = s3Service.getFileUrl(key);
+
+      return {
+        uploadUrl,
+        fileUrl,
+        key // Return the key for verification later
+      };
+    } catch {
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Failed to generate upload URL'
+      });
+    }
   });
