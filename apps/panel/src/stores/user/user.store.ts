@@ -1,28 +1,6 @@
-import type { User } from 'better-auth';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-
-export interface UserState {
-  /**
-   * User profile data that can be updated
-   */
-  user: User | null;
-
-  /**
-   * Set the complete user data
-   */
-  setUser: (user: UserState['user']) => void;
-
-  /**
-   * Update specific user fields
-   */
-  updateUser: (updates: Partial<NonNullable<UserState['user']>>) => void;
-
-  /**
-   * Reset the store to initial state
-   */
-  reset: () => void;
-}
+import type { UserState } from './user.types';
 
 const initialState: Pick<UserState, 'user'> = {
   user: null

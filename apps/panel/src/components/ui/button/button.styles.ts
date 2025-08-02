@@ -71,7 +71,7 @@ export const styles = {
           '--button-fg': '{colors.red.900}',
           '--button-bg': '{colors.red.900/10}',
           '--button-bg-hover': '{colors.red.900/20}',
-          '--button-focus-color': '{colors.red.900}',
+          '--button-focus-color': '{colors.red.900/50}',
           '--button-border': '{colors.red.900/20}'
         }
       },

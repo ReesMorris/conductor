@@ -13,7 +13,7 @@ export const semanticColors = defineSemanticTokens.colors({
   },
   glass: {
     light: {
-      value: { _light: '{colors.white/80}', _dark: '{colors.white/3}' }
+      value: { _light: '{colors.black/1.1}', _dark: '{colors.white/3}' }
     },
     medium: {
       value: { _light: '{colors.black/5}', _dark: '{colors.white/5}' }

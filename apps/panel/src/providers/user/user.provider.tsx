@@ -4,10 +4,7 @@ import { useSession } from '@/hooks';
 import { trpc } from '@/providers/trpc';
 import { useUserStore } from '@/stores';
 import { useEffect } from 'react';
-
-export interface UserProviderProps {
-  children: React.ReactNode;
-}
+import type { UserProviderProps } from './user.types';
 
 /**
  * Provider that syncs Better Auth session data with Zustand user store

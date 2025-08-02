@@ -5,15 +5,17 @@ import { routing } from '@/i18n/routing';
 import { AuthProvider } from '@/providers/auth';
 import { I18nProvider } from '@/providers/i18n';
 import { ThemeProvider } from '@/providers/theme';
+import { TooltipProvider } from '@/providers/tooltip';
 import { TrpcProvider } from '@/providers/trpc';
-import { UserProvider } from '@/providers/user.provider';
+import { UserProvider } from '@/providers/user';
 import { cx } from '@/styled-system/css';
 import { geist, inter } from '@/theme/fonts';
 import { notFound } from 'next/navigation';
 import { hasLocale } from 'next-intl';
 
 import '@/theme/root.css';
-import '@/theme/colors';
+import '@/theme/colors/light.css';
+import '@/theme/colors/dark.css';
 
 interface LayoutProps {
   params: Promise<{ locale: string }>;
@@ -42,7 +44,9 @@ export const Layout = async ({ params, children }: LayoutProps) => {
           <AuthProvider>
             <TrpcProvider apiUrl={env.API_URL}>
               <UserProvider>
-                <ThemeProvider>{children}</ThemeProvider>
+                <ThemeProvider>
+                  <TooltipProvider>{children}</TooltipProvider>
+                </ThemeProvider>
               </UserProvider>
             </TrpcProvider>
           </AuthProvider>

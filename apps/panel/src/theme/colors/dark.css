@@ -1,0 +1,81 @@
+.dark {
+  --slate-1: #111113;
+  --slate-2: #18191b;
+  --slate-3: #212225;
+  --slate-4: #272a2d;
+  --slate-5: #2e3135;
+  --slate-6: #363a3f;
+  --slate-7: #43484e;
+  --slate-8: #5a6169;
+  --slate-9: #696e77;
+  --slate-10: #777b84;
+  --slate-11: #b0b4ba;
+  --slate-12: #edeef0;
+  --red-1: #191111;
+  --red-2: #201314;
+  --red-3: #3b1219;
+  --red-4: #500f1c;
+  --red-5: #611623;
+  --red-6: #72232d;
+  --red-7: #8c333a;
+  --red-8: #b54548;
+  --red-9: #e5484d;
+  --red-10: #ec5d5e;
+  --red-11: #ff9592;
+  --red-12: #ffd1d9;
+  --purple-1: #18111b;
+  --purple-2: #1e1523;
+  --purple-3: #301c3b;
+  --purple-4: #3d224e;
+  --purple-5: #48295c;
+  --purple-6: #54346b;
+  --purple-7: #664282;
+  --purple-8: #8457aa;
+  --purple-9: #8e4ec6;
+  --purple-10: #9a5cd0;
+  --purple-11: #d19dff;
+  --purple-12: #ecd9fa;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    .dark {
+      --slate-1: color(display-p3 0.067 0.067 0.074);
+      --slate-2: color(display-p3 0.095 0.098 0.105);
+      --slate-3: color(display-p3 0.13 0.135 0.145);
+      --slate-4: color(display-p3 0.156 0.163 0.176);
+      --slate-5: color(display-p3 0.183 0.191 0.206);
+      --slate-6: color(display-p3 0.215 0.226 0.244);
+      --slate-7: color(display-p3 0.265 0.28 0.302);
+      --slate-8: color(display-p3 0.357 0.381 0.409);
+      --slate-9: color(display-p3 0.415 0.431 0.463);
+      --slate-10: color(display-p3 0.469 0.483 0.514);
+      --slate-11: color(display-p3 0.692 0.704 0.728);
+      --slate-12: color(display-p3 0.93 0.933 0.94);
+      --red-1: color(display-p3 0.093 0.068 0.067);
+      --red-2: color(display-p3 0.118 0.077 0.079);
+      --red-3: color(display-p3 0.211 0.081 0.099);
+      --red-4: color(display-p3 0.287 0.079 0.113);
+      --red-5: color(display-p3 0.348 0.11 0.142);
+      --red-6: color(display-p3 0.414 0.16 0.183);
+      --red-7: color(display-p3 0.508 0.224 0.236);
+      --red-8: color(display-p3 0.659 0.298 0.297);
+      --red-9: color(display-p3 0.83 0.329 0.324);
+      --red-10: color(display-p3 0.861 0.403 0.387);
+      --red-11: color(display-p3 1 0.57 0.55);
+      --red-12: color(display-p3 0.971 0.826 0.852);
+      --purple-1: color(display-p3 0.09 0.068 0.103);
+      --purple-2: color(display-p3 0.113 0.082 0.134);
+      --purple-3: color(display-p3 0.175 0.112 0.224);
+      --purple-4: color(display-p3 0.224 0.137 0.297);
+      --purple-5: color(display-p3 0.264 0.167 0.349);
+      --purple-6: color(display-p3 0.311 0.208 0.406);
+      --purple-7: color(display-p3 0.381 0.266 0.496);
+      --purple-8: color(display-p3 0.49 0.349 0.649);
+      --purple-9: color(display-p3 0.523 0.318 0.751);
+      --purple-10: color(display-p3 0.57 0.373 0.791);
+      --purple-11: color(display-p3 0.8 0.62 1);
+      --purple-12: color(display-p3 0.913 0.854 0.971);
+    }
+  }
+}

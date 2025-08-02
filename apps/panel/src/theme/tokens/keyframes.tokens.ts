@@ -29,6 +29,26 @@ export const keyframes = defineKeyframes({
       transform: 'translateX(-50%) translateY(10px) scale(0.96)'
     }
   },
+  'tooltip-fade-in': {
+    '0%': {
+      opacity: '0',
+      transform: 'scale(0.96)'
+    },
+    '100%': {
+      opacity: '1',
+      transform: 'scale(1)'
+    }
+  },
+  'tooltip-fade-out': {
+    '0%': {
+      opacity: '1',
+      transform: 'scale(1)'
+    },
+    '100%': {
+      opacity: '0',
+      transform: 'scale(0.96)'
+    }
+  },
   enter: {
     '0%': {
       opacity: '0',
