@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { AuthProvider } from '@/providers/auth';
 import { I18nProvider } from '@/providers/i18n';
 import { ThemeProvider } from '@/providers/theme';
+import { ToastProvider } from '@/providers/toast';
 import { TooltipProvider } from '@/providers/tooltip';
 import { TrpcProvider } from '@/providers/trpc';
 import { UserProvider } from '@/providers/user';
@@ -45,7 +46,9 @@ export const Layout = async ({ params, children }: LayoutProps) => {
             <TrpcProvider apiUrl={env.API_URL}>
               <UserProvider>
                 <ThemeProvider>
-                  <TooltipProvider>{children}</TooltipProvider>
+                  <TooltipProvider>
+                    <ToastProvider>{children}</ToastProvider>
+                  </TooltipProvider>
                 </ThemeProvider>
               </UserProvider>
             </TrpcProvider>

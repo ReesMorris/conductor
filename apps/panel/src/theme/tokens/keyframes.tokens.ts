@@ -68,5 +68,29 @@ export const keyframes = defineKeyframes({
       opacity: '0',
       transform: 'translate3d(0,0,0) scale3d(0.95,0.95,1) rotate(0)'
     }
+  },
+  'toast-slide-in': {
+    from: {
+      transform: 'translateX(calc(100% + 1.5rem))'
+    },
+    to: {
+      transform: 'translateX(0)'
+    }
+  },
+  'toast-slide-out': {
+    from: {
+      transform: 'translateX(0)'
+    },
+    to: {
+      transform: 'translateX(calc(100% + 1.5rem))'
+    }
+  },
+  'toast-swipe-out': {
+    from: {
+      transform: 'translateX(var(--radix-toast-swipe-end-x))'
+    },
+    to: {
+      transform: 'translateX(calc(100% + 1.5rem))'
+    }
   }
 });

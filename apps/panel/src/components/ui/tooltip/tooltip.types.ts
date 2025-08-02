@@ -34,4 +34,10 @@ export interface TooltipProps extends Omit<Tooltip.TooltipProps, 'children'> {
    * @default 8
    */
   sideOffset?: number;
+
+  /**
+   * If true, the tooltip will not appear and only the children will be rendered
+   * @default false
+   */
+  disabled?: boolean;
 }

@@ -2,6 +2,9 @@
   "common": {
     "page_title": "{title} | {appName}"
   },
+  "ui": {
+    "close": "Close"
+  },
   "login_page": {
     "metadata": {
       "title": "Login"
@@ -116,7 +119,11 @@
       "help_text": "JPG, PNG or GIF. Max size 2MB.",
       "upload_button": "Upload Photo",
       "change_button": "Change Photo",
-      "remove_button": "Remove Photo"
+      "remove_button": "Remove Photo",
+      "upload_success": "Profile photo changed",
+      "upload_error": "Could not change profile photo",
+      "remove_success": "Profile photo removed",
+      "remove_error": "Could not remove profile photo"
     }
   }
 }

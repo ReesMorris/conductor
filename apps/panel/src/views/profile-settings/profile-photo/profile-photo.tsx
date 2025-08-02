@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, Button, Heading, IconButton, Label } from '@/components/ui';
-import { useFileUpload, useUser } from '@/hooks';
+import { useFileUpload, useToast, useUser } from '@/hooks';
 import { trpc } from '@/providers/trpc';
 import { TrashIcon, UploadIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -9,8 +9,9 @@ import { useId, useState } from 'react';
 import { styles } from './profile-photo.styles';
 
 export const ProfilePhoto: React.FC = () => {
-  const { user, updateUser } = useUser();
   const t = useTranslations('profile_settings.profile_photo');
+  const { user, updateUser } = useUser();
+  const toast = useToast();
   const inputId = useId();
   const [isUploading, setIsUploading] = useState(false);
 
@@ -54,11 +55,11 @@ export const ProfilePhoto: React.FC = () => {
       // Update the store with the new image URL
       updateUser({ image: result.user.image });
 
-      // TODO: Show success toast
-      console.log('Photo uploaded successfully');
-    } catch (error) {
-      // TODO: Show error toast
-      console.error('Failed to upload photo:', error);
+      // Show success toast
+      toast.success(t('upload_success'));
+    } catch (_err) {
+      // Show error toast
+      toast.error(t('upload_error'));
       clearFiles();
     } finally {
       setIsUploading(false);
@@ -91,11 +92,11 @@ export const ProfilePhoto: React.FC = () => {
       // Update the store to clear the image
       updateUser({ image: null });
 
-      // TODO: Show success toast
-      console.log('Photo removed successfully');
-    } catch (error) {
-      // TODO: Show error toast
-      console.error('Failed to remove photo:', error);
+      // Show success toast
+      toast.success(t('remove_success'));
+    } catch {
+      // Show error toast
+      toast.error(t('remove_error'));
     } finally {
       setIsUploading(false);
     }
@@ -127,6 +128,7 @@ export const ProfilePhoto: React.FC = () => {
               accept='image/jpeg,image/png,image/gif'
               onChange={handleFileSelect}
               className={styles.hiddenInput}
+              disabled={isUploading}
             />
             {user?.image ? (
               <div className={styles.buttonGroup}>
