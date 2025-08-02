@@ -1,32 +1,27 @@
 'use client';
 
-import { Avatar, Button, Heading, IconButton, Label } from '@/components/ui';
-import { useFileUpload, useToast, useUser } from '@/hooks';
+import { Avatar, Heading, Label } from '@/components/ui';
+import { useToast, useUser } from '@/hooks';
 import { trpc } from '@/providers/trpc';
-import { TrashIcon, UploadIcon } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import { styles } from './profile-photo.styles';
+import { RemovePhotoButton } from './remove-photo-button';
+import { UploadPhotoButton } from './upload-photo-button';
 
 export const ProfilePhoto: React.FC = () => {
   const t = useTranslations('profile_settings.profile_photo');
   const { user, updateUser } = useUser();
   const toast = useToast();
-  const inputId = useId();
-  const [isUploading, setIsUploading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPresignedUrl = trpc.profile.getPresignedUrl.useMutation();
   const updatePhoto = trpc.profile.uploadPhoto.useMutation();
   const removePhoto = trpc.profile.removePhoto.useMutation();
 
   // Function to handle file selection and upload
-  const onFileSelect = async (files: File[]) => {
-    const file = files[0];
-    if (!file) {
-      return;
-    }
-
-    setIsUploading(true);
+  const onFileSelect = async (file: File) => {
+    setIsLoading(true);
     try {
       // Step 1: Get presigned URL from our API
       const { uploadUrl, key } = await getPresignedUrl.mutateAsync({
@@ -36,7 +31,6 @@ export const ProfilePhoto: React.FC = () => {
       });
 
       // Step 2: Upload file to S3/MinIO
-      // TODO: Use BetterFetch (?)
       const uploadResponse = await fetch(uploadUrl, {
         method: 'PUT',
         body: file,
@@ -60,32 +54,14 @@ export const ProfilePhoto: React.FC = () => {
     } catch (_err) {
       // Show error toast
       toast.error(t('upload_error'));
-      clearFiles();
     } finally {
-      setIsUploading(false);
+      setIsLoading(false);
     }
   };
 
-  const {
-    selectedFiles,
-    fileInputRef,
-    handleFileSelect,
-    openFilePicker,
-    clearFiles
-  } = useFileUpload({
-    multiple: false,
-    validation: {
-      acceptedTypes: ['image/jpeg', 'image/png', 'image/gif'],
-      maxSize: 2 * 1024 * 1024 // 2MB
-    },
-    onFileSelect
-  });
-
-  const selectedFile = selectedFiles[0];
-
   // Function to handle photo removal
   const onRemovePhoto = async () => {
-    setIsUploading(true);
+    setIsLoading(true);
     try {
       await removePhoto.mutateAsync();
 
@@ -98,7 +74,7 @@ export const ProfilePhoto: React.FC = () => {
       // Show error toast
       toast.error(t('remove_error'));
     } finally {
-      setIsUploading(false);
+      setIsLoading(false);
     }
   };
 
@@ -109,55 +85,35 @@ export const ProfilePhoto: React.FC = () => {
       <div className={styles.row}>
         <div
           className={styles.avatarContainer}
-          data-loading={isUploading || undefined}
+          data-loading={isLoading || undefined}
         >
           <Avatar size='2xl' src={user?.image} />
         </div>
         <div className={styles.content}>
           <div>
-            <Label htmlFor={inputId}>
-              {selectedFile ? t('label') : t('label')}
-            </Label>
+            <Label>{t('label')}</Label>
             <div className={styles.helpText}>{t('help_text')}</div>
           </div>
           <div>
-            <input
-              id={inputId}
-              ref={fileInputRef}
-              type='file'
-              accept='image/jpeg,image/png,image/gif'
-              onChange={handleFileSelect}
-              className={styles.hiddenInput}
-              disabled={isUploading}
-            />
             {user?.image ? (
               <div className={styles.buttonGroup}>
-                <Button
-                  variant='outlined'
-                  onClick={openFilePicker}
-                  isLoading={isUploading}
-                >
-                  <UploadIcon />
-                  {t('change_button')}
-                </Button>
-                <IconButton
-                  variant='destructive'
-                  aria-label={t('remove_button')}
-                  onClick={onRemovePhoto}
-                  disabled={isUploading}
-                >
-                  <TrashIcon />
-                </IconButton>
+                <UploadPhotoButton
+                  hasPhoto={!!user?.image}
+                  isLoading={isLoading}
+                  onFileSelect={onFileSelect}
+                />
+                <RemovePhotoButton
+                  hasPhoto={!!user?.image}
+                  isLoading={isLoading}
+                  onConfirm={onRemovePhoto}
+                />
               </div>
             ) : (
-              <Button
-                variant='outlined'
-                onClick={openFilePicker}
-                disabled={isUploading}
-              >
-                <UploadIcon />
-                {t('upload_button')}
-              </Button>
+              <UploadPhotoButton
+                hasPhoto={false}
+                isLoading={isLoading}
+                onFileSelect={onFileSelect}
+              />
             )}
           </div>
         </div>

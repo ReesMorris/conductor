@@ -17,11 +17,12 @@ export const styles = {
       backdropFilter: 'auto',
       backdropBlur: 'md',
       paddingInline: 'var(--button-padding)',
-      transitionProperty: 'border-color, background-color, transform',
+      transitionProperty: 'color, border-color, background-color, transform',
       transitionDuration: 'normal',
       transitionTimingFunction: 'in-out',
 
       '&:not(:disabled):hover': {
+        color: 'var(--button-fg-hover, var(--button-fg))',
         backgroundColor: 'var(--button-bg-hover)'
       },
 
@@ -62,9 +63,10 @@ export const styles = {
           '--button-focus-color': '{colors.glass.darker}'
         },
         ghost: {
-          '--button-fg': '{colors.foreground}',
+          '--button-fg': '{colors.foreground.subtle}',
           '--button-bg': 'transparent',
-          '--button-bg-hover': '{colors.glass.dark}',
+          '--button-bg-hover': '{colors.foreground/5}',
+          '--button-fg-hover': '{colors.foreground}',
           '--button-focus-color': '{colors.glass.darker}'
         },
         destructive: {

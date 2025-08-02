@@ -123,7 +123,13 @@
       "upload_success": "Profile photo changed",
       "upload_error": "Could not change profile photo",
       "remove_success": "Profile photo removed",
-      "remove_error": "Could not remove profile photo"
+      "remove_error": "Could not remove profile photo",
+      "remove_dialog": {
+        "title": "Remove Profile Photo",
+        "description": "Are you sure you want to remove your profile photo? This action cannot be undone.",
+        "confirm_button": "Remove",
+        "cancel_button": "Cancel"
+      }
     }
   }
 }
