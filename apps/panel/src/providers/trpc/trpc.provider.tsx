@@ -15,8 +15,8 @@ export const TrpcProvider: React.FC<TRPCProviderProps> = ({
   apiUrl
 }) => {
   const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    trpc.createClient({
+  const [trpcClient] = useState(() => {
+    return trpc.createClient({
       links: [
         httpBatchLink({
           url: urlJoin(apiUrl, 'trpc'),
@@ -29,8 +29,8 @@ export const TrpcProvider: React.FC<TRPCProviderProps> = ({
           transformer: superjson
         })
       ]
-    })
-  );
+    });
+  });
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
