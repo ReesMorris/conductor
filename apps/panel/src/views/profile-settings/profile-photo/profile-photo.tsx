@@ -15,9 +15,9 @@ export const ProfilePhoto: React.FC = () => {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
-  const getPresignedUrl = trpc.profile.getPresignedUrl.useMutation();
-  const updatePhoto = trpc.profile.uploadPhoto.useMutation();
-  const removePhoto = trpc.profile.removePhoto.useMutation();
+  const getPresignedUrl = trpc.profile.photo.getPresignedUrl.useMutation();
+  const updatePhoto = trpc.profile.photo.upload.useMutation();
+  const removePhoto = trpc.profile.photo.remove.useMutation();
 
   // Function to handle file selection and upload
   const onFileSelect = async (file: File) => {
@@ -38,7 +38,6 @@ export const ProfilePhoto: React.FC = () => {
           'Content-Type': file.type
         }
       });
-
       if (!uploadResponse.ok) {
         throw new Error('Failed to upload file');
       }

@@ -11,7 +11,7 @@ const log = createLogger('profile:upload-photo');
 /**
  * Confirm photo upload and update user profile after successful S3 upload
  */
-export const uploadPhoto = protectedProcedure
+export const upload = protectedProcedure
   .input(
     z.object({
       key: z.string().min(1)

@@ -10,7 +10,7 @@ const log = createLogger('profile:remove-photo');
 /**
  * Remove user's profile photo by deleting it from S3 and clearing the database field
  */
-export const removePhoto = protectedProcedure.mutation(async ({ ctx }) => {
+export const remove = protectedProcedure.mutation(async ({ ctx }) => {
   const userId = ctx.user.id;
   const oldImageKey = ctx.user.image;
 
