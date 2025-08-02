@@ -1,9 +1,12 @@
+import { createLogger } from '@/libs';
 import { prisma } from '@/libs/db';
 import { s3Service } from '@/libs/s3';
 import { protectedProcedure } from '@/trpc/procedures';
 import { transformS3Url } from '@/utils';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
+
+const log = createLogger('profile:upload-photo');
 
 /**
  * Confirm photo upload and update user profile after successful S3 upload
@@ -36,6 +39,9 @@ export const uploadPhoto = protectedProcedure
         });
       }
 
+      // Store the old image key before updating
+      const oldImageKey = ctx.user.image;
+
       // Update user profile using Prisma - store only the S3 key
       const updatedUser = await prisma.user.update({
         where: {
@@ -53,7 +59,15 @@ export const uploadPhoto = protectedProcedure
         });
       }
 
-      // TODO: Delete old profile photo if it exists
+      // Delete old profile photo if it exists
+      if (oldImageKey && oldImageKey !== key) {
+        try {
+          await s3Service.deleteFile(oldImageKey);
+        } catch (error) {
+          // Log the error but don't fail the upload
+          log.error(error, 'Failed to delete old profile photo');
+        }
+      }
 
       // Transform the S3 key to a full URL before returning
       return {

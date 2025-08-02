@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession } from '@/hooks';
+import { trpc } from '@/providers/trpc';
 import { useUserStore } from '@/stores';
 import { useEffect } from 'react';
 
@@ -16,14 +17,19 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const { data: session } = useSession();
   const setUser = useUserStore(state => state.setUser);
 
-  // Sync session user data to store whenever it changes
+  // Fetch profile with transformed URLs when we have a session
+  const { data: profile } = trpc.profile.getProfile.useQuery(undefined, {
+    enabled: !!session?.user
+  });
+
+  // Sync profile data to store whenever it changes
   useEffect(() => {
-    if (session?.user) {
-      setUser({ ...session.user });
-    } else {
+    if (profile) {
+      setUser(profile);
+    } else if (!session?.user) {
       setUser(null);
     }
-  }, [session, setUser]);
+  }, [profile, session, setUser]);
 
   return children;
 };

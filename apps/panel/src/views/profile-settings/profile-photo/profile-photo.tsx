@@ -16,6 +16,7 @@ export const ProfilePhoto: React.FC = () => {
 
   const getPresignedUrl = trpc.profile.getPresignedUrl.useMutation();
   const updatePhoto = trpc.profile.uploadPhoto.useMutation();
+  const removePhoto = trpc.profile.removePhoto.useMutation();
 
   // Function to handle file selection and upload
   const onFileSelect = async (files: File[]) => {
@@ -81,6 +82,25 @@ export const ProfilePhoto: React.FC = () => {
 
   const selectedFile = selectedFiles[0];
 
+  // Function to handle photo removal
+  const onRemovePhoto = async () => {
+    setIsUploading(true);
+    try {
+      await removePhoto.mutateAsync();
+
+      // Update the store to clear the image
+      updateUser({ image: null });
+
+      // TODO: Show success toast
+      console.log('Photo removed successfully');
+    } catch (error) {
+      // TODO: Show error toast
+      console.error('Failed to remove photo:', error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   return (
     <>
       <Heading level={2}>{t('title')}</Heading>
@@ -90,7 +110,7 @@ export const ProfilePhoto: React.FC = () => {
           className={styles.avatarContainer}
           data-loading={isUploading || undefined}
         >
-          <Avatar size='2xl' src={user?.image} fallback={user?.name} />
+          <Avatar size='2xl' src={user?.image} />
         </div>
         <div className={styles.content}>
           <div>
@@ -108,7 +128,7 @@ export const ProfilePhoto: React.FC = () => {
               onChange={handleFileSelect}
               className={styles.hiddenInput}
             />
-            {selectedFile || user?.image ? (
+            {user?.image ? (
               <div className={styles.buttonGroup}>
                 <Button
                   variant='outlined'
@@ -121,7 +141,7 @@ export const ProfilePhoto: React.FC = () => {
                 <IconButton
                   variant='destructive'
                   aria-label={t('remove_button')}
-                  onClick={clearFiles}
+                  onClick={onRemovePhoto}
                   disabled={isUploading}
                 >
                   <TrashIcon />

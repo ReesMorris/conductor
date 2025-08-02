@@ -1,5 +1,4 @@
 import { auth } from '@/libs';
-import { transformS3Url } from '@/utils';
 import type { Context, Next } from 'hono';
 import type { AuthVariables } from './auth.types';
 
@@ -33,13 +32,7 @@ export const authMiddleware = async (
       return next();
     }
 
-    // Transform S3 key to URL for user image
-    const userWithUrl = {
-      ...session.user,
-      image: transformS3Url(session.user.image)
-    };
-
-    c.set('user', userWithUrl);
+    c.set('user', session.user);
     c.set('session', session.session);
   } catch {
     // Authentication errors are non-blocking
