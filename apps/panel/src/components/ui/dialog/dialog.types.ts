@@ -2,6 +2,13 @@ import type { Dialog as RadixDialog } from 'radix-ui';
 
 export interface DialogProps extends RadixDialog.DialogProps {
   /**
+   * The role of the dialog.
+   * - `dialog` is a standard dialog and can be closed by clicking outside or pressing Escape.
+   * - `alertdialog` is a modal dialog that requires user interaction before proceeding.
+   */
+  role: 'dialog' | 'alertdialog';
+
+  /**
    * The title content displayed at the top of the dialog
    */
   title: React.ReactNode;

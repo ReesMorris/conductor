@@ -1,9 +1,13 @@
-import { Dialog as RadixDialog } from 'radix-ui';
+import {
+  AlertDialog as RadixAlertDialog,
+  Dialog as RadixDialog
+} from 'radix-ui';
 import { Heading } from '../heading';
 import { styles } from './dialog.styles';
 import type { DialogProps } from './dialog.types';
 
 export const Dialog = ({
+  role,
   title,
   description,
   children,
@@ -13,30 +17,33 @@ export const Dialog = ({
 }: DialogProps) => {
   const classes = styles();
 
+  // Determine which Radix component to use based on role
+  const Component = role === 'alertdialog' ? RadixAlertDialog : RadixDialog;
+
   return (
-    <RadixDialog.Root {...props}>
-      <RadixDialog.Trigger asChild={triggerAsChild} className={classes.trigger}>
+    <Component.Root {...props}>
+      <Component.Trigger asChild={triggerAsChild} className={classes.trigger}>
         {trigger}
-      </RadixDialog.Trigger>
-      <RadixDialog.Portal>
-        <RadixDialog.Overlay className={classes.overlay} />
-        <RadixDialog.Content className={classes.content}>
+      </Component.Trigger>
+      <Component.Portal>
+        <Component.Overlay className={classes.overlay} />
+        <Component.Content className={classes.content}>
           <div className={classes.container}>
             <div className={classes.header}>
-              <RadixDialog.Title asChild>
+              <Component.Title asChild>
                 <Heading level={2}>{title}</Heading>
-              </RadixDialog.Title>
+              </Component.Title>
               {description && (
-                <RadixDialog.Description className={classes.description}>
+                <Component.Description className={classes.description}>
                   {description}
-                </RadixDialog.Description>
+                </Component.Description>
               )}
             </div>
 
             {children}
           </div>
-        </RadixDialog.Content>
-      </RadixDialog.Portal>
-    </RadixDialog.Root>
+        </Component.Content>
+      </Component.Portal>
+    </Component.Root>
   );
 };
