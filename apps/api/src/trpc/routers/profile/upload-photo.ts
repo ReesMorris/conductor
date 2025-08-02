@@ -1,8 +1,8 @@
 import { createLogger } from '@/libs';
 import { prisma } from '@/libs/db';
 import { s3Service } from '@/libs/s3';
+import { userTransformer } from '@/transformers';
 import { protectedProcedure } from '@/trpc/procedures';
-import { transformS3Url } from '@/utils';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
@@ -69,13 +69,10 @@ export const uploadPhoto = protectedProcedure
         }
       }
 
-      // Transform the S3 key to a full URL before returning
+      // Use the transformer to prepare the user for API response
       return {
         success: true,
-        user: {
-          ...updatedUser,
-          image: transformS3Url(updatedUser.image)
-        }
+        user: userTransformer.transform(updatedUser)
       };
     } catch (error) {
       if (error instanceof TRPCError) {

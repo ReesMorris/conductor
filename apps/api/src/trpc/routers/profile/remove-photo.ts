@@ -1,6 +1,7 @@
 import { createLogger } from '@/libs';
 import { prisma } from '@/libs/db';
 import { s3Service } from '@/libs/s3';
+import { userTransformer } from '@/transformers';
 import { protectedProcedure } from '@/trpc/procedures';
 import { TRPCError } from '@trpc/server';
 
@@ -41,13 +42,10 @@ export const removePhoto = protectedProcedure.mutation(async ({ ctx }) => {
       }
     }
 
-    // Return the updated user with null image
+    // Use the transformer to prepare the user for API response
     return {
       success: true,
-      user: {
-        ...updatedUser,
-        image: null
-      }
+      user: userTransformer.transform(updatedUser)
     };
   } catch (error) {
     if (error instanceof TRPCError) {

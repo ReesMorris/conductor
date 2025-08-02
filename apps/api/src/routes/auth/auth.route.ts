@@ -1,6 +1,6 @@
 import { env } from '@/env';
 import { auth } from '@/libs';
-import { transformS3Url } from '@/utils';
+import { userTransformer } from '@/transformers';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 
@@ -29,9 +29,9 @@ authRoutes.all('/*', async c => {
   try {
     const data = JSON.parse(body);
 
-    // Transform image URLs in user objects
-    if (data?.user?.image) {
-      data.user.image = transformS3Url(data.user.image);
+    // Apply transformations to user data if it exists
+    if (data.user) {
+      data.user = userTransformer.transform(data.user);
     }
 
     // Return modified response
