@@ -2,9 +2,16 @@
   "name": "@conductor/api",
   "version": "0.1.0",
   "private": true,
-  "module": "index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target bun --minify",
+    "build": "tsc && bun build src/index.ts --outdir dist --target bun --minify",
     "check": "biome check --write . && tsc --noEmit",
     "dev": "bun --watch src/index.ts",
     "start": "NODE_ENV=production bun run dist/index.js"
