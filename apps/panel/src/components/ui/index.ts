@@ -15,5 +15,6 @@ export * from './link';
 export * from './logo';
 export * from './password-input';
 export * from './separator';
+export * from './skeleton';
 export * from './toast';
 export * from './tooltip';

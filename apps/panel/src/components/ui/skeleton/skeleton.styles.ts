@@ -4,7 +4,7 @@ export const styles = {
   skeleton: cva({
     base: {
       borderRadius: 'var(--skeleton-radius)',
-      backgroundColor: 'foreground/20',
+      backgroundColor: 'foreground/12',
 
       _motionSafe: {
         animation: 'pulse'

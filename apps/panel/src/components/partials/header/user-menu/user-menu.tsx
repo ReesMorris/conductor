@@ -1,8 +1,7 @@
 'use client';
 
 import { LanguageSelector } from '@/components/features/language-selector';
-import { DropdownMenu } from '@/components/ui';
-import { Skeleton } from '@/components/ui/skeleton';
+import { DropdownMenu, Skeleton } from '@/components/ui';
 import { useAuth, useTheme, useUser } from '@/hooks';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
