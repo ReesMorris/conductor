@@ -28,7 +28,7 @@ export const NameField: React.FC<NameFieldProps> = ({ disabled }) => {
               'Name can only contain letters, spaces, hyphens, and apostrophes'
           }
         })}
-        placeholder='Enter your name'
+        placeholder='Alex Smith'
         autoComplete='name'
         disabled={disabled || isLoading}
         aria-busy={isLoading || undefined}
