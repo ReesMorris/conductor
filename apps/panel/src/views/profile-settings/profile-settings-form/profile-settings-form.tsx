@@ -38,7 +38,7 @@ export const ProfileSettingsForm = () => {
       <Separator />
 
       <FormWithActionBar form={form}>
-        <PersonalInformation form={form} />
+        <PersonalInformation />
       </FormWithActionBar>
     </>
   );

@@ -1,14 +1,16 @@
+'use client';
+
 import { Field, Input } from '@/components/ui';
+import { useFormField } from '@/hooks';
 import type { NameFieldProps } from './name-field.types';
 
-export const NameField: React.FC<NameFieldProps> = ({
-  register,
-  error,
-  disabled,
-  isLoading
-}) => {
+const NAME_PATTERN = /^[a-zA-Z\s\-']+$/;
+
+export const NameField: React.FC<NameFieldProps> = ({ disabled }) => {
+  const { register, error, isLoading } = useFormField('name');
+
   return (
-    <Field label='Your Name' errorMessage={error?.message}>
+    <Field label='Your Name' errorMessage={error?.message?.toString()}>
       <Input
         {...register('name', {
           required: 'Name is required',
@@ -21,7 +23,7 @@ export const NameField: React.FC<NameFieldProps> = ({
             message: 'Name must not exceed 50 characters'
           },
           pattern: {
-            value: /^[a-zA-Z\s\-']+$/,
+            value: NAME_PATTERN,
             message:
               'Name can only contain letters, spaces, hyphens, and apostrophes'
           }

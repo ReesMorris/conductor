@@ -2,6 +2,7 @@
 
 import { ActionBar, Form } from '@/components/ui';
 import type { FieldValues } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import { styles } from './form-with-action-bar.styles';
 import type { FormWithActionBarProps } from './form-with-action-bar.types';
 
@@ -22,14 +23,16 @@ export const FormWithActionBar = <
 
   return (
     <>
-      <Form
-        id={id}
-        className={className || styles.root}
-        aria-busy={isSaving || undefined}
-        onSubmit={handleSubmit}
-      >
-        {children}
-      </Form>
+      <FormProvider {...form}>
+        <Form
+          id={id}
+          className={className || styles.root}
+          aria-busy={isSaving || undefined}
+          onSubmit={handleSubmit}
+        >
+          {children}
+        </Form>
+      </FormProvider>
 
       <ActionBar {...actionBarProps} />
     </>
