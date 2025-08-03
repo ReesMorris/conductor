@@ -92,5 +92,21 @@ export const keyframes = defineKeyframes({
     to: {
       transform: 'translateX(calc(100% + 1.5rem))'
     }
+  },
+  'action-bar-slide-up': {
+    from: {
+      transform: 'translateY(100%)'
+    },
+    to: {
+      transform: 'translateY(0)'
+    }
+  },
+  'action-bar-slide-down': {
+    from: {
+      transform: 'translateY(0)'
+    },
+    to: {
+      transform: 'translateY(100%)'
+    }
   }
 });

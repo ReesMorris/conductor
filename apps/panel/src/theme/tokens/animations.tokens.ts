@@ -39,5 +39,11 @@ export const animations = defineTokens.animations({
   },
   'toast-swipe-out': {
     value: 'toast-swipe-out 100ms ease-out'
+  },
+  'action-bar-slide-up': {
+    value: 'action-bar-slide-up 300ms cubic-bezier(0.16, 1, 0.3, 1)'
+  },
+  'action-bar-slide-down': {
+    value: 'action-bar-slide-down 200ms ease-in'
   }
 });

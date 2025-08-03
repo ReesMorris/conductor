@@ -3,7 +3,10 @@
     "page_title": "{title} | {appName}"
   },
   "ui": {
-    "close": "Close"
+    "close": "Close",
+    "save": "Save Changes",
+    "cancel": "Cancel",
+    "delete": "Delete"
   },
   "login_page": {
     "metadata": {
