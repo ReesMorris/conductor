@@ -1,17 +1,17 @@
 import { AuthLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
+import { useFormatMessage } from '@/i18n/format-message';
 import { route } from '@/utils/route';
-import { useTranslations } from 'next-intl';
 import { RegisterForm } from './register-form';
 
 export const Page = () => {
-  const t = useTranslations('register_page');
+  const { formatMessage } = useFormatMessage();
 
   return (
     <AuthLayout
-      title={t('form.title')}
-      subtitle={t('form.subtitle')}
-      footer={t.rich('form.login_link', {
+      title={formatMessage('Create an Account')}
+      subtitle={formatMessage('Create your account to get started')}
+      footer={formatMessage('Already have an account? <link>Log in</link>', {
         link: text => <Link href={route('LOGIN')}>{text}</Link>
       })}
     >

@@ -23,7 +23,7 @@ export const validateFile = (
     return {
       valid: false,
       error: {
-        code: 'invalid_type',
+        code: 'INVALID_TYPE',
         data: { extensions }
       }
     };
@@ -34,7 +34,7 @@ export const validateFile = (
     return {
       valid: false,
       error: {
-        code: 'file_too_large',
+        code: 'FILE_TOO_LARGE',
         data: { maxSize: options.maxSize }
       }
     };
@@ -45,7 +45,7 @@ export const validateFile = (
     return {
       valid: false,
       error: {
-        code: 'file_too_small',
+        code: 'FILE_TOO_SMALL',
         data: { minSize: options.minSize }
       }
     };

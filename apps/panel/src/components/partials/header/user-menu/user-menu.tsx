@@ -3,16 +3,16 @@
 import { LanguageSelector } from '@/components/features/language-selector';
 import { DropdownMenu, Skeleton } from '@/components/ui';
 import { useAuth, useTheme, useUser } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
 import { GlobeIcon, LogOutIcon, MoonIcon, SunIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { styles } from './user-menu.styles';
 import { UserMenuTrigger } from './user-menu-trigger';
 
 export const UserMenu = () => {
-  const t = useTranslations('user_menu');
+  const { formatMessage } = useFormatMessage();
   const auth = useAuth();
   const { user } = useUser();
   const { toggleTheme, theme } = useTheme();
@@ -59,13 +59,13 @@ export const UserMenu = () => {
 
       <DropdownMenu.Separator />
       <DropdownMenu.Item href={route('USER_PROFILE_SETTINGS')}>
-        {t('account_settings')}
+        {formatMessage('Account Settings')}
       </DropdownMenu.Item>
       <DropdownMenu.Item
         onSelect={handleThemeChange}
         icon={theme === 'dark' ? <SunIcon /> : <MoonIcon />}
       >
-        {t('toggle_theme')}
+        {formatMessage('Toggle Theme')}
       </DropdownMenu.Item>
       <LanguageSelector
         trigger={
@@ -73,7 +73,7 @@ export const UserMenu = () => {
             onSelect={e => e.preventDefault()}
             icon={<GlobeIcon />}
           >
-            {t('change_language')}
+            {formatMessage('Change Language…')}
           </DropdownMenu.Item>
         }
       />
@@ -81,13 +81,13 @@ export const UserMenu = () => {
       {user.role === 'admin' && (
         <>
           <DropdownMenu.Item href={route('WORKSPACE_GENERAL_SETTINGS')}>
-            {t('workspace_settings')}
+            {formatMessage('Workspace Settings')}
           </DropdownMenu.Item>
           <DropdownMenu.Separator />
         </>
       )}
       <DropdownMenu.Item onSelect={handleLogout} icon={<LogOutIcon />}>
-        {t('logout')}
+        {formatMessage('Log Out')}
       </DropdownMenu.Item>
     </DropdownMenu.Root>
   );

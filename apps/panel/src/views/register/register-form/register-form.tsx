@@ -2,11 +2,11 @@
 
 import { Button, Field, Form, Input, PasswordInput } from '@/components/ui';
 import { useAuth } from '@/hooks';
-import { getAuthErrorKey } from '@/i18n/mappings';
+import { useFormatMessage } from '@/i18n/format-message';
+import { getAuthErrorMessage } from '@/i18n/mappings';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
@@ -15,8 +15,7 @@ import {
 } from './register-form.schema';
 
 export const RegisterForm: React.FC = () => {
-  const t = useTranslations('register_page.form');
-  const tAuth = useTranslations('auth');
+  const { formatMessage } = useFormatMessage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
@@ -29,10 +28,10 @@ export const RegisterForm: React.FC = () => {
   } = useForm<RegisterFormData>({
     resolver: zodResolver(
       registerFormSchema({
-        emailRequired: tAuth('errors.email_required'),
-        invalidEmail: tAuth('errors.invalid_email'),
-        nameRequired: tAuth('errors.name_required'),
-        passwordRequired: tAuth('errors.password_required')
+        emailRequired: formatMessage('Email is required'),
+        invalidEmail: formatMessage('Invalid email address'),
+        nameRequired: formatMessage('Name is required'),
+        passwordRequired: formatMessage('Password is required')
       })
     )
   });
@@ -49,45 +48,51 @@ export const RegisterForm: React.FC = () => {
       });
 
       if (error) {
-        const errorKey = getAuthErrorKey(error.code);
-        setAuthError(tAuth(errorKey));
+        const errorMessage = getAuthErrorMessage(formatMessage, error.code);
+        setAuthError(errorMessage);
         setIsSubmitting(false);
       } else {
         router.push(route('HOME'));
       }
     } catch {
-      setAuthError(tAuth('errors.generic'));
+      setAuthError(formatMessage('An unexpected error occurred'));
       setIsSubmitting(false);
     }
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} errorMessage={authError}>
-      <Field label={t('name.label')} errorMessage={errors.name?.message}>
+      <Field
+        label={formatMessage('Your Name')}
+        errorMessage={errors.name?.message}
+      >
         <Input
           {...register('name')}
-          placeholder={t('name.placeholder')}
+          placeholder={formatMessage('Alex Smith')}
           autoComplete='name'
         />
       </Field>
 
-      <Field label={t('email.label')} errorMessage={errors.email?.message}>
+      <Field
+        label={formatMessage('Email Address')}
+        errorMessage={errors.email?.message}
+      >
         <Input
           {...register('email')}
-          placeholder={t('email.placeholder')}
+          placeholder={formatMessage('alex.smith@example.com')}
           autoComplete='email'
         />
       </Field>
 
       <Field
-        label={t('password.label')}
+        label={formatMessage('Password')}
         errorMessage={errors.password?.message}
       >
         <PasswordInput {...register('password')} autoComplete='new-password' />
       </Field>
 
       <Button type='submit' isLoading={isSubmitting}>
-        {t('submit')}
+        {formatMessage('Create Account')}
       </Button>
     </Form>
   );

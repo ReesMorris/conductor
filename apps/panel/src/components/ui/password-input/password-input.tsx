@@ -1,7 +1,7 @@
 'use client';
 
+import { useFormatMessage } from '@/i18n/format-message';
 import { EyeIcon, EyeOffIcon, LockIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { IconButton } from '../icon-button';
 import { Input } from '../input';
@@ -15,7 +15,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   type,
   ...props
 }) => {
-  const t = useTranslations('password_input');
+  const { formatMessage } = useFormatMessage();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -23,11 +23,11 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   };
 
   const ariaLabel = showPassword
-    ? hidePasswordLabel || t('hide_password')
-    : showPasswordLabel || t('show_password');
+    ? hidePasswordLabel || formatMessage('Hide Password')
+    : showPasswordLabel || formatMessage('Show Password');
 
   const placeholder = showPassword
-    ? t('placeholder').toLowerCase()
+    ? formatMessage('Password').toLowerCase()
     : '••••••••••';
 
   return (

@@ -92,7 +92,7 @@ export interface FileValidationResult {
     /**
      * Error code for translation
      */
-    code: 'invalid_type' | 'file_too_large' | 'file_too_small';
+    code: 'INVALID_TYPE' | 'FILE_TOO_LARGE' | 'FILE_TOO_SMALL';
 
     /**
      * Data for the error message

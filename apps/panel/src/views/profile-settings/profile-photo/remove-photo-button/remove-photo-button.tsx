@@ -1,8 +1,8 @@
 'use client';
 
 import { Button, Dialog, IconButton } from '@/components/ui';
+import { useFormatMessage } from '@/i18n/format-message';
 import { TrashIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import type { RemovePhotoButtonProps } from './remove-photo-button.types';
 
@@ -11,7 +11,7 @@ export const RemovePhotoButton: React.FC<RemovePhotoButtonProps> = ({
   isLoading = false,
   onConfirm
 }) => {
-  const t = useTranslations('profile_settings.profile_photo');
+  const { formatMessage } = useFormatMessage();
   const [open, setOpen] = useState(false);
 
   // If there is no photo, we don't show the button
@@ -41,7 +41,7 @@ export const RemovePhotoButton: React.FC<RemovePhotoButtonProps> = ({
       <Dialog.Trigger asChild>
         <IconButton
           variant='destructive'
-          aria-label={t('remove_button')}
+          aria-label={formatMessage('Remove Photo')}
           disabled={isLoading}
         >
           <TrashIcon />
@@ -49,16 +49,18 @@ export const RemovePhotoButton: React.FC<RemovePhotoButtonProps> = ({
       </Dialog.Trigger>
       <Dialog.Content>
         <Dialog.Header>
-          <Dialog.Title>{t('remove_dialog.title')}</Dialog.Title>
+          <Dialog.Title>{formatMessage('Remove Profile Photo')}</Dialog.Title>
           <Dialog.Description>
-            {t('remove_dialog.description')}
+            {formatMessage(
+              'Are you sure you want to remove your profile photo? This action cannot be undone.'
+            )}
           </Dialog.Description>
         </Dialog.Header>
 
         <Dialog.Footer>
           <Dialog.Cancel asChild>
             <Button variant='ghost' disabled={isLoading}>
-              {t('remove_dialog.cancel_button')}
+              {formatMessage('Cancel')}
             </Button>
           </Dialog.Cancel>
           <Dialog.Action asChild>
@@ -68,7 +70,7 @@ export const RemovePhotoButton: React.FC<RemovePhotoButtonProps> = ({
               onClick={handleConfirm}
               isLoading={isLoading}
             >
-              {t('remove_dialog.confirm_button')}
+              {formatMessage('Remove')}
             </Button>
           </Dialog.Action>
         </Dialog.Footer>

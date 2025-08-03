@@ -1,46 +1,46 @@
 import { Main } from '@/components/partials';
 import { Sidebar } from '@/components/partials/sidebar';
+import { useFormatMessage } from '@/i18n/format-message';
 import { route } from '@/utils/route';
 import { SettingsIcon, ShieldIcon, UserIcon, UsersIcon } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
 
 interface LayoutProps {
   params: Promise<{ locale: string }>;
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = async ({ children }) => {
-  const t = await getTranslations('settings.navigation');
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { formatMessage } = useFormatMessage();
 
   return (
     <>
       <Sidebar.Root>
-        <Sidebar.Section title={t('personal')}>
+        <Sidebar.Section title={formatMessage('Personal')}>
           <Sidebar.Item
             href={route('USER_PROFILE_SETTINGS')}
-            label={t('profile')}
+            label={formatMessage('Profile')}
             icon={<UserIcon />}
           />
           <Sidebar.Item
             href={route('USER_PREFERENCES_SETTINGS')}
-            label={t('preferences')}
+            label={formatMessage('Preferences')}
             icon={<SettingsIcon />}
           />
           <Sidebar.Item
             href={route('USER_SECURITY_SETTINGS')}
-            label={t('security')}
+            label={formatMessage('Security')}
             icon={<ShieldIcon />}
           />
         </Sidebar.Section>
-        <Sidebar.Section title={t('workspace')}>
+        <Sidebar.Section title={formatMessage('Workspace')}>
           <Sidebar.Item
             href={route('WORKSPACE_GENERAL_SETTINGS')}
-            label={t('general_settings')}
+            label={formatMessage('General Settings')}
             icon={<SettingsIcon />}
           />
           <Sidebar.Item
             href={route('WORKSPACE_USERS_SETTINGS')}
-            label={t('users')}
+            label={formatMessage('Users')}
             icon={<UsersIcon />}
           />
         </Sidebar.Section>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useFormatMessage } from '@/i18n/format-message';
 import { useEffect, useRef, useState } from 'react';
 import type {
   UseFileUploadOptions,
@@ -18,7 +18,7 @@ export const useFileUpload = (
   options: UseFileUploadOptions = {}
 ): UseFileUploadReturn => {
   const { multiple = false, validation = {}, onFileSelect, onError } = options;
-  const t = useTranslations('file_upload');
+  const { formatMessage } = useFormatMessage();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
@@ -44,11 +44,40 @@ export const useFileUpload = (
     for (const file of filesToProcess) {
       const validationResult = validateFile(file, validation);
       if (!validationResult.valid && validationResult.error) {
-        // Translate the error code with data
-        const errorMessage = t(
-          `validation.${validationResult.error.code}`,
-          validationResult.error.data
-        );
+        const {
+          maxSize = 0,
+          minSize = 0,
+          extensions = ''
+        } = validationResult.error.data || {};
+        let errorMessage = '';
+
+        switch (validationResult.error.code) {
+          case 'FILE_TOO_LARGE': {
+            errorMessage = formatMessage(
+              'File must be less than {maxSize} bytes',
+              { maxSize }
+            );
+            break;
+          }
+          case 'FILE_TOO_SMALL': {
+            errorMessage = formatMessage(
+              'File must be greater than {minSize} bytes',
+              { minSize }
+            );
+            break;
+          }
+          case 'INVALID_TYPE': {
+            errorMessage = formatMessage(
+              'Invalid file type. Allowed types are: {extensions}',
+              { extensions }
+            );
+            break;
+          }
+          default: {
+            errorMessage = formatMessage('Unknown error occurred');
+          }
+        }
+
         setError(errorMessage);
         if (onError) {
           onError(errorMessage);

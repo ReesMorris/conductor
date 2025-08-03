@@ -2,8 +2,8 @@
 
 import { Avatar, Heading, Label } from '@/components/ui';
 import { useToast, useUser } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import { trpc } from '@/providers/trpc';
-import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { styles } from './profile-photo.styles';
 import { RemovePhotoButton } from './remove-photo-button';
@@ -12,7 +12,7 @@ import { UploadPhotoButton } from './upload-photo-button';
 const ID = 'profile-photo';
 
 export const ProfilePhoto: React.FC = () => {
-  const t = useTranslations('profile_settings.profile_photo');
+  const { formatMessage } = useFormatMessage();
   const { user, updateUser } = useUser();
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +51,10 @@ export const ProfilePhoto: React.FC = () => {
       updateUser({ image: result.user.image });
 
       // Show success toast
-      toast.success(t('upload_success'));
-    } catch (_err) {
+      toast.success(formatMessage('Profile photo changed'));
+    } catch {
       // Show error toast
-      toast.error(t('upload_error'));
+      toast.error(formatMessage('Failed to upload photo'));
     } finally {
       setIsLoading(false);
     }
@@ -70,10 +70,10 @@ export const ProfilePhoto: React.FC = () => {
       updateUser({ image: null });
 
       // Show success toast
-      toast.success(t('remove_success'));
+      toast.success(formatMessage('Profile photo removed'));
     } catch {
       // Show error toast
-      toast.error(t('remove_error'));
+      toast.error(formatMessage('Failed to remove photo'));
     } finally {
       setIsLoading(false);
     }
@@ -82,7 +82,7 @@ export const ProfilePhoto: React.FC = () => {
   return (
     <section aria-labelledby={ID}>
       <Heading id={ID} level={2}>
-        {t('title')}
+        {formatMessage('Profile Photo')}
       </Heading>
 
       <div className={styles.row}>
@@ -94,8 +94,10 @@ export const ProfilePhoto: React.FC = () => {
         </div>
         <div className={styles.content}>
           <div>
-            <Label>{t('label')}</Label>
-            <div className={styles.helpText}>{t('help_text')}</div>
+            <Label>{formatMessage('Upload a new photo')}</Label>
+            <div className={styles.helpText}>
+              {formatMessage('JPG, PNG or GIF. Max size 2MB.')}
+            </div>
           </div>
           <div>
             {user?.image ? (

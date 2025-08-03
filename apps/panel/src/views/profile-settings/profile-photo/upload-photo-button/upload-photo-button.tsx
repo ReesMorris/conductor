@@ -2,8 +2,8 @@
 
 import { Button } from '@/components/ui';
 import { useFileUpload } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import { UploadIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { useId } from 'react';
 import { styles } from '../profile-photo.styles';
 import type { UploadPhotoButtonProps } from './upload-photo-button.types';
@@ -13,7 +13,7 @@ export const UploadPhotoButton: React.FC<UploadPhotoButtonProps> = ({
   isLoading = false,
   onFileSelect
 }) => {
-  const t = useTranslations('profile_settings.profile_photo');
+  const { formatMessage } = useFormatMessage();
   const inputId = useId();
 
   const handleFileSelect = (files: File[]) => {
@@ -49,7 +49,9 @@ export const UploadPhotoButton: React.FC<UploadPhotoButtonProps> = ({
       />
       <Button variant='outlined' onClick={openFilePicker} isLoading={isLoading}>
         <UploadIcon />
-        {hasPhoto ? t('change_button') : t('upload_button')}
+        {hasPhoto
+          ? formatMessage('Change Photo')
+          : formatMessage('Upload Photo')}
       </Button>
     </>
   );

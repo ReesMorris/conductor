@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useFormatMessage } from '@/i18n/format-message';
 import { useEffect, useState } from 'react';
 import { Button } from '../button';
 import { styles } from './action-bar.styles';
@@ -15,7 +15,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   isLoading = false,
   children
 }) => {
-  const t = useTranslations('ui');
+  const { formatMessage } = useFormatMessage();
   const [mounted, setMounted] = useState(false);
   const [dataState, setDataState] = useState<'open' | 'closed'>('closed');
   const [hasBeenOpened, setHasBeenOpened] = useState(false);
@@ -48,7 +48,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
           onClick={onCancel}
           disabled={isLoading}
         >
-          {cancelLabel || t('cancel')}
+          {cancelLabel || formatMessage('Cancel')}
         </Button>
         <Button
           size='sm'
@@ -56,7 +56,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
           onClick={onSave}
           isLoading={isLoading}
         >
-          {saveLabel || t('save')}
+          {saveLabel || formatMessage('Save')}
         </Button>
       </div>
     </div>

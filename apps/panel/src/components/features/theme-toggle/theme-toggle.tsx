@@ -2,13 +2,13 @@
 
 import { IconButton } from '@/components/ui';
 import { useTheme } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import { MoonIcon, SunIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import type { ThemeToggleProps } from './theme-toggle.types';
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ ...props }) => {
   const { theme, toggleTheme } = useTheme();
-  const t = useTranslations('theme_toggle');
+  const { formatMessage } = useFormatMessage();
   const isDarkMode = theme === 'dark';
 
   return (
@@ -17,9 +17,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ ...props }) => {
       size='sm'
       variant='outlined'
       onClick={toggleTheme}
-      aria-label={t('label', {
-        theme: isDarkMode ? t('light') : t('dark')
-      })}
+      aria-label={
+        isDarkMode
+          ? formatMessage('Change to light mode')
+          : formatMessage('Change to dark mode')
+      }
       {...props}
     >
       {isDarkMode ? <SunIcon /> : <MoonIcon />}

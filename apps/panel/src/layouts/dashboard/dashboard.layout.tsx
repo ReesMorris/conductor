@@ -1,15 +1,15 @@
 import { Header, Navigation, Wrapper } from '@/components/partials';
+import { useFormatMessage } from '@/i18n/format-message';
 import { route } from '@/utils/route';
 import { ServerIcon, SettingsIcon } from 'lucide-react';
-import { getTranslations } from 'next-intl/server';
 
 interface LayoutProps {
   params: Promise<{ locale: string }>;
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = async ({ children }) => {
-  const t = await getTranslations('dashboard.navigation');
+export const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { formatMessage } = useFormatMessage();
 
   return (
     <>
@@ -18,12 +18,12 @@ export const Layout: React.FC<LayoutProps> = async ({ children }) => {
         <Navigation.Item
           icon={<ServerIcon />}
           href={route('SERVERS')}
-          label={t('servers')}
+          label={formatMessage('Servers')}
         />
         <Navigation.Item
           icon={<SettingsIcon />}
           href={route('USER_PROFILE_SETTINGS')}
-          label={t('settings')}
+          label={formatMessage('Settings')}
         />
       </Navigation.Root>
       <Wrapper>{children}</Wrapper>

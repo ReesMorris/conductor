@@ -1,19 +1,18 @@
 import { APP_NAME } from '@/constants';
 import { env } from '@/env';
+import { formatMessageServer } from '@/i18n/format-message-server';
 import { routing } from '@/i18n/routing';
 import type { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
 import urlJoin from 'url-join';
 import type { MetadataCallback } from './create-metadata.types';
 
 export const createMetadata = (callback: MetadataCallback) => {
   return async (): Promise<Metadata> => {
-    const t = await getTranslations();
-    const metadata = callback(t as (key: string) => string);
+    const metadata = await callback();
 
     // Append site name to title if title exists
     if (metadata.title) {
-      metadata.title = t('common.page_title', {
+      metadata.title = await formatMessageServer('{title} | {appName}', {
         title: metadata.title as string,
         appName: APP_NAME
       });

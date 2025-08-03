@@ -1,8 +1,8 @@
 'use client';
 
+import { useFormatMessage } from '@/i18n/format-message';
 import { VisuallyHidden } from '@/styled-system/jsx';
 import { XIcon } from 'lucide-react';
-import { useTranslations } from 'next-intl';
 import { Toast as RadixToast } from 'radix-ui';
 import { Button } from '../button';
 import { IconButton } from '../icon-button';
@@ -18,7 +18,7 @@ export const Toast: React.FC<ToastProps> = ({
   duration,
   onDismiss
 }) => {
-  const t = useTranslations('ui');
+  const { formatMessage } = useFormatMessage();
 
   // Handle open change to dismiss toast when closed
   const handleOpenChange = (open: boolean) => {
@@ -55,7 +55,11 @@ export const Toast: React.FC<ToastProps> = ({
 
       <VisuallyHidden>
         <RadixToast.Close asChild className={styles.close}>
-          <IconButton variant='ghost' size='sm' aria-label={t('close')}>
+          <IconButton
+            variant='ghost'
+            size='sm'
+            aria-label={formatMessage('Close')}
+          >
             <XIcon />
           </IconButton>
         </RadixToast.Close>
