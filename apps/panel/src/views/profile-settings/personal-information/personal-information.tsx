@@ -1,5 +1,6 @@
 import { Heading } from '@/components/ui';
 import { NameField } from './name-field';
+import { styles } from './personal-information.styles';
 
 const ID = 'personal-information';
 
@@ -10,7 +11,9 @@ export const PersonalInformation: React.FC = () => {
         Personal Information
       </Heading>
 
-      <NameField />
+      <div className={styles.grid}>
+        <NameField />
+      </div>
     </section>
   );
 };
