@@ -28,7 +28,7 @@ export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       {...props}
       asChild
       aria-current={ariaCurrent}
-      className={cx(styles.item, className)}
+      className={cx('group', styles.item, className)}
       disabled={disabled}
       data-loading={isLoading || undefined}
     >

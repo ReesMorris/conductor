@@ -64,7 +64,7 @@ export const styles = {
     fontWeight: 'medium',
     color: 'foreground/80',
 
-    _hover: {
+    '.group:not(:disabled):hover &': {
       color: 'foreground'
     }
   })

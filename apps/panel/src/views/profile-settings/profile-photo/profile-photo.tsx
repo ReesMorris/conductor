@@ -9,6 +9,8 @@ import { styles } from './profile-photo.styles';
 import { RemovePhotoButton } from './remove-photo-button';
 import { UploadPhotoButton } from './upload-photo-button';
 
+const ID = 'profile-photo';
+
 export const ProfilePhoto: React.FC = () => {
   const t = useTranslations('profile_settings.profile_photo');
   const { user, updateUser } = useUser();
@@ -78,8 +80,10 @@ export const ProfilePhoto: React.FC = () => {
   };
 
   return (
-    <>
-      <Heading level={2}>{t('title')}</Heading>
+    <section aria-labelledby={ID}>
+      <Heading id={ID} level={2}>
+        {t('title')}
+      </Heading>
 
       <div className={styles.row}>
         <div
@@ -117,6 +121,6 @@ export const ProfilePhoto: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };

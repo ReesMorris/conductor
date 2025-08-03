@@ -18,13 +18,13 @@ export const styles = {
       color: 'purple.900',
       borderBlockEndColor: 'purple.900',
 
-      _hover: {
+      '&:not(:disabled):hover': {
         color: 'purple.900',
         borderBlockEndColor: 'purple.900'
       }
     },
 
-    _hover: {
+    '&:not(:disabled):hover': {
       color: 'foreground/80',
       borderBlockEndColor: 'foreground/20'
     }

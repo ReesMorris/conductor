@@ -18,6 +18,7 @@ export const ActionBar: React.FC<ActionBarProps> = ({
   const t = useTranslations('ui');
   const [mounted, setMounted] = useState(false);
   const [dataState, setDataState] = useState<'open' | 'closed'>('closed');
+  const [hasBeenOpened, setHasBeenOpened] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -25,11 +26,15 @@ export const ActionBar: React.FC<ActionBarProps> = ({
 
   useEffect(() => {
     if (mounted) {
+      if (open && !hasBeenOpened) {
+        setHasBeenOpened(true);
+      }
       setDataState(open ? 'open' : 'closed');
     }
-  }, [open, mounted]);
+  }, [open, mounted, hasBeenOpened]);
 
-  if (!mounted && !open) {
+  // Don't render until it's been opened at least once
+  if (!hasBeenOpened) {
     return null;
   }
 

@@ -58,7 +58,7 @@ export const UserMenu = () => {
       </div>
 
       <DropdownMenu.Separator />
-      <DropdownMenu.Item disabled href={route('ACCOUNT')}>
+      <DropdownMenu.Item href={route('USER_PROFILE_SETTINGS')}>
         {t('account_settings')}
       </DropdownMenu.Item>
       <DropdownMenu.Item

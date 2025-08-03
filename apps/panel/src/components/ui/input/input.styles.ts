@@ -50,6 +50,11 @@ export const styles = {
       opacity: 'disabled'
     },
 
+    _loading: {
+      cursor: 'wait',
+      opacity: 'disabled'
+    },
+
     _placeholder: {
       color: 'foreground/40'
     },

@@ -7,7 +7,6 @@ export type RouteParams = {
   LOGIN: NoUrlParams;
   REGISTER: NoUrlParams;
   FORGOT_PASSWORD: NoUrlParams;
-  ACCOUNT: NoUrlParams;
   HEALTH_CHECK: NoUrlParams;
   SERVERS: NoUrlParams;
   USER_PROFILE_SETTINGS: NoUrlParams;
@@ -23,7 +22,6 @@ export const Routes: Record<keyof RouteParams, string> = {
   LOGIN: '/login',
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
-  ACCOUNT: '/account',
   HEALTH_CHECK: '/health',
   SERVERS: '/', // this is the first dashboard route
   USER_PROFILE_SETTINGS: '/settings',
