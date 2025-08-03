@@ -45,5 +45,8 @@ export const animations = defineTokens.animations({
   },
   'action-bar-slide-down': {
     value: 'action-bar-slide-down 200ms ease-in'
+  },
+  pulse: {
+    value: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
   }
 });

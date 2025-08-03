@@ -2,6 +2,7 @@
 
 import { LanguageSelector } from '@/components/features/language-selector';
 import { DropdownMenu } from '@/components/ui';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth, useTheme, useUser } from '@/hooks';
 import { useRouter } from '@/i18n/navigation';
 import { route } from '@/utils/route';
@@ -19,10 +20,9 @@ export const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  // If no user, don't render the menu
+  // If user has not loaded yet, show skeleton
   if (!user) {
-    // TODO: Return skeleton avatar here
-    return null;
+    return <Skeleton shape='circle' width='40px' height='40px' />;
   }
 
   // Handle theme toggle
