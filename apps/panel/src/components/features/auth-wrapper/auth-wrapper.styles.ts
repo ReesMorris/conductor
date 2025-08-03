@@ -8,6 +8,7 @@ export const styles = {
     position: 'absolute',
     insetBlockStart: '0',
     insetInlineStart: '0',
-    zIndex: 'above'
+    zIndex: 'above',
+    inlineSize: 'full'
   })
 };

@@ -48,6 +48,31 @@ export const ProfileSettingsSkeleton: React.FC = () => {
       </div>
 
       <Separator />
+
+      {/* Personal Information Section Skeleton */}
+      <div className={css({ marginBlockStart: '6' })}>
+        {/* Title */}
+        <Skeleton width='190px' height='28px' />
+
+        {/* Name Field Skeleton */}
+        <div
+          className={css({
+            display: 'grid',
+            gap: '12',
+            marginBlockStart: '5',
+            gridTemplateColumns: 'repeat(2, 1fr)'
+          })}
+        >
+          <div>
+            <Skeleton width='70px' height='16px' />
+            <Skeleton
+              width='100%'
+              height='40px'
+              className={css({ marginBlockStart: '3' })}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 };
