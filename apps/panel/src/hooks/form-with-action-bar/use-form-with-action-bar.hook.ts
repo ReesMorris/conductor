@@ -25,6 +25,11 @@ export const useFormWithActionBar = <
 
   // Handler for saving the form
   const handleSave = useCallback(() => {
+    // Don't save if form is not dirty
+    if (!isDirty) {
+      return;
+    }
+
     handleSubmit(async data => {
       setIsSaving(true);
       try {
@@ -37,7 +42,7 @@ export const useFormWithActionBar = <
         setIsSaving(false);
       }
     })();
-  }, [handleSubmit, onSave, reset]);
+  }, [handleSubmit, onSave, reset, isDirty]);
 
   // Handler for cancelling changes
   const handleCancel = useCallback(() => {
