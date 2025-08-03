@@ -12,11 +12,11 @@
     "db:studio": "dotenv -e ../../.env.dev -- prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^6.12.0"
+    "@prisma/client": "^6.13.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.3",
-    "dotenv-cli": "^9.0.0",
-    "prisma": "^6.12.0"
+    "dotenv-cli": "^10.0.0",
+    "prisma": "^6.13.0"
   }
 }
