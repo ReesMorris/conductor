@@ -1,4 +1,5 @@
 import { auth } from '@/libs';
+import type { Session, User } from '@conductor/auth';
 import type { Context, Next } from 'hono';
 import type { AuthVariables } from './auth.types';
 
@@ -32,8 +33,8 @@ export const authMiddleware = async (
       return next();
     }
 
-    c.set('user', session.user);
-    c.set('session', session.session);
+    c.set('user', session.user as User);
+    c.set('session', session.session as Session);
   } catch {
     // Authentication errors are non-blocking
     // Set null values to indicate no authenticated user

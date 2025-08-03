@@ -1,13 +1,13 @@
-import type { auth } from '@/libs';
 import type { AuthVariables } from '@/middlewares';
+import type { Session, User } from '@conductor/auth';
 import type { Context } from 'hono';
 
 /**
  * Context available in all tRPC procedures
  */
 export interface TRPCContext {
-  user: typeof auth.$Infer.Session.user | null;
-  session: typeof auth.$Infer.Session.session | null;
+  user: User | null;
+  session: Session | null;
 }
 
 /**

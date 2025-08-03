@@ -22,9 +22,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   // Sync profile data to store whenever it changes
   useEffect(() => {
     if (profile) {
-      // Profile from API has transformed image URL, but store expects better-auth User type
-      // We need to ensure the types match
-      setUser(profile as any);
+      setUser(profile);
     } else if (!session?.user) {
       setUser(null);
     }

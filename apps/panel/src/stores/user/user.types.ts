@@ -1,10 +1,10 @@
-import type { User } from 'better-auth';
+import type { UserResponse } from '@conductor/api';
 
 export interface UserState {
   /**
    * User profile data that can be updated
    */
-  user: User | null;
+  user: UserResponse | null;
 
   /**
    * Set the complete user data

@@ -1,13 +1,13 @@
-import type { auth } from '@/libs';
+import type { Session, User } from '@conductor/auth';
 
 export interface AuthVariables {
   /**
    * The authenticated user object, or null if not authenticated.
    */
-  user: typeof auth.$Infer.Session.user | null;
+  user: User | null;
 
   /**
    * The current session object, or null if no session exists.
    */
-  session: typeof auth.$Infer.Session.session | null;
+  session: Session | null;
 }

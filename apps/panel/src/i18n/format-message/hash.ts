@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useNodejsImportProtocol: Next doesn't like this
 import { createHash } from 'crypto';
 
 /**

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from '@babel/parser';
 import traverse from '@babel/traverse';
-import { createHash } from 'crypto';
 import { glob } from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);

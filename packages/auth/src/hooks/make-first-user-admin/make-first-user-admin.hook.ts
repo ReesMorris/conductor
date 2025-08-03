@@ -1,5 +1,5 @@
+import { prisma } from '@conductor/database';
 import type { User } from 'better-auth';
-import { prisma } from '../../db';
 
 /**
  * Automatically assigns admin role to the first user in the system
