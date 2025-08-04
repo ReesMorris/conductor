@@ -6,8 +6,8 @@ import { useFormWithActionBar, useToast, useUser } from '@/hooks';
 import { trpc } from '@/providers/trpc';
 import { useUserStore } from '@/stores';
 import { getDirtyFields } from '@/utils/get-dirty-fields';
-import { PersonalInformation } from '../personal-information';
-import { ProfilePhoto } from '../profile-photo';
+import { PersonalInformation } from './personal-information';
+import { ProfilePhoto } from './profile-photo';
 
 interface ProfileFormData {
   name: string;
@@ -29,6 +29,7 @@ export const ProfileSettingsForm = () => {
   });
 
   const form = useFormWithActionBar<ProfileFormData>({
+    mode: 'onChange',
     defaultValues: {
       name: user?.name || ''
     },

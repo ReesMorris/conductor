@@ -35,15 +35,17 @@ export const Toast: React.FC<ToastProps> = ({
     >
       {icon && <div className={styles.icon}>{icon}</div>}
 
-      {title && (
-        <RadixToast.Title className={styles.title}>{title}</RadixToast.Title>
-      )}
+      <div>
+        {title && (
+          <RadixToast.Title className={styles.title}>{title}</RadixToast.Title>
+        )}
 
-      {description && (
-        <RadixToast.Description className={styles.description}>
-          {description}
-        </RadixToast.Description>
-      )}
+        {description && (
+          <RadixToast.Description className={styles.description}>
+            {description}
+          </RadixToast.Description>
+        )}
+      </div>
 
       {action && (
         <RadixToast.Action altText={action.label} asChild>

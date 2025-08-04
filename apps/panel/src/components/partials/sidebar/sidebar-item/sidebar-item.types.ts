@@ -18,4 +18,10 @@ export interface SidebarItemProps {
    * The required user role to display this item.
    */
   userRole?: string;
+
+  /**
+   * Whether to use exact path matching for highlighting.
+   * @default true
+   */
+  exact?: boolean;
 }

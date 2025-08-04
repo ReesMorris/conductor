@@ -2,33 +2,43 @@
 
 import { Field, Input } from '@/components/ui';
 import { useFormField } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import type { NameFieldProps } from './name-field.types';
 
 const NAME_PATTERN = /^[a-zA-Z\s\-']+$/;
 
 export const NameField: React.FC<NameFieldProps> = ({ disabled }) => {
   const { register, error, isLoading } = useFormField('name');
+  const { formatMessage } = useFormatMessage();
 
   return (
-    <Field label='Your Name' errorMessage={error?.message?.toString()}>
+    <Field
+      label={formatMessage('Your Name')}
+      errorMessage={error?.message?.toString()}
+    >
       <Input
         {...register('name', {
-          required: 'Name is required',
+          required: formatMessage('Please enter your name'),
           minLength: {
             value: 2,
-            message: 'Name must be at least 2 characters'
+            message: formatMessage('Name must be at least {min} characters', {
+              min: 2
+            })
           },
           maxLength: {
             value: 50,
-            message: 'Name must not exceed 50 characters'
+            message: formatMessage('Name must not exceed {max} characters', {
+              max: 50
+            })
           },
           pattern: {
             value: NAME_PATTERN,
-            message:
+            message: formatMessage(
               'Name can only contain letters, spaces, hyphens, and apostrophes'
+            )
           }
         })}
-        placeholder='Alex Smith'
+        placeholder={formatMessage('Alex Smith')}
         autoComplete='name'
         disabled={disabled || isLoading}
         aria-busy={isLoading || undefined}

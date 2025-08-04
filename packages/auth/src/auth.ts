@@ -32,6 +32,11 @@ export const createAuth = (config: AuthConfig) => {
         }
       }
     },
+    user: {
+      changeEmail: {
+        enabled: true
+      }
+    },
     plugins: [admin()]
   });
 };

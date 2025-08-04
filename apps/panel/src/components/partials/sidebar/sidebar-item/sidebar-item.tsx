@@ -11,7 +11,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   href,
   icon,
   label,
-  userRole: role
+  userRole: role,
+  exact = true
 }) => {
   const pathname = usePathname();
   const { user } = useUser();
@@ -22,7 +23,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   }
 
   // Check if this is the current page
-  const isCurrent = isPageCurrent(pathname, href);
+  const isCurrent = isPageCurrent(pathname, href, exact);
 
   return (
     <Link

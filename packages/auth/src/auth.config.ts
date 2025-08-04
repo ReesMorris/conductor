@@ -8,3 +8,10 @@ export const authConfigSchema = z.object({
   betterAuthSecret: z.string().min(32),
   frontendUrl: z.url()
 });
+
+/**
+ * Auth client configuration schema
+ */
+export const authClientConfigSchema = z.object({
+  baseURL: z.url()
+});

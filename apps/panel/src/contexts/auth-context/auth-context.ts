@@ -1,6 +1,6 @@
-import type { authClient } from '@/libs';
+'use client';
+
+import type { AuthClient } from '@conductor/auth';
 import { createContext } from 'react';
 
-export const AuthContext = createContext<
-  ReturnType<typeof authClient> | undefined
->(undefined);
+export const AuthContext = createContext<AuthClient | undefined>(undefined);
