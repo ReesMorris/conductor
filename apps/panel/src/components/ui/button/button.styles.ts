@@ -51,7 +51,7 @@ export const styles = {
           '--button-bg-hover': '{colors.primary.hover}',
           '--button-focus-color': '{colors.primary}',
 
-          _active: {
+          '&:not(:disabled):active': {
             transform: 'translateY(0.125rem)'
           }
         },
