@@ -19,7 +19,8 @@ export const useUser = () => {
         // Override with store data if available
         ...(storeUser && {
           image: storeUser.image,
-          name: storeUser.name
+          name: storeUser.name,
+          email: storeUser.email
         })
       }
     : null;

@@ -15,6 +15,7 @@ export const styles = {
   }),
   actions: css({
     display: 'flex',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
+    gap: '2'
   })
 };

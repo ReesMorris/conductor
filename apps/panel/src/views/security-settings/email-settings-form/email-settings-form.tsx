@@ -3,6 +3,7 @@
 import { Button, Form, Heading } from '@/components/ui';
 import { useAuth, useToast, useUser } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
+import { useUserStore } from '@/stores';
 import { getDirtyFields } from '@/utils/get-dirty-fields';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -20,6 +21,7 @@ export const EmailSettingsForm: React.FC = () => {
   const { user } = useUser();
   const toast = useToast();
   const authClient = useAuth();
+  const updateUser = useUserStore(state => state.updateUser);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<EmailFormData>({
@@ -45,9 +47,13 @@ export const EmailSettingsForm: React.FC = () => {
         newEmail: changedData.email
       });
 
+      // Update the user store with new email
+      updateUser({ email: changedData.email });
+
+      // Tell the user about the successful update
       toast.success(formatMessage('Email updated successfully'));
 
-      // Reset form to prevent re-submission
+      // Reset form to reflect the new email
       reset(data);
     } catch (error) {
       toast.error(
@@ -76,6 +82,15 @@ export const EmailSettingsForm: React.FC = () => {
           </div>
 
           <div className={styles.actions}>
+            <Button
+              type='reset'
+              variant='outlined'
+              size='sm'
+              disabled={!isDirty || isSubmitting}
+              onClick={() => reset({ email: user?.email || '' })}
+            >
+              {formatMessage('Cancel')}
+            </Button>
             <Button
               type='submit'
               variant='primary'
