@@ -1,10 +1,11 @@
-import { profileRouter } from './routers';
+import { preferencesRouter, profileRouter } from './routers';
 import { router } from './trpc';
 
 /**
  * Main application router
  */
 export const appRouter = router({
+  preferences: preferencesRouter,
   profile: profileRouter
 });
 

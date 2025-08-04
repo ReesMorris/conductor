@@ -1,4 +1,4 @@
-import { Separator, Skeleton } from '@/components/ui';
+import { Skeleton } from '@/components/ui';
 import { css } from '@/styled-system/css';
 import { RegionalSettingsSkeleton } from './regional-settings';
 
@@ -13,7 +13,6 @@ export const PreferencesSettingsSkeleton = () => {
       />
 
       <RegionalSettingsSkeleton />
-      <Separator />
     </>
   );
 };

@@ -5,17 +5,23 @@ import { useFormatMessage } from '@/i18n/format-message';
 import { getTimeZones } from '@/utils/get-time-zones';
 import { useLocale } from 'next-intl';
 import { useMemo } from 'react';
+import { useFormContext } from 'react-hook-form';
+import type { FormData } from '../regional-settings-form';
 import type { TimeZoneFieldProps } from './time-zone-field.types';
 
 export const TimeZoneField: React.FC<TimeZoneFieldProps> = ({ disabled }) => {
   const { formatMessage } = useFormatMessage();
+  const { register } = useFormContext<FormData>();
   const locale = useLocale();
 
-  const timeZones = useMemo(() => getTimeZones(locale), [locale]);
+  // Fetch time zones based on the current locale
+  const timeZones = useMemo(() => {
+    return getTimeZones(locale);
+  }, [locale]);
 
   return (
     <Field label={formatMessage('Time Zone')}>
-      <Select disabled={disabled}>
+      <Select {...register('timeZone')} disabled={disabled}>
         {timeZones.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}

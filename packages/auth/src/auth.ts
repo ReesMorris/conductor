@@ -33,6 +33,13 @@ export const createAuth = (config: AuthConfig) => {
       }
     },
     user: {
+      additionalFields: {
+        timeZone: {
+          type: 'string',
+          required: false,
+          defaultValue: 'Europe/London'
+        }
+      },
       changeEmail: {
         enabled: true
       }

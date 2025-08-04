@@ -16,7 +16,7 @@ export const env = createEnv({
     FRONTEND_URL: z.url(),
     API_URL: z.url(),
     DEFAULT_THEME: z.enum(THEME_NAMES).default('dark'),
-    TIMEZONE: z.string().default('UTC')
+    TIMEZONE: z.string().default('Europe/London')
   },
   runtimeEnv: {
     FRONTEND_URL: process.env.FRONTEND_URL,

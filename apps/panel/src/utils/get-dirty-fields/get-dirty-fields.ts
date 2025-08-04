@@ -1,4 +1,4 @@
-import type { FieldValues } from 'react-hook-form';
+import type { DeepMap, DeepPartial, FieldValues } from 'react-hook-form';
 
 /**
  * Extracts only the fields that have been modified in a form
@@ -8,12 +8,12 @@ import type { FieldValues } from 'react-hook-form';
  */
 export const getDirtyFields = <TFieldValues extends FieldValues>(
   data: TFieldValues,
-  dirtyFields: Partial<Record<keyof TFieldValues, boolean>>
+  dirtyFields: Partial<Readonly<DeepMap<DeepPartial<TFieldValues>, boolean>>>
 ): Partial<TFieldValues> => {
   return Object.keys(dirtyFields).reduce(
     (acc, key) => {
       const typedKey = key as keyof TFieldValues;
-      if (dirtyFields[typedKey]) {
+      if (dirtyFields[key as keyof typeof dirtyFields]) {
         acc[typedKey] = data[typedKey];
       }
       return acc;

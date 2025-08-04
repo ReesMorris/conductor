@@ -20,7 +20,8 @@ export const useUser = () => {
         ...(storeUser && {
           image: storeUser.image,
           name: storeUser.name,
-          email: storeUser.email
+          email: storeUser.email,
+          timeZone: storeUser.timeZone
         })
       }
     : null;

@@ -2,17 +2,17 @@
 
 import { Button } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
+import { useFormContext } from 'react-hook-form';
 import { styles } from './form-actions.styles';
 import type { FormActionsProps } from './form-actions.types';
 
 export const FormActions: React.FC<FormActionsProps> = ({
-  isDirty,
-  isSubmitting,
-  onReset,
   cancelLabel,
   saveLabel
 }) => {
+  const { formState, reset } = useFormContext();
   const { formatMessage } = useFormatMessage();
+  const { isDirty, isSubmitting } = formState;
 
   return (
     <div className={styles.actions}>
@@ -21,7 +21,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
         variant='outlined'
         size='sm'
         disabled={!isDirty || isSubmitting}
-        onClick={onReset}
+        onClick={reset}
       >
         {cancelLabel || formatMessage('Cancel')}
       </Button>

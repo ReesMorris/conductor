@@ -41,8 +41,8 @@ export const Layout = async ({ params, children }: LayoutProps) => {
       className={cx(geist.variable, inter.variable)}
     >
       <body>
-        <I18nProvider locale={locale}>
-          <AuthProvider>
+        <AuthProvider>
+          <I18nProvider locale={locale}>
             <TrpcProvider apiUrl={env.API_URL}>
               <UserProvider>
                 <ThemeProvider>
@@ -52,8 +52,8 @@ export const Layout = async ({ params, children }: LayoutProps) => {
                 </ThemeProvider>
               </UserProvider>
             </TrpcProvider>
-          </AuthProvider>
-        </I18nProvider>
+          </I18nProvider>
+        </AuthProvider>
       </body>
     </html>
   );
