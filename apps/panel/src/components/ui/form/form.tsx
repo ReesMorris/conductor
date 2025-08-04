@@ -1,12 +1,10 @@
 'use client';
 
-import { cx } from '@/styled-system/css';
 import { getDirtyFields } from '@/utils/get-dirty-fields';
 import { AlertTriangle } from 'lucide-react';
 import { forwardRef, useImperativeHandle } from 'react';
 import { type FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { Alert } from '../alert';
-import { styles } from './form.styles';
 import type { FormProps } from './form.types';
 
 export interface FormRef<TFieldValues extends FieldValues = FieldValues> {
@@ -52,11 +50,7 @@ function FormInner<TFieldValues extends FieldValues = FieldValues>(
 
   return (
     <FormProvider {...form}>
-      <form
-        {...props}
-        className={cx(styles.form, className)}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form {...props} className={className} onSubmit={handleSubmit(onSubmit)}>
         {errorMessage && (
           <Alert color='error' icon={<AlertTriangle />}>
             {errorMessage}

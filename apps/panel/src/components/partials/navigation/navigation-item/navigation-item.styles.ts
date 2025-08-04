@@ -14,6 +14,12 @@ export const styles = {
     transitionProperty: 'color, border-color',
     transitionDuration: 'normal',
 
+    _focusVisible: {
+      outlineWidth: '2',
+      outlineColor: 'purple.900',
+      backgroundColor: 'purple.900/10'
+    },
+
     '&[aria-current]': {
       color: 'purple.900',
       borderBlockEndColor: 'purple.900',

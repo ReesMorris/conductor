@@ -21,7 +21,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
         variant='outlined'
         size='sm'
         disabled={!isDirty || isSubmitting}
-        onClick={reset}
+        onClick={() => reset(formState.defaultValues)}
       >
         {cancelLabel || formatMessage('Cancel')}
       </Button>

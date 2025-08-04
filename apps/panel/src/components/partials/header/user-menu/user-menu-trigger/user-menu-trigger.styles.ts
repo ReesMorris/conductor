@@ -8,7 +8,8 @@ export const styles = {
       backgroundColor: 'transparent !important',
       aspectRatio: 'square',
       inlineSize: '10',
-      blockSize: '10'
+      blockSize: '10',
+      outlineColor: 'purple.900 !important'
     }
   })
 };

@@ -11,7 +11,7 @@ import type { TimeZoneFieldProps } from './time-zone-field.types';
 
 export const TimeZoneField: React.FC<TimeZoneFieldProps> = ({ disabled }) => {
   const { formatMessage } = useFormatMessage();
-  const { register } = useFormContext<FormData>();
+  const { register, formState } = useFormContext<FormData>();
   const locale = useLocale();
 
   // Fetch time zones based on the current locale
@@ -20,7 +20,10 @@ export const TimeZoneField: React.FC<TimeZoneFieldProps> = ({ disabled }) => {
   }, [locale]);
 
   return (
-    <Field label={formatMessage('Time Zone')}>
+    <Field
+      label={formatMessage('Time Zone')}
+      errorMessage={formState.errors.timeZone?.message?.toString()}
+    >
       <Select {...register('timeZone')} disabled={disabled}>
         {timeZones.map(option => (
           <option key={option.value} value={option.value}>

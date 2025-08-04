@@ -22,6 +22,12 @@ export const styles = {
       backgroundColor: 'foreground/5'
     },
 
+    _focusVisible: {
+      outlineWidth: '1',
+      outlineOffset: '1.5',
+      outlineColor: 'purple.900'
+    },
+
     '&[aria-current]': {
       backgroundColor: 'purple.900/10',
       color: 'purple.900',

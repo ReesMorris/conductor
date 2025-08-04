@@ -1,15 +1,14 @@
 'use client';
 
-import { Avatar, Heading, Label } from '@/components/ui';
+import { Avatar, Label } from '@/components/ui';
 import { useToast, useUser } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { trpc } from '@/providers/trpc';
 import { useState } from 'react';
+import { SettingsSection } from '../../components';
 import { styles } from './profile-photo.styles';
 import { RemovePhotoButton } from './remove-photo-button';
 import { UploadPhotoButton } from './upload-photo-button';
-
-const ID = 'profile-photo';
 
 export const ProfilePhoto: React.FC = () => {
   const { formatMessage } = useFormatMessage();
@@ -80,17 +79,13 @@ export const ProfilePhoto: React.FC = () => {
   };
 
   return (
-    <section aria-labelledby={ID}>
-      <Heading id={ID} level={2}>
-        {formatMessage('Profile Photo')}
-      </Heading>
-
+    <SettingsSection label={formatMessage('Profile Photo')}>
       <div className={styles.row}>
         <div
           className={styles.avatarContainer}
           data-loading={isLoading || undefined}
         >
-          <Avatar size='2xl' src={user?.image} />
+          <Avatar size='2xl' src={user?.image} alt={user?.name ?? ''} />
         </div>
         <div className={styles.content}>
           <div>
@@ -123,6 +118,6 @@ export const ProfilePhoto: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </SettingsSection>
   );
 };

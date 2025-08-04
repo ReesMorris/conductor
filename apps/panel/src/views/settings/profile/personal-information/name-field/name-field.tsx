@@ -1,20 +1,21 @@
 'use client';
 
 import { Field, Input } from '@/components/ui';
-import { useFormField } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
+import { useFormContext } from 'react-hook-form';
+import type { FormData } from '../personal-information-form';
 import type { NameFieldProps } from './name-field.types';
 
 const NAME_PATTERN = /^[a-zA-Z\s\-']+$/;
 
 export const NameField: React.FC<NameFieldProps> = ({ disabled }) => {
-  const { register, error, isLoading } = useFormField('name');
+  const { register, formState } = useFormContext<FormData>();
   const { formatMessage } = useFormatMessage();
 
   return (
     <Field
       label={formatMessage('Your Name')}
-      errorMessage={error?.message?.toString()}
+      errorMessage={formState.errors.name?.message?.toString()}
     >
       <Input
         {...register('name', {
@@ -40,8 +41,8 @@ export const NameField: React.FC<NameFieldProps> = ({ disabled }) => {
         })}
         placeholder={formatMessage('Alex Smith')}
         autoComplete='name'
-        disabled={disabled || isLoading}
-        aria-busy={isLoading || undefined}
+        disabled={disabled || formState.isSubmitting}
+        aria-busy={formState.isSubmitting || undefined}
       />
     </Field>
   );

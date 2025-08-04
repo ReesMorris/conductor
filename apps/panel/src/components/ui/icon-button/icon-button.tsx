@@ -15,7 +15,11 @@ export const IconButton: React.FC<IconButtonProps> = ({
       content={ariaLabel}
       disabled={props.isLoading || props.disabled} // don't show tooltip when loading or disabled
     >
-      <Button {...props} className={cx(styles.iconButton, className)} />
+      <Button
+        {...props}
+        aria-label={ariaLabel}
+        className={cx(styles.iconButton, className)}
+      />
     </Tooltip>
   );
 };
