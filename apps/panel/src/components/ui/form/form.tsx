@@ -17,13 +17,14 @@ function FormInner<TFieldValues extends FieldValues = FieldValues>(
     defaultValues,
     errorMessage,
     onSubmit: onSubmitProp,
+    resolver,
     className,
     children,
     ...props
   }: FormProps<TFieldValues>,
   ref: React.Ref<FormRef<TFieldValues>>
 ) {
-  const form = useForm<TFieldValues>({ mode, defaultValues });
+  const form = useForm<TFieldValues>({ mode, defaultValues, resolver });
   const { handleSubmit, formState, reset } = form;
 
   useImperativeHandle(
@@ -57,7 +58,7 @@ function FormInner<TFieldValues extends FieldValues = FieldValues>(
           </Alert>
         )}
 
-        {children}
+        {typeof children === 'function' ? children(form) : children}
       </form>
     </FormProvider>
   );

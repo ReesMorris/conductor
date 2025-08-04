@@ -10,18 +10,19 @@ export const styles = sva({
       borderStyle: 'solid',
       borderColor: 'var(--alert-border)',
       borderRadius: 'lg',
-      padding: '4'
+      padding: '3'
     },
     content: {
       display: 'flex',
       alignItems: 'flex-start',
-      gap: '3'
+      gap: '2.5'
     },
     icon: {
       _icon: {
         flexShrink: '0',
-        inlineSize: '5',
-        blockSize: '5'
+        inlineSize: '4',
+        blockSize: '4',
+        transform: 'translateY(3px)'
       }
     },
     title: {

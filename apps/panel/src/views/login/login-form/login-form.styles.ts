@@ -1,7 +1,9 @@
 import { css } from '@/styled-system/css';
 
 export const styles = {
-  forgotLink: css({
-    textStyle: 'xs'
+  form: css({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '4'
   })
 };
