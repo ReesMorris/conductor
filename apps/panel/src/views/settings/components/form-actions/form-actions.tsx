@@ -12,7 +12,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
 }) => {
   const { formState, reset } = useFormContext();
   const { formatMessage } = useFormatMessage();
-  const { isDirty, isSubmitting } = formState;
+  const { isDirty, isSubmitting, isValid } = formState;
 
   return (
     <div className={styles.actions}>
@@ -20,7 +20,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
         type='reset'
         variant='outlined'
         size='sm'
-        disabled={!isDirty || isSubmitting}
+        disabled={!isDirty || isSubmitting || !isValid}
         onClick={() => reset(formState.defaultValues)}
       >
         {cancelLabel || formatMessage('Cancel')}
@@ -29,7 +29,7 @@ export const FormActions: React.FC<FormActionsProps> = ({
         type='submit'
         variant='primary'
         size='sm'
-        disabled={!isDirty || isSubmitting}
+        disabled={!isDirty || isSubmitting || !isValid}
         isLoading={isSubmitting}
       >
         {saveLabel || formatMessage('Save Changes')}

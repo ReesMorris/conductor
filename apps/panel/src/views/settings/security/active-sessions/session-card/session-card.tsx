@@ -8,7 +8,7 @@ import { useRouter } from '@/i18n/navigation';
 import { VisuallyHidden } from '@/styled-system/jsx';
 import { route } from '@/utils/route';
 import { LogOutIcon, TrashIcon } from 'lucide-react';
-import { useFormatter } from 'next-intl';
+import { useFormatter, useNow } from 'next-intl';
 import { useState } from 'react';
 import { UAParser } from 'ua-parser-js';
 import { styles } from './session-card.styles';
@@ -19,6 +19,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({
   onRevoked
 }) => {
   const auth = useAuth();
+  const now = useNow();
   const currentSession = useSession();
   const { formatMessage } = useFormatMessage();
   const { relativeTime } = useFormatter();
@@ -84,7 +85,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({
           <dt>{formatMessage('Last Active')}</dt>
           <dd>
             {session.updatedAt ? (
-              relativeTime(session.updatedAt)
+              relativeTime(session.updatedAt, now)
             ) : (
               <VisuallyHidden>{formatMessage('Unknown')}</VisuallyHidden>
             )}

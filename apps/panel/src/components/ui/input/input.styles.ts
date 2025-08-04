@@ -13,7 +13,7 @@ export const styles = {
     borderColor: 'transparent',
     fontWeight: 'medium',
     color: 'foreground',
-    backgroundColor: 'glass.light',
+    backgroundColor: 'glass.medium',
     backdropFilter: 'auto',
     backdropBlur: 'sm',
     transitionProperty: 'border, outline, background',

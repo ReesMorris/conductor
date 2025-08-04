@@ -1,19 +1,19 @@
 'use client';
 
 import { Field, Input } from '@/components/ui';
-import { useFormField } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
+import { useFormContext } from 'react-hook-form';
 import validator from 'validator';
-import type { EmailFieldProps } from './email-field.types';
+import type { FormData } from '../email-settings-form';
 
-export const EmailField: React.FC<EmailFieldProps> = ({ disabled }) => {
-  const { register, error, isLoading } = useFormField('email');
+export const EmailField: React.FC = () => {
+  const { register, formState } = useFormContext<FormData>();
   const { formatMessage } = useFormatMessage();
 
   return (
     <Field
       label={formatMessage('Email Address')}
-      errorMessage={error?.message?.toString()}
+      errorMessage={formState.errors.email?.message?.toString()}
     >
       <Input
         {...register('email', {
@@ -25,8 +25,8 @@ export const EmailField: React.FC<EmailFieldProps> = ({ disabled }) => {
         type='email'
         placeholder={formatMessage('alex.smith@example.com')}
         autoComplete='email'
-        disabled={disabled || isLoading}
-        aria-busy={isLoading || undefined}
+        disabled={formState.isSubmitting}
+        aria-busy={formState.isSubmitting || undefined}
       />
     </Field>
   );

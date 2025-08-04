@@ -2,7 +2,7 @@ import { FieldSkeleton, Skeleton } from '@/components/ui';
 import { css } from '@/styled-system/css';
 import { FormActionsSkeleton, SettingsGrid } from '../../components';
 
-export const RegionalSettingsSkeleton = () => {
+export const EmailSettingsSkeleton: React.FC = () => {
   return (
     <>
       <Skeleton

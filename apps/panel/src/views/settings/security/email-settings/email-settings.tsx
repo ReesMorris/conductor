@@ -4,20 +4,20 @@ import {
   SettingsGrid,
   SettingsSection
 } from '@/views/settings/components';
-import { RegionalSettingsForm } from './regional-settings-form';
-import { TimeZoneField } from './time-zone-field';
+import { EmailField } from './email-field';
+import { EmailSettingsForm } from './email-settings-form';
 
-export const RegionalSettings = () => {
+export const EmailSettings: React.FC = () => {
   const { formatMessage } = useFormatMessage();
 
   return (
-    <SettingsSection label={formatMessage('Regional Settings')}>
-      <RegionalSettingsForm>
+    <SettingsSection label={formatMessage('Email Settings')}>
+      <EmailSettingsForm>
         <SettingsGrid>
-          <TimeZoneField />
+          <EmailField />
         </SettingsGrid>
         <FormActions />
-      </RegionalSettingsForm>
+      </EmailSettingsForm>
     </SettingsSection>
   );
 };

@@ -1,15 +1,14 @@
 'use client';
 
-import { Alert, Heading } from '@/components/ui';
+import { Alert } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { getAuthErrorMessage } from '@/i18n/mappings';
 import { useQuery } from '@tanstack/react-query';
+import { SettingsSection } from '../../components';
+import { ActiveSessionsSkeleton } from './active-sessions.skeleton';
 import { styles } from './active-sessions.styles';
 import { SessionCard } from './session-card';
-import { SessionSkeleton } from './session-skeleton';
-
-const ID = 'active-sessions-heading';
 
 export const ActiveSessions: React.FC = () => {
   const { formatMessage } = useFormatMessage();
@@ -34,19 +33,17 @@ export const ActiveSessions: React.FC = () => {
     retry: 2 // Limit retries for auth operations
   });
 
-  return (
-    <section aria-labelledby={ID}>
-      <Heading level={2} id={ID}>
-        {formatMessage('Active Sessions')}
-      </Heading>
+  if (isLoading) {
+    return <ActiveSessionsSkeleton />;
+  }
 
+  return (
+    <SettingsSection label={formatMessage('Active Sessions')}>
       {error && (
         <Alert color='error'>
           {getAuthErrorMessage(formatMessage, error.message)}
         </Alert>
       )}
-
-      {isLoading && <SessionSkeleton />}
 
       {!isLoading && !error && sessions.length === 0 && (
         <p>{formatMessage('No active sessions found.')}</p>
@@ -64,6 +61,6 @@ export const ActiveSessions: React.FC = () => {
           ))}
         </ul>
       )}
-    </section>
+    </SettingsSection>
   );
 };
