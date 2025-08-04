@@ -1,14 +1,14 @@
 'use client';
 
-import { Button, Form, Heading } from '@/components/ui';
+import { Form, Heading } from '@/components/ui';
 import { useAuth, useToast, useUser } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { useUserStore } from '@/stores';
 import { getDirtyFields } from '@/utils/get-dirty-fields';
+import { FormActions, SettingsGrid } from '@/views/settings/components';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { EmailField } from './email-field';
-import { styles } from './email-settings-form.styles';
 
 const ID = 'email-settings';
 
@@ -73,34 +73,18 @@ export const EmailSettingsForm: React.FC = () => {
 
       <FormProvider {...form}>
         <Form
-          className={styles.form}
           onSubmit={handleSubmit(onSubmit)}
           aria-busy={isSubmitting || undefined}
         >
-          <div className={styles.grid}>
+          <SettingsGrid>
             <EmailField disabled={isSubmitting} />
-          </div>
+          </SettingsGrid>
 
-          <div className={styles.actions}>
-            <Button
-              type='reset'
-              variant='outlined'
-              size='sm'
-              disabled={!isDirty || isSubmitting}
-              onClick={() => reset({ email: user?.email || '' })}
-            >
-              {formatMessage('Cancel')}
-            </Button>
-            <Button
-              type='submit'
-              variant='primary'
-              size='sm'
-              disabled={!isDirty || isSubmitting}
-              isLoading={isSubmitting}
-            >
-              {formatMessage('Update Email')}
-            </Button>
-          </div>
+          <FormActions
+            isDirty={isDirty}
+            isSubmitting={isSubmitting}
+            onReset={() => reset({ email: user?.email || '' })}
+          />
         </Form>
       </FormProvider>
     </section>

@@ -14,9 +14,7 @@ export const Page = () => {
       subtitle={formatMessage('Sign in to your account')}
       footer={formatMessage(
         "Don't have an account? <link>Create an account</link>",
-        {
-          link: text => <Link href={route('REGISTER')}>{text}</Link>
-        }
+        { link: text => <Link href={route('REGISTER')}>{text}</Link> }
       )}
     >
       <LoginForm />

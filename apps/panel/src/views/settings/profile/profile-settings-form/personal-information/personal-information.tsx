@@ -1,7 +1,7 @@
 import { Heading } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
+import { SettingsGrid } from '@/views/settings/components';
 import { NameField } from './name-field';
-import { styles } from './personal-information.styles';
 
 const ID = 'personal-information';
 
@@ -14,9 +14,9 @@ export const PersonalInformation: React.FC = () => {
         {formatMessage('Personal Information')}
       </Heading>
 
-      <div className={styles.grid}>
+      <SettingsGrid>
         <NameField />
-      </div>
+      </SettingsGrid>
     </section>
   );
 };

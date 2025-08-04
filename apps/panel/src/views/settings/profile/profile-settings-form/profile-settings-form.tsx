@@ -1,10 +1,12 @@
 'use client';
 
 import { FormWithActionBar } from '@/components/features/form-with-action-bar';
-import { Separator } from '@/components/ui';
+import { Heading, Separator } from '@/components/ui';
 import { useFormWithActionBar, useToast, useUser } from '@/hooks';
+import { useFormatMessage } from '@/i18n/format-message';
 import { trpc } from '@/providers/trpc';
 import { useUserStore } from '@/stores';
+import { VisuallyHidden } from '@/styled-system/jsx';
 import { getDirtyFields } from '@/utils/get-dirty-fields';
 import { PersonalInformation } from './personal-information';
 import { ProfilePhoto } from './profile-photo';
@@ -16,6 +18,7 @@ interface ProfileFormData {
 export const ProfileSettingsForm = () => {
   const { user } = useUser();
   const toast = useToast();
+  const { formatMessage } = useFormatMessage();
   const updateUser = useUserStore(state => state.updateUser);
 
   const updateProfileMutation = trpc.profile.updateProfile.useMutation({
@@ -51,9 +54,12 @@ export const ProfileSettingsForm = () => {
 
   return (
     <>
+      <VisuallyHidden>
+        <Heading level={1}>{formatMessage('Profile Settings')}</Heading>
+      </VisuallyHidden>
+
       <ProfilePhoto />
       <Separator />
-
       <FormWithActionBar form={form}>
         <PersonalInformation />
       </FormWithActionBar>

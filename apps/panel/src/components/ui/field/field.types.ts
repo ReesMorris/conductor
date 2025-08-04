@@ -34,3 +34,28 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   readonly?: boolean;
 }
+
+export interface FieldSkeletonProps {
+  /**
+   * Width of the label skeleton
+   * @default '30%'
+   */
+  labelWidth?: string;
+
+  /**
+   * Width of the input skeleton
+   * @default '100%'
+   */
+  inputWidth?: string;
+
+  /**
+   * Height of the input skeleton
+   * @default token('sizes.ui.md')
+   */
+  inputHeight?: string;
+
+  /**
+   * Width of the label suffix skeleton
+   */
+  labelSuffixWidth?: string;
+}
