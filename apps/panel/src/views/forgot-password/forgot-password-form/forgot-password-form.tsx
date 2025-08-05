@@ -2,7 +2,7 @@
 
 import { AuthLayout, type AuthLayoutProps } from '@/components/layouts';
 import { Alert, Button, Form, type HandleSubmit, Link } from '@/components/ui';
-import { useAuth } from '@/hooks';
+import { useAuth, useToast } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { getAuthErrorMessage } from '@/i18n/mappings';
 import { route } from '@/utils/route';
@@ -21,31 +21,42 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
   redirectUrl
 }) => {
   const { formatMessage } = useFormatMessage();
-  const auth = useAuth();
   const [isSuccess, setIsSuccess] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const toast = useToast();
+  const auth = useAuth();
 
   const handleSubmit: HandleSubmit<ForgotPasswordFormData> = async ({
     data
   }) => {
     try {
-      setApiError(null);
+      // Don't proceed if already submitting
+      if (isSubmitting) {
+        return;
+      }
 
+      // Reset state before submission
+      setIsSubmitting(true);
+
+      // Attempt to send the password reset link
       const result = await auth.forgetPassword({
         email: data.email,
         redirectTo: redirectUrl
       });
 
+      // If there's an error, show a toast notification
       if (result.error) {
-        setApiError(
-          getAuthErrorMessage(formatMessage, result.error.code) ||
-            formatMessage('Something went wrong')
+        toast.error(
+          formatMessage('Something went wrong'),
+          getAuthErrorMessage(formatMessage, result.error.code)
         );
-      } else {
-        setIsSuccess(true);
+        return;
       }
+
+      // If successful, notify the user
+      setIsSuccess(true);
     } catch {
-      setApiError(formatMessage('Something went wrong'));
+      toast.error(formatMessage('Something went wrong'));
     }
   };
 
@@ -82,7 +93,6 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
       >
         <Form<ForgotPasswordFormData>
           onSubmit={handleSubmit}
-          errorMessage={apiError}
           className={styles.form}
           resolver={zodResolver(
             forgotPasswordFormSchema({
@@ -90,14 +100,10 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
             })
           )}
         >
-          {({ formState }) => (
-            <>
-              <EmailField />
-              <Button type='submit' isLoading={formState.isSubmitting}>
-                {formatMessage('Send Reset Link')}
-              </Button>
-            </>
-          )}
+          <EmailField />
+          <Button type='submit' isLoading={isSubmitting}>
+            {formatMessage('Send Reset Link')}
+          </Button>
         </Form>
       </AuthLayout>
     );

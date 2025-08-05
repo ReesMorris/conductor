@@ -16,11 +16,17 @@ import { PasswordField } from './password-field';
 export const LoginForm: React.FC = () => {
   const { formatMessage } = useFormatMessage();
   const [authError, setAuthError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const auth = useAuth();
   const router = useRouter();
 
   const handleSubmit: HandleSubmit<LoginFormData> = async ({ data }) => {
     try {
+      if (isSubmitting) {
+        return;
+      }
+
+      setIsSubmitting(true);
       setAuthError(null);
 
       const { error } = await auth.signIn.email({
@@ -31,11 +37,13 @@ export const LoginForm: React.FC = () => {
       if (error) {
         const errorMessage = getAuthErrorMessage(formatMessage, error.code);
         setAuthError(formatMessage(errorMessage));
+        setIsSubmitting(false);
       } else {
         router.push(route('HOME'));
       }
     } catch {
       setAuthError(formatMessage('An unexpected error occurred'));
+      setIsSubmitting(false);
     }
   };
 
@@ -52,15 +60,11 @@ export const LoginForm: React.FC = () => {
         })
       )}
     >
-      {({ formState }) => (
-        <>
-          <EmailField />
-          <PasswordField />
-          <Button type='submit' isLoading={formState.isSubmitting}>
-            {formatMessage('Sign In')}
-          </Button>
-        </>
-      )}
+      <EmailField />
+      <PasswordField />
+      <Button type='submit' isLoading={isSubmitting}>
+        {formatMessage('Sign In')}
+      </Button>
     </Form>
   );
 };
