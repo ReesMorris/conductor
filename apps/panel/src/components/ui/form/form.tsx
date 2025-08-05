@@ -26,6 +26,7 @@ function FormInner<TFieldValues extends FieldValues = FieldValues>(
 ) {
   const form = useForm<TFieldValues>({ mode, defaultValues, resolver });
   const { handleSubmit, formState, reset } = form;
+  const { isDirty, isSubmitting, dirtyFields } = formState;
 
   useImperativeHandle(
     ref,
@@ -39,13 +40,13 @@ function FormInner<TFieldValues extends FieldValues = FieldValues>(
 
   // Handles form submission
   const onSubmit = async (data: TFieldValues) => {
-    if (!formState.isDirty || formState.isSubmitting) {
+    if (!isDirty || isSubmitting) {
       return;
     }
 
     await onSubmitProp?.({
       data,
-      changedData: getDirtyFields(data, formState.dirtyFields)
+      changedData: getDirtyFields(data, dirtyFields)
     });
   };
 

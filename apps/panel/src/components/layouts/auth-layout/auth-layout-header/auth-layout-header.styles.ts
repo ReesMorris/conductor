@@ -3,9 +3,15 @@ import { css } from '@/styled-system/css';
 export const styles = {
   header: css({
     textAlign: 'center',
-    marginBlockEnd: '8'
+
+    '&:not(:last-child)': {
+      marginBlockEnd: '8'
+    }
   }),
   logo: css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     inlineSize: '16',
     blockSize: '16',
     backgroundColor: 'glass.light',

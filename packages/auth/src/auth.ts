@@ -20,7 +20,16 @@ export const createAuth = (config: AuthConfig) => {
     secret: config.betterAuthSecret,
     trustedOrigins: [config.frontendUrl],
     emailAndPassword: {
-      enabled: true
+      enabled: true,
+      sendResetPassword: async ({ user, url, token }) => {
+        // TODO: Replace with actual email service
+        console.log('Password reset requested for:', user.email);
+        console.log('Reset URL:', url);
+        console.log('Reset token:', token);
+
+        // Add a fake delay to simulate email sending
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
     },
     databaseHooks: {
       user: {

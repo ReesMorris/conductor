@@ -12,10 +12,21 @@ export interface AuthLayoutProps {
   /**
    * React children elements to render within the layout body
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /**
    * Optional footer content to display at the bottom of the layout
    */
   footer?: React.ReactNode;
+
+  /**
+   * Optional flag to show or hide the logo in the layout
+   * @default true
+   */
+  showLogo?: boolean;
+
+  /**
+   * Optional icon to display instead of the logo
+   */
+  icon?: React.ReactNode;
 }

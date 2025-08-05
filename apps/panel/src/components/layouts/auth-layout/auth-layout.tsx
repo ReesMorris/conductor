@@ -8,6 +8,8 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
   title,
   subtitle,
   children,
+  icon,
+  showLogo = true,
   footer
 }) => {
   return (
@@ -15,7 +17,12 @@ export const AuthLayout: React.FC<AuthLayoutProps> = ({
       <AuthLayoutActions />
       <main>
         <div className={styles.content}>
-          <AuthLayoutHeader title={title} subtitle={subtitle} />
+          <AuthLayoutHeader
+            title={title}
+            icon={icon}
+            subtitle={subtitle}
+            showLogo={showLogo}
+          />
           {children}
         </div>
 
