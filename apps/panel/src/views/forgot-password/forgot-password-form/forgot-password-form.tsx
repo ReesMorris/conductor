@@ -7,7 +7,7 @@ import { useFormatMessage } from '@/i18n/format-message';
 import { getAuthErrorMessage } from '@/i18n/mappings';
 import { route } from '@/utils/route';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircleIcon } from 'lucide-react';
+import { ArrowLeftIcon, CheckCircleIcon } from 'lucide-react';
 import { useState } from 'react';
 import { EmailField } from './email-field';
 import {
@@ -51,7 +51,12 @@ export const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({
 
   // Shared logic for success message
   const sharedLayoutProps: Partial<AuthLayoutProps> = {
-    footer: <Link href={route('LOGIN')}>{formatMessage('Back to Login')}</Link>
+    footer: (
+      <Link href={route('LOGIN')} className={styles.backLink}>
+        <ArrowLeftIcon />
+        {formatMessage('Back to Login')}
+      </Link>
+    )
   };
 
   if (isSuccess) {
