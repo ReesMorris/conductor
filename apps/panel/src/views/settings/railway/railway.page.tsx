@@ -9,7 +9,7 @@ import { RailwaySettingsSkeleton } from './railway.skeleton';
 
 export const Page = page(pageSchema, async () => {
   return (
-    <AuthWrapper skeleton={<RailwaySettingsSkeleton />}>
+    <AuthWrapper requiredRole='admin' skeleton={<RailwaySettingsSkeleton />}>
       <VisuallyHidden>
         <Heading level={1}>
           {await formatMessageServer('Railway Settings')}

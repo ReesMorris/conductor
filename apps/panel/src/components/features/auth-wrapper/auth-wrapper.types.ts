@@ -1,3 +1,5 @@
+import type { User } from '@conductor/auth';
+
 export interface AuthWrapperProps {
   /**
    * The content to render once authentication is loaded
@@ -14,4 +16,9 @@ export interface AuthWrapperProps {
    * @default false
    */
   debug?: boolean;
+
+  /**
+   * The role of the user required to access the children
+   */
+  requiredRole?: User['role'];
 }

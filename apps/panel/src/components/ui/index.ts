@@ -17,6 +17,7 @@ export * from './link';
 export * from './logo';
 export * from './multi-step-modal';
 export * from './password-input';
+export * from './permission-required';
 export * from './progress-indicator';
 export * from './radio-card';
 export * from './select';
