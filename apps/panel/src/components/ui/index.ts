@@ -14,6 +14,7 @@ export * from './input-group';
 export * from './label';
 export * from './link';
 export * from './logo';
+export * from './multi-step-modal';
 export * from './password-input';
 export * from './progress-indicator';
 export * from './radio-card';
