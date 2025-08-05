@@ -2,6 +2,7 @@ export * from './action-bar';
 export * from './alert';
 export * from './avatar';
 export * from './button';
+export * from './code';
 export * from './dialog';
 export * from './dropdown-menu';
 export * from './empty-state';
