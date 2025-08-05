@@ -16,9 +16,10 @@ import { styles } from './dialog-content.styles';
 import type { DialogContentProps } from './dialog-content.types';
 
 export const DialogContent: React.FC<DialogContentProps> = ({
-  children,
+  size,
+  forceMount,
   className,
-  forceMount
+  children
 }) => {
   const { role } = useDialogContext();
 
@@ -27,7 +28,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
       <RadixDialogPortal forceMount={forceMount || undefined}>
         <RadixDialogOverlay className={styles.overlay} />
         <RadixDialogContent className={cx(styles.content, className)}>
-          <div className={styles.container}>{children}</div>
+          <div className={styles.container({ size })}>{children}</div>
         </RadixDialogContent>
       </RadixDialogPortal>
     );
@@ -37,7 +38,7 @@ export const DialogContent: React.FC<DialogContentProps> = ({
     <RadixAlertDialogPortal forceMount={forceMount || undefined}>
       <RadixAlertDialogOverlay className={styles.overlay} />
       <RadixAlertDialogContent className={cx(styles.content, className)}>
-        <div className={styles.container}>{children}</div>
+        <div className={styles.container({ size })}>{children}</div>
       </RadixAlertDialogContent>
     </RadixAlertDialogPortal>
   );

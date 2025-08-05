@@ -1,4 +1,4 @@
-import { css } from '@/styled-system/css';
+import { css, cva } from '@/styled-system/css';
 
 export const styles = {
   overlay: css({
@@ -23,7 +23,7 @@ export const styles = {
     insetInlineStart: '[50%]',
     transform: 'translateX(-50%)',
     backdropFilter: 'auto',
-    backdropBlur: 'xl',
+    backdropBlur: '3xl',
     zIndex: 'modal',
 
     '&[data-state="open"]': {
@@ -44,22 +44,41 @@ export const styles = {
       }
     }
   }),
-  container: css({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '5',
-    inlineSize: '[min(90vw, 25rem)]',
-    maxBlockSize: '[85vh]',
-    padding: '6',
-    backgroundColor: 'background.from',
-    backdropFilter: 'auto',
-    backdropBlur: 'xl',
-    borderWidth: '1',
-    borderStyle: 'solid',
-    borderColor: 'foreground/20',
-    borderRadius: 'lg',
-    boxShadow: '2xl',
-    outline: 'none',
-    textStyle: 'sm'
+  container: cva({
+    base: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '5',
+      inlineSize: '[min(90vw, var(--dialog-width))]',
+      maxBlockSize: '[85vh]',
+      padding: '8',
+      backdropFilter: 'auto',
+      backdropBlur: 'xl',
+      borderRadius: 'lg',
+      borderWidth: '1',
+      borderStyle: 'solid',
+      borderColor: 'foreground/8',
+      backgroundColor: 'foreground/5',
+      overflow: 'auto',
+      boxShadow: '2xl',
+      outline: 'none',
+      textStyle: 'sm'
+    },
+    variants: {
+      size: {
+        md: {
+          '--dialog-width': '25rem'
+        },
+        lg: {
+          '--dialog-width': '40rem'
+        },
+        xl: {
+          '--dialog-width': '60rem'
+        }
+      }
+    },
+    defaultVariants: {
+      size: 'md'
+    }
   })
 };

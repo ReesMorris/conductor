@@ -9,7 +9,7 @@ export type HandleSubmit<TFieldValues extends FieldValues> = (
   data: FormSubmitData<TFieldValues>
 ) => Promise<void> | void;
 
-export interface FormProps<TFieldValues extends FieldValues>
+export interface FormProps<TFieldValues extends FieldValues = FieldValues>
   extends Omit<React.HTMLAttributes<HTMLFormElement>, 'onSubmit' | 'children'> {
   /**
    * An optional error message to display at the top of the form.

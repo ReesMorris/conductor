@@ -4,6 +4,8 @@ export const styles = {
   header: css({
     display: 'flex',
     flexDirection: 'column',
-    gap: '2'
+    textAlign: 'center',
+    paddingBlockStart: '2',
+    marginBlockEnd: '2'
   })
 };

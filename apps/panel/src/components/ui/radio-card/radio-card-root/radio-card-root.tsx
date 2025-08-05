@@ -7,7 +7,7 @@ export const RadioCardRoot: React.FC<RadioCardRootProps> = ({
   ...props
 }) => {
   return (
-    <RadioGroup.Root aria-label={ariaLabel} {...props}>
+    <RadioGroup.Root {...props} aria-label={ariaLabel}>
       {children}
     </RadioGroup.Root>
   );

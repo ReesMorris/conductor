@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { redirect } from '@/i18n/navigation';
 import { page } from '@/libs/page';
 import { route } from '@/utils/route';
