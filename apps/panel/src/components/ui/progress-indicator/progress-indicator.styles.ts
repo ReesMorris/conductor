@@ -10,7 +10,7 @@ export const styles = {
   list: css({
     display: 'flex',
     alignItems: 'center',
-    gap: '1'
+    gap: '1.5'
   }),
   step: css({
     flexShrink: '0',
@@ -63,7 +63,7 @@ export const styles = {
     backgroundColor: 'foreground/20',
     transitionProperty: 'background-color',
     transitionDuration: 'normal',
-    minInlineSize: '3.5',
+    minInlineSize: '8',
     listStyle: 'none',
 
     _complete: {
