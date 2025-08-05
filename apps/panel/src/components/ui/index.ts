@@ -22,5 +22,6 @@ export * from './radio-card';
 export * from './select';
 export * from './separator';
 export * from './skeleton';
+export * from './steps';
 export * from './toast';
 export * from './tooltip';

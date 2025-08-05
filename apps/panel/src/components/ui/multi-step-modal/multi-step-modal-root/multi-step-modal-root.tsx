@@ -50,9 +50,7 @@ export const MultiStepModalRoot: React.FC<MultiStepModalRootProps> = ({
         </Dialog.Header>
 
         <MultiStepModalProvider value={contextValue}>
-          <div className={styles.contentContainer}>
-            {stepState.currentStepElement}
-          </div>
+          <div>{stepState.currentStepElement}</div>
 
           <NavigationButtons
             isFirstStep={stepState.isFirstStep}

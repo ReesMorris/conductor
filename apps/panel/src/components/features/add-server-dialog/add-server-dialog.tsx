@@ -5,6 +5,7 @@ import { useFormatMessage } from '@/i18n/format-message';
 import { useFormContext } from 'react-hook-form';
 import type { AddServerDialogProps } from './add-server-dialog.types';
 import { AddServerForm } from './add-server-form';
+import { DeployStep } from './deploy-step';
 import { GameTypeSelect } from './game-type-select';
 
 const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
@@ -18,8 +19,7 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
 
   const handleOpenChange = (isOpen: boolean) => {
     if (!isOpen) {
-      // Reset the form to default values when the dialog is closed
-      reset(defaultValues);
+      reset(defaultValues); // Reset the form to default values when the dialog is closed
     }
 
     onOpenChange(isOpen);
@@ -40,6 +40,14 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
         canProceed={!!gameType}
       >
         <GameTypeSelect />
+      </MultiStepModal.Step>
+      <MultiStepModal.Step
+        title={formatMessage('Deploy the Server Template')}
+        description={formatMessage(
+          'Follow these steps to deploy your server on Railway'
+        )}
+      >
+        <DeployStep />
       </MultiStepModal.Step>
     </MultiStepModal.Root>
   );
