@@ -15,6 +15,7 @@ export * from './label';
 export * from './link';
 export * from './logo';
 export * from './password-input';
+export * from './progress-indicator';
 export * from './select';
 export * from './separator';
 export * from './skeleton';
