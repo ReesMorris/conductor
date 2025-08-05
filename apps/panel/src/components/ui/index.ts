@@ -4,6 +4,7 @@ export * from './avatar';
 export * from './button';
 export * from './dialog';
 export * from './dropdown-menu';
+export * from './empty-state';
 export * from './field';
 export * from './form';
 export * from './heading';

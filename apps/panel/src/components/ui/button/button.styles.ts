@@ -95,8 +95,8 @@ export const styles = {
         },
         lg: {
           '--button-height': 'sizes.ui.lg',
-          '--button-padding': '{spacing.4}',
-          '--button-gap': '{spacing.4}'
+          '--button-padding': '{spacing.6}',
+          '--button-gap': '{spacing.3}'
         }
       },
       shape: {
