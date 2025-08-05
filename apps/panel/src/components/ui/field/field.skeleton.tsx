@@ -7,6 +7,7 @@ export const FieldSkeleton: React.FC<FieldSkeletonProps> = ({
   labelWidth = '30%',
   inputWidth = '100%',
   inputHeight = token('sizes.ui.md'),
+  helpTextWidth,
   labelSuffixWidth
 }) => {
   return (
@@ -24,7 +25,9 @@ export const FieldSkeleton: React.FC<FieldSkeletonProps> = ({
           </div>
         )}
       </div>
-      <div className={styles.fieldDescription} />
+      <div className={styles.fieldDescription}>
+        {helpTextWidth && <Skeleton width={helpTextWidth} height='16px' />}
+      </div>
     </div>
   );
 };

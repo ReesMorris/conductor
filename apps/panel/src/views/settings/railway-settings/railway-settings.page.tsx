@@ -4,8 +4,8 @@ import { formatMessageServer } from '@/i18n/format-message-server';
 import { page } from '@/libs/page';
 import { VisuallyHidden } from '@/styled-system/jsx';
 import { ProjectSettings } from './project-settings';
-import { pageSchema } from './railway.schema';
-import { RailwaySettingsSkeleton } from './railway.skeleton';
+import { pageSchema } from './railway-settings.schema';
+import { RailwaySettingsSkeleton } from './railway-settings.skeleton';
 
 export const Page = page(pageSchema, async () => {
   return (

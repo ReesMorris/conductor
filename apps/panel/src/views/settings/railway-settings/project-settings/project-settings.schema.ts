@@ -9,9 +9,11 @@ interface SchemaMessages {
  */
 export const projectSettingsSchema = (messages: SchemaMessages) =>
   z.object({
-    projectToken: z.uuidv4({
-      message: messages.invalidProjectToken
-    })
+    projectToken: z
+      .uuidv4({
+        message: messages.invalidProjectToken
+      })
+      .or(z.literal(''))
   });
 
 /**

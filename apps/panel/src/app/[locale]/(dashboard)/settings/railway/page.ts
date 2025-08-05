@@ -1,1 +1,1 @@
-export { metadata, Page as default } from '@/views/settings/railway';
+export { metadata, Page as default } from '@/views/settings/railway-settings';

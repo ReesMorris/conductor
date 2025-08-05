@@ -48,6 +48,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             href={route('WORKSPACE_RAILWAY_SETTINGS')}
             label={formatMessage('Railway')}
             icon={<TrainFrontIcon />}
+            userRole='admin'
           />
           <Sidebar.Item
             href={route('WORKSPACE_USERS_SETTINGS')}

@@ -6,12 +6,12 @@ export const ProjectSettingsSkeleton: React.FC = () => {
   return (
     <>
       <Skeleton
-        width='155px'
+        width='142px'
         height='30px'
         className={css({ marginBlockEnd: '4' })}
       />
       <SettingsGrid>
-        <FieldSkeleton labelWidth='70px' />
+        <FieldSkeleton labelWidth='90px' helpTextWidth='250px' />
       </SettingsGrid>
       <FormActionsSkeleton />
     </>

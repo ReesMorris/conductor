@@ -58,4 +58,9 @@ export interface FieldSkeletonProps {
    * Width of the label suffix skeleton
    */
   labelSuffixWidth?: string;
+
+  /**
+   * Width of the help text skeleton
+   */
+  helpTextWidth?: string;
 }

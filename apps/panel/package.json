@@ -13,6 +13,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@conductor/api": "workspace:*",
     "@conductor/auth": "workspace:*",
     "@hookform/resolvers": "^5.2.1",
     "@t3-oss/env-nextjs": "^0.13.8",

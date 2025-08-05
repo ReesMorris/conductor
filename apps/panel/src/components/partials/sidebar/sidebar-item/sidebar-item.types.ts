@@ -1,3 +1,5 @@
+import type { User } from '@conductor/auth';
+
 export interface SidebarItemProps {
   /**
    * The URL to navigate to when the item is clicked.
@@ -17,7 +19,7 @@ export interface SidebarItemProps {
   /**
    * The required user role to display this item.
    */
-  userRole?: string;
+  userRole?: User['role'];
 
   /**
    * Whether to use exact path matching for highlighting.
