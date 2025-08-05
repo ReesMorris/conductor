@@ -1,10 +1,12 @@
 import { AuthLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
+import { page } from '@/libs/page';
 import { route } from '@/utils/route';
+import { pageSchema } from './register.schema';
 import { RegisterForm } from './register-form';
 
-export const Page = () => {
+export const Page = page(pageSchema, () => {
   const { formatMessage } = useFormatMessage();
 
   return (
@@ -18,4 +20,4 @@ export const Page = () => {
       <RegisterForm />
     </AuthLayout>
   );
-};
+});

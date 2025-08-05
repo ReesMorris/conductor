@@ -1,12 +1,14 @@
 import { AuthWrapper } from '@/components/features/auth-wrapper';
 import { Heading, Separator } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
+import { page } from '@/libs/page';
 import { VisuallyHidden } from '@/styled-system/jsx';
 import { PersonalInformation } from './personal-information';
+import { pageSchema } from './profile.schema';
 import { ProfileSettingsSkeleton } from './profile.skeleton';
 import { ProfilePhoto } from './profile-photo';
 
-export const Page = () => {
+export const Page = page(pageSchema, () => {
   const { formatMessage } = useFormatMessage();
 
   return (
@@ -20,4 +22,4 @@ export const Page = () => {
       <PersonalInformation />
     </AuthWrapper>
   );
-};
+});

@@ -2,10 +2,12 @@ import { AuthLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { APP_NAME } from '@/constants';
 import { useFormatMessage } from '@/i18n/format-message';
+import { page } from '@/libs/page';
 import { route } from '@/utils/route';
+import { pageSchema } from './login.schema';
 import { LoginForm } from './login-form';
 
-export const Page = () => {
+export const Page = page(pageSchema, () => {
   const { formatMessage } = useFormatMessage();
 
   return (
@@ -20,4 +22,4 @@ export const Page = () => {
       <LoginForm />
     </AuthLayout>
   );
-};
+});
