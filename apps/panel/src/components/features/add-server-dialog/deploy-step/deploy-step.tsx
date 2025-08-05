@@ -1,5 +1,5 @@
 import { Code, Steps } from '@/components/ui';
-import { APP_NAME } from '@/constants';
+import { APP_NAME, TEMPLATE_PREFIX } from '@/constants';
 import { useFormatMessage } from '@/i18n/format-message';
 
 export const DeployStep = () => {
@@ -24,7 +24,7 @@ export const DeployStep = () => {
       <Steps.Item>
         {formatMessage('Search for <code>{templateName}</code>', {
           code: text => <Code>{text}</Code>,
-          templateName: 'conductor/minecraft'
+          templateName: `${TEMPLATE_PREFIX}server-template`
         })}
       </Steps.Item>
       <Steps.Item>

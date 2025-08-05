@@ -2,7 +2,13 @@ import { Main } from '@/components/partials';
 import { Sidebar } from '@/components/partials/sidebar';
 import { useFormatMessage } from '@/i18n/format-message';
 import { route } from '@/utils/route';
-import { SettingsIcon, ShieldIcon, UserIcon, UsersIcon } from 'lucide-react';
+import {
+  SettingsIcon,
+  ShieldIcon,
+  TrainFrontIcon,
+  UserIcon,
+  UsersIcon
+} from 'lucide-react';
 
 interface LayoutProps {
   params: Promise<{ locale: string }>;
@@ -37,6 +43,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             href={route('WORKSPACE_GENERAL_SETTINGS')}
             label={formatMessage('General Settings')}
             icon={<SettingsIcon />}
+          />
+          <Sidebar.Item
+            href={route('WORKSPACE_RAILWAY_SETTINGS')}
+            label={formatMessage('Railway')}
+            icon={<TrainFrontIcon />}
           />
           <Sidebar.Item
             href={route('WORKSPACE_USERS_SETTINGS')}

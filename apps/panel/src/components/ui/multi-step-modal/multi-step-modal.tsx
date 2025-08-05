@@ -1,3 +1,5 @@
+'use client';
+
 import { MultiStepModalRoot } from './multi-step-modal-root';
 import { MultiStepModalStep } from './multi-step-modal-step';
 

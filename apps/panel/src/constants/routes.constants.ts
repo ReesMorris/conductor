@@ -16,6 +16,7 @@ export type RouteParams = {
   USER_SECURITY_SETTINGS: NoUrlParams;
   WORKSPACE_GENERAL_SETTINGS: NoUrlParams;
   WORKSPACE_USERS_SETTINGS: NoUrlParams;
+  WORKSPACE_RAILWAY_SETTINGS: NoUrlParams;
 };
 
 export const Routes: Record<keyof RouteParams, string> = {
@@ -31,5 +32,6 @@ export const Routes: Record<keyof RouteParams, string> = {
   USER_PREFERENCES_SETTINGS: '/settings/preferences',
   USER_SECURITY_SETTINGS: '/settings/security',
   WORKSPACE_GENERAL_SETTINGS: '/settings/workspace',
-  WORKSPACE_USERS_SETTINGS: '/settings/users'
+  WORKSPACE_USERS_SETTINGS: '/settings/users',
+  WORKSPACE_RAILWAY_SETTINGS: '/settings/railway'
 } as const;
