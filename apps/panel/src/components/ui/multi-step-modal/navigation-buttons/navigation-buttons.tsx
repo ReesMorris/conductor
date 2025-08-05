@@ -12,7 +12,9 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
   canProceed,
   previous,
   next,
-  complete
+  complete,
+  nextButtonLabel,
+  completeButtonLabel
 }) => {
   const { formatMessage } = useFormatMessage();
 
@@ -26,12 +28,12 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
 
         {isLastStep ? (
           <Button onClick={complete} disabled={!canProceed || isFirstStep}>
-            {formatMessage('Complete')}
+            {completeButtonLabel || formatMessage('Complete')}
             <ArrowRightIcon />
           </Button>
         ) : (
           <Button onClick={next} disabled={!canProceed}>
-            {formatMessage('Next')}
+            {nextButtonLabel || formatMessage('Next')}
             <ArrowRightIcon />
           </Button>
         )}

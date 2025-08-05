@@ -46,8 +46,17 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
         description={formatMessage(
           'Follow these steps to deploy your server on Railway'
         )}
+        nextButtonLabel={formatMessage("I've deployed it")}
       >
         <DeployStep />
+      </MultiStepModal.Step>
+      <MultiStepModal.Step
+        title={formatMessage('Connect Your Server')}
+        description={formatMessage(
+          'Get your Railway internal address to establish the connection'
+        )}
+      >
+        wip
       </MultiStepModal.Step>
     </MultiStepModal.Root>
   );

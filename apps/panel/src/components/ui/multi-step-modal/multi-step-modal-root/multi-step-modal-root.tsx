@@ -59,6 +59,12 @@ export const MultiStepModalRoot: React.FC<MultiStepModalRootProps> = ({
             previous={stepState.previous}
             next={stepState.next}
             complete={stepState.complete}
+            nextButtonLabel={
+              stepState.steps[stepState.currentStep]?.nextButtonLabel
+            }
+            completeButtonLabel={
+              stepState.steps[stepState.currentStep]?.completeButtonLabel
+            }
           />
 
           <ProgressIndicator

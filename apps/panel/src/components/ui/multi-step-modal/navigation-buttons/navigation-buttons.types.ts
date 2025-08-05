@@ -28,4 +28,14 @@ export interface NavigationButtonsProps {
    * Complete the flow
    */
   complete: () => void;
+
+  /**
+   * Custom label for the next button
+   */
+  nextButtonLabel?: string;
+
+  /**
+   * Custom label for the complete button
+   */
+  completeButtonLabel?: string;
 }

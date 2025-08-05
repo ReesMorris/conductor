@@ -18,4 +18,14 @@ export interface MultiStepModalStepProps {
    * Whether this step can proceed to next
    */
   canProceed?: boolean;
+
+  /**
+   * Custom label for the next button
+   */
+  nextButtonLabel?: string;
+
+  /**
+   * Custom label for the complete button (last step)
+   */
+  completeButtonLabel?: string;
 }

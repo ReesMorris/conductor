@@ -70,4 +70,14 @@ export interface StepMetadata {
    * Index position of the step in the flow
    */
   index: number;
+
+  /**
+   * Custom label for the next button
+   */
+  nextButtonLabel?: string;
+
+  /**
+   * Custom label for the complete button
+   */
+  completeButtonLabel?: string;
 }

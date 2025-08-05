@@ -19,9 +19,11 @@ export const useMultiStepState = (
       .filter(isStepComponent)
       .map(
         (child, index): StepMetadata => ({
+          index,
           title: child.props.title,
           description: child.props.description ?? '',
-          index
+          nextButtonLabel: child.props.nextButtonLabel,
+          completeButtonLabel: child.props.completeButtonLabel
         })
       );
   }, [children]);
