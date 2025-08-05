@@ -1,1 +1,1 @@
-export * from './index.router';
+export * from './profile.router';

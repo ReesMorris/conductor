@@ -1,13 +1,13 @@
 import { prisma } from '@/libs';
 import { railwayTransformer } from '@/transformers/railway';
-import { protectedProcedure } from '@/trpc/procedures';
+import { adminProcedure } from '@/trpc/procedures';
 import { z } from 'zod';
 
 /**
  * Update or create the Railway configuration
  * Uses singleton pattern with id='railway_config'
  */
-export const updateRailwayConfig = protectedProcedure
+export const updateRailwayConfig = adminProcedure
   .input(
     z.object({
       projectToken: z.uuidv4().optional()

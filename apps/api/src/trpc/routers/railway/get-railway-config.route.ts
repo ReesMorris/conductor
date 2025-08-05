@@ -1,12 +1,12 @@
 import { prisma } from '@/libs';
 import { railwayTransformer } from '@/transformers/railway';
-import { protectedProcedure } from '@/trpc/procedures';
+import { adminProcedure } from '@/trpc/procedures';
 
 /**
  * Get the current Railway configuration
  * Returns null if no configuration exists
  */
-export const getRailwayConfig = protectedProcedure.query(async () => {
+export const getRailwayConfig = adminProcedure.query(async () => {
   const railwayConfig = await prisma.railway.findUnique({
     where: {
       id: 'railway_config'
