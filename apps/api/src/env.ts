@@ -29,6 +29,10 @@ export const env = createEnv({
       .string()
       .min(32)
       .describe('Secret key for signing Better Auth tokens'),
+    RAILWAY_API_URL: z
+      .url()
+      .default('https://backboard.railway.app/graphql/v2')
+      .describe("Railway's GraphQL API URL"),
     BETTER_AUTH_URL: z.url().describe('Base URL for Better Auth'),
     FRONTEND_URL: z.url().describe('Frontend URL for CORS configuration'),
     S3_ENDPOINT: z.url().describe('S3-compatible storage endpoint'),

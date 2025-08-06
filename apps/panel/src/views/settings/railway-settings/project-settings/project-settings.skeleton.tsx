@@ -12,6 +12,7 @@ export const ProjectSettingsSkeleton: React.FC = () => {
       />
       <SettingsGrid>
         <FieldSkeleton labelWidth='90px' helpTextWidth='250px' />
+        <FieldSkeleton labelWidth='67px' helpTextWidth='355px' />
       </SettingsGrid>
       <FormActionsSkeleton />
     </>

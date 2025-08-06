@@ -76,6 +76,7 @@ model Verification {
 model Railway {
   id           String   @id @default("railway_config")
   projectToken String
+  projectId    String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 

@@ -1,4 +1,5 @@
 import { prisma } from '@/libs';
+import { createRailwayService } from '@/services/railway';
 import { railwayTransformer } from '@/transformers/railway';
 import { adminProcedure } from '@/trpc/procedures';
 import { encrypt } from '@/utils/encryption';
@@ -20,9 +21,26 @@ export const updateRailwayConfig = adminProcedure
       throw new Error('No fields to update');
     }
 
+    // If a new token is provided, validate it with Railway API
+    let projectId: string | undefined;
+    if (input.projectToken) {
+      try {
+        const railwayService = createRailwayService(input.projectToken);
+        const validationResult = await railwayService.validateToken();
+        projectId = validationResult.projectToken.projectId;
+      } catch {
+        throw new Error(
+          'Invalid Railway token. Please check your token and try again.'
+        );
+      }
+    }
+
     // Prepare data with encryption
     const dataToSave = {
-      ...(input.projectToken && { projectToken: encrypt(input.projectToken) })
+      ...(input.projectToken && {
+        projectToken: encrypt(input.projectToken),
+        projectId
+      })
     };
 
     // Upsert the Railway configuration

@@ -7,6 +7,7 @@ import {
   SettingsGrid,
   SettingsSection
 } from '@/views/settings/components';
+import { ProjectIdField } from './project-id-field';
 import { ProjectSettingsSkeleton } from './project-settings.skeleton';
 import { ProjectSettingsForm } from './project-settings-form';
 import { ProjectTokenField } from './project-token-field';
@@ -25,6 +26,7 @@ export const ProjectSettings: React.FC = () => {
       <ProjectSettingsForm initialData={data}>
         <SettingsGrid>
           <ProjectTokenField data={data} />
+          <ProjectIdField data={data} />
         </SettingsGrid>
         <FormActions />
       </ProjectSettingsForm>
