@@ -44,27 +44,31 @@ RUN --mount=type=secret,id=turbo_token \
     bun x turbo db:generate && \
     bun x turbo build --filter=@conductor/api
 
-# Compile to standalone executable
-RUN bun build ./apps/api/dist/index.js \
-    --compile \
-    --target=bun-linux-x64-baseline \
-    --outfile=/app/api-standalone
-
-# Stage 3: Production runtime - using distroless for minimal size
-FROM gcr.io/distroless/base-debian12:nonroot
+# Stage 3: Production runtime - using Bun runtime instead of standalone
+FROM oven/bun:1.2-alpine
 WORKDIR /app
 
-# Copy the standalone executable with proper permissions
-COPY --from=builder --chown=nonroot:nonroot /app/api-standalone /app/api
+# Install dependencies for Prisma
+RUN apk add --no-cache \
+    libc6-compat \
+    libstdc++ \
+    libgcc \
+    ca-certificates
+
+# Create non-root user
+RUN addgroup -g 1001 -S nonroot && \
+    adduser -S nonroot -u 1001
+
+# Copy built application
+COPY --from=builder --chown=nonroot:nonroot /app/apps/api/dist /app/dist
 
 # Copy Prisma generated files (includes the query engine)
 COPY --from=builder --chown=nonroot:nonroot /app/packages/database/generated /app/packages/database/generated
 
-# Use non-root user (already set by :nonroot tag)
 USER nonroot
 
 EXPOSE 4000
 ENV NODE_ENV=production
 
-# Run the standalone executable
-ENTRYPOINT ["/app/api"]
+# Run with Bun directly
+ENTRYPOINT ["bun", "run", "/app/dist/index.js"]
