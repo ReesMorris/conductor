@@ -4,7 +4,7 @@ import {
   railwayRouter,
   systemRouter
 } from './routers';
-import { router } from './trpc';
+import { createCallerFactory, router } from './trpc';
 
 /**
  * Main application router
@@ -17,3 +17,18 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+/**
+ * Create a server-side caller for internal use
+ * This allows calling tRPC procedures directly from server code
+ */
+const createCaller = createCallerFactory(appRouter);
+
+/**
+ * Server-side caller with null context (for public procedures)
+ * Used in middleware and other server-side code
+ */
+export const serverCaller = createCaller({
+  user: null,
+  session: null
+});

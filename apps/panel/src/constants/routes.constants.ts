@@ -10,6 +10,7 @@ export type RouteParams = {
   RESET_PASSWORD: NoUrlParams;
   RESET_PASSWORD_TOKEN: { token: UrlParam };
   HEALTH_CHECK: NoUrlParams;
+  ONBOARDING: NoUrlParams;
   SERVERS: NoUrlParams;
   USER_PROFILE_SETTINGS: NoUrlParams;
   USER_PREFERENCES_SETTINGS: NoUrlParams;
@@ -27,6 +28,7 @@ export const Routes: Record<keyof RouteParams, string> = {
   RESET_PASSWORD: '/reset-password',
   RESET_PASSWORD_TOKEN: '/reset-password?token=:token',
   HEALTH_CHECK: '/health',
+  ONBOARDING: '/onboarding',
   SERVERS: '/', // this is the first dashboard route
   USER_PROFILE_SETTINGS: '/settings',
   USER_PREFERENCES_SETTINGS: '/settings/preferences',

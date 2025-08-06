@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server';
-import { auth, health, I18nMiddleware } from './middlewares';
+import { auth, health, I18nMiddleware, onboarding } from './middlewares';
 
 // The regex matcher to exclude API routes, Next.js internals, and static files from the middleware
 export const config = {
@@ -17,8 +17,10 @@ export default async function middleware(request: NextRequest) {
   const res = I18nMiddleware(request);
 
   return (
+    // Onboarding Middleware
+    (await onboarding(request)) ||
     // Auth Middleware
-    (await auth(request)) ||
+    auth(request) ||
     // No middlewares hit, continue with the request
     res
   );
