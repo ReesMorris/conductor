@@ -34,7 +34,7 @@ export const ProjectSettingsForm: React.FC<ProjectSettingsFormProps> = ({
 
       // Reset form with new default values to clear dirty state
       formRef.current?.reset({
-        projectToken: '' // always empty as this is not exposed to the user
+        accessToken: '' // always empty as this is not exposed to the user
       });
     },
     onError: error => {
@@ -56,12 +56,12 @@ export const ProjectSettingsForm: React.FC<ProjectSettingsFormProps> = ({
       {...props}
       ref={formRef}
       defaultValues={{
-        projectToken: '' // always empty as this is not exposed to the user
+        accessToken: '' // always empty as this is not exposed to the user
       }}
       resolver={zodResolver(
         projectSettingsSchema({
-          invalidProjectToken: formatMessage(
-            'Project Token must be a valid UUID v4'
+          invalidAccessToken: formatMessage(
+            'Personal Access Token must be a valid UUID v4'
           )
         })
       )}

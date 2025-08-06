@@ -7,25 +7,26 @@ import {
   SettingsGrid,
   SettingsSection
 } from '@/views/settings/components';
+import { AccessTokenField } from './access-token-field';
 import { ProjectIdField } from './project-id-field';
 import { ProjectSettingsSkeleton } from './project-settings.skeleton';
 import { ProjectSettingsForm } from './project-settings-form';
-import { ProjectTokenField } from './project-token-field';
 
 export const ProjectSettings: React.FC = () => {
   const { formatMessage } = useFormatMessage();
 
   // Load the project settings configuration
   const { data } = trpc.railway.getConfig.useQuery();
+
   if (!data) {
     return <ProjectSettingsSkeleton />;
   }
 
   return (
-    <SettingsSection label={formatMessage('Project Settings')}>
+    <SettingsSection label={formatMessage('Railway Settings')}>
       <ProjectSettingsForm initialData={data}>
         <SettingsGrid>
-          <ProjectTokenField data={data} />
+          <AccessTokenField data={data} />
           <ProjectIdField data={data} />
         </SettingsGrid>
         <FormActions />

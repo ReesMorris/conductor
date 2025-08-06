@@ -74,11 +74,12 @@ model Verification {
 }
 
 model Railway {
-  id           String   @id @default("railway_config")
-  projectToken String
-  projectId    String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String   @id @default("railway_config")
+  accessToken   String   // Encrypted Railway Personal Access Token
+  projectId     String   // Railway project ID
+  environmentId String   // Railway environment ID for deployments
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   @@map("railway")
 }

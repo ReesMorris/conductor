@@ -9,6 +9,34 @@ export interface ValidateTokenResponse {
   };
 }
 
+export interface GetCurrentUserResponse {
+  me: {
+    id: string;
+    email: string;
+    name?: string;
+  };
+}
+
+export interface GetUserProjectsResponse {
+  projects: {
+    edges: Array<{
+      node: {
+        id: string;
+        name: string;
+        description?: string;
+        environments: {
+          edges: Array<{
+            node: {
+              id: string;
+              name: string;
+            };
+          }>;
+        };
+      };
+    }>;
+  };
+}
+
 export interface GetProjectResponse {
   project: {
     id: string;
@@ -16,21 +44,6 @@ export interface GetProjectResponse {
     description?: string;
     createdAt: string;
     updatedAt: string;
-  };
-}
-
-export interface DeployTemplateInput {
-  projectId: string;
-  environmentId?: string;
-  serviceId?: string;
-  templateCode: string;
-  services?: Record<string, unknown>;
-}
-
-export interface DeployTemplateResponse {
-  templateDeploy: {
-    projectId: string;
-    workflowId: string;
   };
 }
 

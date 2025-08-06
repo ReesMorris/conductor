@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 interface SchemaMessages {
-  invalidProjectToken: string;
+  invalidAccessToken: string;
 }
 
 /**
@@ -9,9 +9,9 @@ interface SchemaMessages {
  */
 export const projectSettingsSchema = (messages: SchemaMessages) =>
   z.object({
-    projectToken: z
+    accessToken: z
       .uuidv4({
-        message: messages.invalidProjectToken
+        message: messages.invalidAccessToken
       })
       .or(z.literal(''))
   });

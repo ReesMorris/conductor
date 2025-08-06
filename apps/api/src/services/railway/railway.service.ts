@@ -2,7 +2,6 @@ import { env } from '@/env';
 import { createLogger } from '@/libs';
 import { GraphQLClient } from 'graphql-request';
 import {
-  DEPLOY_TEMPLATE_MUTATION,
   GET_PROJECT_QUERY,
   GET_PROJECT_SERVICES_QUERY,
   GET_SERVICE_DEPLOYMENTS_QUERY,
@@ -10,12 +9,12 @@ import {
   VALIDATE_TOKEN_QUERY
 } from './railway.queries';
 import type {
-  DeployTemplateInput,
-  DeployTemplateResponse,
+  GetCurrentUserResponse,
   GetProjectResponse,
   GetProjectServicesResponse,
   GetServiceDeploymentsResponse,
   GetServiceResponse,
+  GetUserProjectsResponse,
   ValidateTokenResponse
 } from './railway.types';
 
@@ -27,12 +26,19 @@ const log = createLogger('RailwayService');
 export class RailwayService {
   private client: GraphQLClient;
 
-  constructor(projectToken: string) {
+  constructor(accessToken: string, isPersonalAccessToken = true) {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json'
+    };
+
+    if (isPersonalAccessToken) {
+      headers['Authorization'] = `Bearer ${accessToken}`;
+    } else {
+      headers['Project-Access-Token'] = accessToken;
+    }
+
     this.client = new GraphQLClient(env.RAILWAY_API_URL, {
-      headers: {
-        'Project-Access-Token': projectToken,
-        'Content-Type': 'application/json'
-      }
+      headers
     });
   }
 
@@ -51,6 +57,73 @@ export class RailwayService {
   }
 
   /**
+   * Get current authenticated user information
+   */
+  async getCurrentUser(): Promise<GetCurrentUserResponse> {
+    const query = `
+      query GetCurrentUser {
+        me {
+          id
+          email
+          name
+        }
+      }
+    `;
+
+    try {
+      const response = await this.client.request<GetCurrentUserResponse>(query);
+
+      if (!response.me) {
+        throw new Error('Unable to fetch user information');
+      }
+
+      return response;
+    } catch (error) {
+      log.error(error, 'Failed to get current user');
+      throw new Error('Failed to authenticate with Railway');
+    }
+  }
+
+  /**
+   * Get all projects for the authenticated user
+   */
+  async getUserProjects(limit = 50): Promise<GetUserProjectsResponse> {
+    const query = `
+      query GetUserProjects($first: Int!) {
+        projects(first: $first) {
+          edges {
+            node {
+              id
+              name
+              description
+              environments(first: 10) {
+                edges {
+                  node {
+                    id
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await this.client.request<GetUserProjectsResponse>(
+        query,
+        { first: limit }
+      );
+
+      return response;
+    } catch (error) {
+      log.error(error, 'Failed to get user projects');
+      throw new Error('Failed to fetch projects from Railway');
+    }
+  }
+
+  /**
    * Get project details
    */
   getProject(projectId: string): Promise<GetProjectResponse> {
@@ -60,13 +133,72 @@ export class RailwayService {
   }
 
   /**
-   * Deploy a template to a project
+   * Deploy a template using v2 mutation (for PATs)
    */
-  deployTemplate(input: DeployTemplateInput): Promise<DeployTemplateResponse> {
-    return this.client.request<DeployTemplateResponse>(
-      DEPLOY_TEMPLATE_MUTATION,
-      { input }
-    );
+  async deployTemplateV2(input: {
+    templateId: string;
+    serializedConfig: string;
+    projectId?: string;
+    environmentId?: string;
+    teamId?: string;
+  }): Promise<{ projectId: string; workflowId: string }> {
+    const mutation = `
+      mutation templateDeployV2($input: TemplateDeployV2Input!) {
+        templateDeployV2(input: $input) {
+          projectId
+          workflowId
+        }
+      }
+    `;
+
+    try {
+      const response = await this.client.request<{
+        templateDeployV2: { projectId: string; workflowId: string };
+      }>(mutation, { input });
+
+      return response.templateDeployV2;
+    } catch (error) {
+      log.error(error, 'Failed to deploy template');
+      throw error;
+    }
+  }
+
+  /**
+   * Get template details including serializedConfig
+   */
+  async getTemplate(code: string): Promise<{
+    id: string;
+    name: string;
+    serializedConfig: string;
+  }> {
+    const query = `
+      query GetTemplate($code: String!) {
+        template(code: $code) {
+          id
+          name
+          serializedConfig
+        }
+      }
+    `;
+
+    try {
+      const response = await this.client.request<{
+        template: {
+          id: string;
+          name: string;
+          serializedConfig: string;
+        };
+      }>(query, { code });
+
+      if (!response.template) {
+        throw new Error(`Template with code ${code} not found`);
+      }
+
+      return response.template;
+    } catch (error) {
+      log.error(error, 'Failed to get template');
+      throw error;
+    }
   }
 
   /**
@@ -112,8 +244,11 @@ export class RailwayService {
 }
 
 /**
- * Create a Railway service instance with a project token
+ * Create a Railway service instance with an access token
  */
-export const createRailwayService = (projectToken: string): RailwayService => {
-  return new RailwayService(projectToken);
+export const createRailwayService = (
+  accessToken: string,
+  isPersonalAccessToken = true
+): RailwayService => {
+  return new RailwayService(accessToken, isPersonalAccessToken);
 };

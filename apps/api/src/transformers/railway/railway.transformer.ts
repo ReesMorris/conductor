@@ -16,13 +16,13 @@ class RailwayTransformer
    * @returns The transformed Railway for API response
    */
   transform(data: RailwayInternal): RailwayResponse {
-    const { projectToken, ...rest } = data;
+    const { accessToken, ...rest } = data;
 
     // Get last 4 chars of decrypted token for display (if token exists)
     let lastChars: string | undefined;
-    if (projectToken) {
+    if (accessToken) {
       try {
-        const decryptedToken = decrypt(projectToken);
+        const decryptedToken = decrypt(accessToken);
         lastChars = decryptedToken.slice(-4);
       } catch {
         // If decryption fails, token might be corrupted
@@ -32,8 +32,7 @@ class RailwayTransformer
 
     return {
       ...rest,
-      projectTokenSet: Boolean(projectToken),
-      projectTokenLastChars: lastChars
+      accessTokenLastChars: lastChars || '****'
     };
   }
 

@@ -8,7 +8,6 @@ export type RailwayInternal = Railway;
 /**
  * Type for the API response user representation
  */
-export type RailwayResponse = Omit<RailwayInternal, 'projectToken'> & {
-  projectTokenSet: boolean;
-  projectTokenLastChars?: string;
+export type RailwayResponse = Omit<RailwayInternal, 'accessToken'> & {
+  accessTokenLastChars: string;
 };

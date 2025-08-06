@@ -30,18 +30,6 @@ export const GET_PROJECT_QUERY = `
 `;
 
 /**
- * Deploy a template to a project
- */
-export const DEPLOY_TEMPLATE_MUTATION = `
-  mutation DeployTemplate($input: TemplateDeployInput!) {
-    templateDeploy(input: $input) {
-      projectId
-      workflowId
-    }
-  }
-`;
-
-/**
  * Get service details including URLs
  */
 export const GET_SERVICE_QUERY = `
