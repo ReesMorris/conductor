@@ -49,7 +49,7 @@
   ],
   "versionGroups": [
     {
-      "dependencies": ["@ubiquity-frontend/*"],
+      "dependencies": ["@conductor/*"],
       "isIgnored": true
     }
   ]

@@ -1,6 +1,5 @@
 {
   "name": "@conductor/proxy",
-  "version": "0.1.0",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
@@ -12,7 +11,7 @@
     "start": "bun dist/index.js"
   },
   "dependencies": {
-    "@conductor/database": "0.1.0",
+    "@conductor/database": "workspace:*",
     "@t3-oss/env-core": "^0.13.8",
     "dotenv": "^17.2.1",
     "zod": "^4.0.15"

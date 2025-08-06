@@ -1,6 +1,5 @@
 {
   "name": "@conductor/api",
-  "version": "0.1.0",
   "private": true,
   "main": "./dist/index.js",
   "types": "./dist/types.d.ts",
