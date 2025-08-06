@@ -7,7 +7,9 @@ import type { AuthClientConfig } from './auth.types';
  * @param config - The configuration for the auth client instance
  * @returns The configured auth client instance
  */
-export const createAuthClient = (config: AuthClientConfig) => {
+export const createAuthClient = (
+  config: AuthClientConfig
+): ReturnType<typeof create> => {
   return create({
     ...config,
     plugins: [adminClient()]

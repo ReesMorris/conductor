@@ -1,6 +1,7 @@
 import type {
   Session as PrismaSession,
-  User as PrismaUser
+  User as PrismaUser,
+  UserRole
 } from '@conductor/database';
 import type z from 'zod';
 import type { createAuth } from './auth';
@@ -31,5 +32,17 @@ export type AuthClientConfig = z.infer<typeof authClientConfigSchema>;
  */
 export type AuthClient = ReturnType<typeof createAuthClient>;
 
+/**
+ * Session type with admin plugin fields
+ * Note: PrismaSession already has impersonatedBy as string | null
+ */
 export interface Session extends PrismaSession {}
+
+/**
+ * User type - all admin plugin fields are already in PrismaUser
+ * (role, banned, banReason, banExpires are defined in schema.prisma)
+ */
 export interface User extends PrismaUser {}
+
+// Export the UserRole enum for use in components
+export type { UserRole };

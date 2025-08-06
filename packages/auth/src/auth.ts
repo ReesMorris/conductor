@@ -10,7 +10,9 @@ import { makeFirstUserAdmin } from './hooks';
  * @param config - The configuration for the auth instance
  * @returns The configured auth instance
  */
-export const createAuth = (config: AuthConfig) => {
+export const createAuth = (
+  config: AuthConfig
+): ReturnType<typeof betterAuth> => {
   return betterAuth({
     database: prismaAdapter(prisma, {
       provider: 'postgresql'
