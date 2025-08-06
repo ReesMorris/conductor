@@ -1,6 +1,7 @@
 import { prisma } from '@/libs';
 import { railwayTransformer } from '@/transformers/railway';
 import { adminProcedure } from '@/trpc/procedures';
+import { encrypt } from '@/utils/encryption';
 import { z } from 'zod';
 
 /**
@@ -19,6 +20,11 @@ export const updateRailwayConfig = adminProcedure
       throw new Error('No fields to update');
     }
 
+    // Prepare data with encryption
+    const dataToSave = {
+      ...(input.projectToken && { projectToken: encrypt(input.projectToken) })
+    };
+
     // Upsert the Railway configuration
     const railwayConfig = await prisma.railway.upsert({
       where: {
@@ -27,11 +33,11 @@ export const updateRailwayConfig = adminProcedure
       create: {
         id: 'railway_config',
         projectToken: '',
-        ...input
+        ...dataToSave
       },
-      update: input
+      update: dataToSave
     });
 
-    // Return transformed data
+    // Return transformed data (token will be masked)
     return railwayTransformer.transform(railwayConfig);
   });

@@ -21,6 +21,10 @@ export const env = createEnv({
       .default(false)
       .describe('Enable or disable request logging'),
     DATABASE_URL: z.url().describe('Database connection URL'),
+    ENCRYPTION_KEY: z
+      .string()
+      .min(64)
+      .describe('Key used for encrypting sensitive data'),
     BETTER_AUTH_SECRET: z
       .string()
       .min(32)

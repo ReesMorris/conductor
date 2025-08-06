@@ -1,3 +1,4 @@
+import { decrypt } from '@/utils/encryption';
 import type { BaseTransformer } from '../base';
 import type { RailwayInternal, RailwayResponse } from './railway.types';
 
@@ -15,13 +16,24 @@ class RailwayTransformer
    * @returns The transformed Railway for API response
    */
   transform(data: RailwayInternal): RailwayResponse {
-    // biome-ignore lint/correctness/noUnusedVariables: We need to exclude projectToken from the response
     const { projectToken, ...rest } = data;
+
+    // Get last 4 chars of decrypted token for display (if token exists)
+    let lastChars: string | undefined;
+    if (projectToken) {
+      try {
+        const decryptedToken = decrypt(projectToken);
+        lastChars = decryptedToken.slice(-4);
+      } catch {
+        // If decryption fails, token might be corrupted
+        lastChars = undefined;
+      }
+    }
 
     return {
       ...rest,
-      projectTokenSet: Boolean(data.projectToken),
-      projectTokenLastChars: data.projectToken?.slice(-4)
+      projectTokenSet: Boolean(projectToken),
+      projectTokenLastChars: lastChars
     };
   }
 

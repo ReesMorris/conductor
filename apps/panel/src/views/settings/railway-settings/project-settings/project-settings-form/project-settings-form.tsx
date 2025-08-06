@@ -21,10 +21,14 @@ export const ProjectSettingsForm: React.FC<ProjectSettingsFormProps> = ({
   const { formatMessage } = useFormatMessage();
   const formRef = useRef<FormRef<ProjectSettingsFormData>>(null);
   const toast = useToast();
+  const utils = trpc.useUtils();
 
   // Mutation to update the Railway project settings
   const updateRailwayMutation = trpc.railway.updateConfig.useMutation({
-    onSuccess: () => {
+    onSuccess: data => {
+      // Update the cached data with the new configuration
+      utils.railway.getConfig.setData(undefined, data);
+
       // Notify the user of the successful update
       toast.success(formatMessage('Settings updated successfully'));
 
