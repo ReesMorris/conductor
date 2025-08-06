@@ -8,6 +8,7 @@
   "scripts": {
     "build": "turbo build",
     "check": "turbo check",
+    "db:generate": "turbo db:generate",
     "db:migrate": "turbo db:migrate",
     "db:push": "turbo db:push",
     "db:studio": "turbo db:studio",
@@ -15,6 +16,7 @@
     "dev:apps": "turbo dev",
     "dev:down": "docker compose down",
     "dev:services": "docker compose up -d",
+    "postinstall": "turbo db:generate",
     "prepare": "husky",
     "start": "turbo start",
     "syncpack:fix": "syncpack fix",

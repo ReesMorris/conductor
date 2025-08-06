@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../generated/client';
 
 /**
  * A global object used to store a singleton instance of `PrismaClient` on the global scope.
