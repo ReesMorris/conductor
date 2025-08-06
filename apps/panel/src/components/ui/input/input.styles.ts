@@ -16,6 +16,10 @@ export const styles = {
     backgroundColor: 'glass.medium',
     backdropFilter: 'auto',
     backdropBlur: 'sm',
+    outlineOffset: '0',
+    outlineWidth: '1',
+    outlineStyle: 'solid',
+    outlineColor: 'transparent',
     transitionProperty: 'border, outline, background',
     transitionDuration: 'normal',
     transitionTimingFunction: 'in-out',
@@ -25,9 +29,6 @@ export const styles = {
     },
 
     _focus: {
-      outlineOffset: '0',
-      outlineWidth: '1',
-      outlineStyle: 'solid',
       outlineColor: 'glass.dark',
       borderColor: 'glass.dark',
       backgroundColor: 'glass.medium'
