@@ -7,9 +7,9 @@
     "check": "biome check --write . && tsc --noEmit",
     "clean": "rm -rf .next",
     "codegen": "panda codegen",
-    "dev": "yarn clean && yarn codegen && next dev",
+    "dev": "bun run clean && bun run codegen && next dev",
     "i18n:extract": "tsx scripts/extract-messages.ts",
-    "prepare": "yarn codegen",
+    "prepare": "bun run codegen",
     "start": "next start"
   },
   "dependencies": {

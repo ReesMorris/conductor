@@ -1,3 +1,3 @@
-yarn lint-staged
-yarn syncpack fix
-yarn syncpack format
+bun run lint-staged
+bun run syncpack:fix
+bun run syncpack:format
