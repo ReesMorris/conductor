@@ -23,8 +23,3 @@ const t = initTRPC.context<TRPCContext>().create({
  */
 export const router = t.router;
 export const procedure = t.procedure;
-
-/**
- * Create caller factory for server-side procedure calls
- */
-export const createCallerFactory = t.createCallerFactory;

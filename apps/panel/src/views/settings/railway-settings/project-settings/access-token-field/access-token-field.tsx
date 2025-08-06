@@ -15,7 +15,7 @@ export const AccessTokenField: React.FC<AccessTokenFieldProps> = ({ data }) => {
       label={formatMessage('Personal Access Token')}
       errorMessage={formState.errors.accessToken?.message?.toString()}
       helpText={formatMessage(
-        'Enter a new token to replace the existing one. Your token is encrypted and stored securely.'
+        'Enter a new token to replace the existing one. Your token is encrypted and stored securely in your own database.'
       )}
     >
       <Input

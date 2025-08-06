@@ -50,6 +50,7 @@ export const styles = {
     paddingBlockStart: '0.5',
     color: 'foreground/80',
     textStyle: 'sm',
-    lineHeight: 'relaxed'
+    lineHeight: 'relaxed',
+    marginBlockEnd: '4'
   })
 };

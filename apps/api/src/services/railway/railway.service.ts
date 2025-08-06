@@ -32,7 +32,7 @@ export class RailwayService {
     };
 
     if (isPersonalAccessToken) {
-      headers['Authorization'] = `Bearer ${accessToken}`;
+      headers.Authorization = `Bearer ${accessToken}`;
     } else {
       headers['Project-Access-Token'] = accessToken;
     }

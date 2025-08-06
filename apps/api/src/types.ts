@@ -4,5 +4,9 @@
  */
 
 export type { Auth, Session } from '@conductor/auth';
-export type { RailwayResponse, UserResponse } from './transformers';
+export type {
+  OnboardingResponse,
+  RailwayResponse,
+  UserResponse
+} from './transformers';
 export type { AppRouter } from './trpc/app-router';

@@ -1,22 +1,16 @@
 import { env } from '@/env';
 import { createFetch } from '@better-fetch/fetch';
+import type { OnboardingResponse } from '@conductor/api';
 import urlJoin from 'url-join';
-
-/**
- * Setup status response from the API
- */
-interface SetupStatus {
-  isComplete: boolean;
-  hasUsers: boolean;
-  hasRailwayConfig: boolean;
-}
 
 /**
  * tRPC response format
  */
 interface TRPCResponse<T> {
   result: {
-    data: T;
+    data: {
+      json: T;
+    };
   };
 }
 
@@ -28,23 +22,24 @@ const $fetch = createFetch({ baseURL: env.API_URL });
 /**
  * Check the system setup status from the API
  */
-export const checkSetupStatus = async (): Promise<SetupStatus | null> => {
-  try {
-    // Call the tRPC endpoint using better-fetch
-    const { data, error } = await $fetch<TRPCResponse<SetupStatus>>(
-      urlJoin('/trpc', 'system.getSetupStatus'),
-      { method: 'GET' }
-    );
+export const checkSetupStatus =
+  async (): Promise<OnboardingResponse | null> => {
+    try {
+      // Call the tRPC endpoint using better-fetch
+      const { data, error } = await $fetch<TRPCResponse<OnboardingResponse>>(
+        urlJoin('/trpc', 'onboarding.getOnboardingStatus'),
+        { method: 'GET' }
+      );
 
-    if (error) {
-      console.error('Failed to check setup status:', error);
+      if (error) {
+        console.error('Failed to check setup status:', error);
+        return null;
+      }
+
+      // Return the onboarding status from the response
+      return data?.result?.data.json;
+    } catch (error) {
+      console.error('Error checking setup status:', error);
       return null;
     }
-
-    // tRPC response format includes result.data
-    return data?.result?.data || null;
-  } catch (error) {
-    console.error('Error checking setup status:', error);
-    return null;
-  }
-};
+  };
