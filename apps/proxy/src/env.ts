@@ -17,8 +17,8 @@ export const env = createEnv({
       .default('development'),
     RAILWAY_ENVIRONMENT: z.string().optional(),
 
-    // Future: Database connection (when we add routing)
-    DATABASE_URL: z.url().optional(),
+    // Database connection for routing configuration
+    DATABASE_URL: z.url(),
 
     // Monitoring & Logging
     LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),

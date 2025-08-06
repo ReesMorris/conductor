@@ -1,90 +1,42 @@
-import { connect, createServer } from 'node:net';
-import { env } from './env';
+import { ProxyRouter } from './router';
 
-// Use type-safe environment configuration
-const PROXY_PORT = env.PROXY_PORT;
-const PROXY_HOST = env.PROXY_HOST;
-const TARGET_HOST = env.TARGET_HOST;
-const TARGET_PORT = env.TARGET_PORT;
+const router = new ProxyRouter();
 
-console.log('Starting TCP Proxy...');
-console.log('Configuration:');
-console.log(`  Proxy: ${PROXY_HOST}:${PROXY_PORT}`);
-console.log(`  Target: ${TARGET_HOST}:${TARGET_PORT}`);
+async function main() {
+  console.log('Starting Conductor Proxy Service...');
 
-// Create the proxy server
-const server = createServer(clientSocket => {
-  const clientAddress = `${clientSocket.remoteAddress}:${clientSocket.remotePort}`;
-  console.log(
-    `[${new Date().toISOString()}] New connection from ${clientAddress}`
-  );
+  try {
+    await router.start();
+    console.log('Proxy service is running');
+  } catch (error) {
+    console.error('Failed to start proxy service:', error);
+    process.exit(1);
+  }
+}
 
-  // Connect to the target server
-  const targetSocket = connect(TARGET_PORT, TARGET_HOST, () => {
-    console.log(
-      `[${new Date().toISOString()}] Connected to target ${TARGET_HOST}:${TARGET_PORT}`
-    );
-  });
-
-  // Pipe data between client and target
-  clientSocket.pipe(targetSocket);
-  targetSocket.pipe(clientSocket);
-
-  // Handle client disconnect
-  clientSocket.on('end', () => {
-    console.log(
-      `[${new Date().toISOString()}] Client ${clientAddress} disconnected`
-    );
-    targetSocket.end();
-  });
-
-  // Handle target disconnect
-  targetSocket.on('end', () => {
-    console.log(
-      `[${new Date().toISOString()}] Target disconnected for client ${clientAddress}`
-    );
-    clientSocket.end();
-  });
-
-  // Handle errors
-  clientSocket.on('error', err => {
-    console.error(
-      `[${new Date().toISOString()}] Client error for ${clientAddress}:`,
-      err.message
-    );
-    targetSocket.destroy();
-  });
-
-  targetSocket.on('error', err => {
-    console.error(
-      `[${new Date().toISOString()}] Target error for ${clientAddress}:`,
-      err.message
-    );
-    clientSocket.destroy();
-  });
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('Received SIGTERM, shutting down gracefully...');
+  await router.stop();
+  process.exit(0);
 });
 
-// Start listening
-server.listen(PROXY_PORT, PROXY_HOST, () => {
-  console.log(
-    `[${new Date().toISOString()}] TCP Proxy listening on ${PROXY_HOST}:${PROXY_PORT}`
-  );
-  console.log(
-    `[${new Date().toISOString()}] Forwarding all connections to ${TARGET_HOST}:${TARGET_PORT}`
-  );
+process.on('SIGINT', async () => {
+  console.log('Received SIGINT, shutting down gracefully...');
+  await router.stop();
+  process.exit(0);
 });
 
-// Handle server errors
-server.on('error', err => {
-  console.error('Proxy server error:', err);
+// Handle uncaught errors
+process.on('uncaughtException', error => {
+  console.error('Uncaught exception:', error);
   process.exit(1);
 });
 
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM, shutting down gracefully...');
-  server.close(() => {
-    console.log('Proxy server closed');
-    process.exit(0);
-  });
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled rejection at:', promise, 'reason:', reason);
+  process.exit(1);
 });
+
+// Start the service
+main().catch(console.error);

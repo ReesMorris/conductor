@@ -75,14 +75,55 @@ model Verification {
 
 model Railway {
   id          String   @id @default("railway_config")
-  accessToken String   // Encrypted Railway Personal Access Token
+  accessToken String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@map("railway")
 }
 
+model Game {
+  id          String   @id @default(cuid())
+  displayName String
+  defaultPort Int
+  protocol    Protocol
+
+  servers GameServer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("games")
+}
+
+model GameServer {
+  id   String @id @default(cuid())
+  name String
+
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String
+
+  proxyPort  Int    @unique
+  targetHost String
+
+  railwayServiceId String?
+
+  enabled Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("game_servers")
+}
+
 enum UserRole {
   user
   admin
+}
+
+enum Protocol {
+  TCP
+  UDP
+
+  @@map("protocol")
 }
