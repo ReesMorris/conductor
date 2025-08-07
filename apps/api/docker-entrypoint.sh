@@ -20,6 +20,17 @@ else
   exit 1
 fi
 
+# Seed database
+echo "Seeding database..."
+cd /app/packages/database && bun run seed
+
+if [ $? -eq 0 ]; then
+  echo "Database seeded successfully"
+else
+  echo "Database seeding failed"
+  exit 1
+fi
+
 # Start the API server
 echo "Starting API server..."
 exec bun run /app/dist/index.js

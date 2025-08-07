@@ -85,10 +85,11 @@ model Railway {
 }
 
 model Game {
-  id          String   @id @default(cuid())
-  displayName String
-  defaultPort Int
-  protocol    Protocol
+  id                String   @id @default(cuid())
+  displayName       String
+  defaultPort       Int
+  protocol          Protocol
+  railwayTemplateId String
 
   servers GameServer[]
 
