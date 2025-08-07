@@ -11,7 +11,7 @@
     },
     "db:generate": {
       "inputs": ["packages/database/prisma/schema.prisma"],
-      "outputs": ["packages/database/generated/**"]
+      "outputs": ["generated/**"]
     },
     "db:migrate": {
       "cache": false

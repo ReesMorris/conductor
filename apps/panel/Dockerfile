@@ -20,6 +20,9 @@ RUN bunx turbo prune @conductor/panel --docker
 FROM oven/bun:1.2 AS builder
 WORKDIR /app
 
+# Install OpenSSL for Prisma
+RUN apt-get update -y && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 # Accept build arguments
 ARG TURBO_TEAM
 
