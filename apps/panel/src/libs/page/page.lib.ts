@@ -1,4 +1,4 @@
-import { LOCALES, type Locale } from '@/constants';
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/constants';
 import { z } from 'zod';
 import type { PageProps, PageSchema, ValidatedPageProps } from './page.types';
 
@@ -25,7 +25,7 @@ export const page = <TSchema extends PageSchema>(
     const combinedSchema = z.object({
       params: schema.params.and(
         z.object({
-          locale: z.enum(LOCALES)
+          locale: z.enum(LOCALES).catch(DEFAULT_LOCALE)
         })
       ),
       searchParams: schema.searchParams
