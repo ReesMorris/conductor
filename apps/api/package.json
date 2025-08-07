@@ -16,8 +16,8 @@
     "start": "NODE_ENV=production bun run dist/index.js"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.859.0",
-    "@aws-sdk/s3-request-presigner": "^3.859.0",
+    "@aws-sdk/client-s3": "^3.862.0",
+    "@aws-sdk/s3-request-presigner": "^3.862.0",
     "@conductor/auth": "workspace:*",
     "@conductor/database": "workspace:*",
     "@hono/trpc-server": "^0.4.0",
