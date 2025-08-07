@@ -46,6 +46,9 @@ export const env = createEnv({
       .string()
       .min(32)
       .describe('Secret key for signing Better Auth tokens'),
+    FRONTEND_DOMAIN: z
+      .string()
+      .describe('Domain for the frontend application (for CORS and cookies)'),
     FRONTEND_URL: z.url().describe('Frontend URL for CORS configuration'),
 
     // S3-compatible storage (MinIO in dev, any S3 provider in production)

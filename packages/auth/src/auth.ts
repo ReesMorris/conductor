@@ -33,6 +33,12 @@ export const createAuth = (
         await new Promise(resolve => setTimeout(resolve, 100));
       }
     },
+    advanced: {
+      crossSubDomainCookies: {
+        enabled: true,
+        domain: config.frontendDomain
+      }
+    },
     databaseHooks: {
       user: {
         create: {

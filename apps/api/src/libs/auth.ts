@@ -8,6 +8,7 @@ import { createAuth } from '@conductor/auth';
 export const auth = createAuth({
   betterAuthUrl: env.BETTER_AUTH_URL,
   betterAuthSecret: env.BETTER_AUTH_SECRET,
+  frontendDomain: env.FRONTEND_DOMAIN,
   frontendUrl: env.FRONTEND_URL
 }) as Auth;
 
