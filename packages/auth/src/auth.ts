@@ -4,6 +4,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin } from 'better-auth/plugins';
 import type { AuthConfig } from './auth.types';
 import { makeFirstUserAdmin } from './hooks';
+import { getCookieDomain } from './utils';
 
 /**
  * Create a configured auth instance
@@ -20,7 +21,7 @@ export const createAuth = (
     baseURL: config.betterAuthUrl,
     basePath: '/auth',
     secret: config.betterAuthSecret,
-    trustedOrigins: [config.frontendUrl],
+    trustedOrigins: [config.frontendDomain],
     emailAndPassword: {
       enabled: true,
       sendResetPassword: async ({ user, url, token }) => {
@@ -34,14 +35,9 @@ export const createAuth = (
       }
     },
     advanced: {
-      defaultCookieAttributes: {
-        sameSite: 'none', // Required for cross-origin cookies
-        secure: true,
-        partitioned: true // New browser standards will mandate this for foreign cookies
-      },
       crossSubDomainCookies: {
         enabled: true,
-        domain: config.frontendDomain
+        domain: getCookieDomain(config.frontendUrl)
       }
     },
     databaseHooks: {

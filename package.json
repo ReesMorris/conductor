@@ -8,6 +8,8 @@
   ],
   "scripts": {
     "build": "turbo build",
+    "build:apps": "turbo build --filter='./apps/*'",
+    "build:packages": "turbo build --filter='./packages/*'",
     "check": "turbo check",
     "db:generate": "turbo db:generate",
     "db:migrate": "turbo db:migrate",
