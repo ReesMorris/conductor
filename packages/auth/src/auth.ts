@@ -34,6 +34,11 @@ export const createAuth = (
       }
     },
     advanced: {
+      defaultCookieAttributes: {
+        sameSite: 'none', // Required for cross-origin cookies
+        secure: true,
+        partitioned: true // New browser standards will mandate this for foreign cookies
+      },
       crossSubDomainCookies: {
         enabled: true,
         domain: config.frontendDomain
