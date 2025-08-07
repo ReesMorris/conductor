@@ -21,7 +21,7 @@ export const createAuth = (
     baseURL: config.betterAuthUrl,
     basePath: '/auth',
     secret: config.betterAuthSecret,
-    trustedOrigins: [config.frontendDomain],
+    trustedOrigins: [config.frontendUrl],
     emailAndPassword: {
       enabled: true,
       sendResetPassword: async ({ user, url, token }) => {
