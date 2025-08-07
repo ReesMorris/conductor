@@ -1,12 +1,28 @@
-import { RadioCard } from '@/components/ui';
+import { Alert, RadioCard } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
+import { trpc } from '@/providers/trpc';
+import { GhostIcon } from 'lucide-react';
 import { Controller, useFormContext } from 'react-hook-form';
 import type { AddServerFormData } from '../add-server-form';
+import { GameTypeSelectSkeleton } from './game-type-select.skeleton';
 import { styles } from './game-type-select.styles';
 
 export const GameTypeSelect: React.FC = () => {
   const { formatMessage } = useFormatMessage();
   const { control } = useFormContext<AddServerFormData>();
+
+  const { data } = trpc.games.list.useQuery();
+  if (!data) {
+    return <GameTypeSelectSkeleton />;
+  }
+
+  if (data.length === 0) {
+    return (
+      <Alert color='error' icon={<GhostIcon />}>
+        {formatMessage('There are no games; did the database migrate?')}
+      </Alert>
+    );
+  }
 
   return (
     <Controller
@@ -19,25 +35,11 @@ export const GameTypeSelect: React.FC = () => {
           aria-label={formatMessage('Select a game type')}
           className={styles.grid}
         >
-          <RadioCard.Item value='minecraft'>
-            {formatMessage('Minecraft')}
-          </RadioCard.Item>
-          <RadioCard.Item value='valheim'>
-            {formatMessage('Valheim')}
-          </RadioCard.Item>
-          <RadioCard.Item value='ark'>
-            {formatMessage('ARK: Survival Evolved')}
-          </RadioCard.Item>
-          <RadioCard.Item value='factorio'>
-            {formatMessage('Factorio')}
-          </RadioCard.Item>
-          <RadioCard.Item value='unturned'>
-            {formatMessage('Unturned')}
-          </RadioCard.Item>
-          <RadioCard.Item value='rust'>{formatMessage('Rust')}</RadioCard.Item>
-          <RadioCard.Item value='other'>
-            {formatMessage('Other')}
-          </RadioCard.Item>
+          {data?.map(game => (
+            <RadioCard.Item key={game.id} value={game.id}>
+              {game.displayName}
+            </RadioCard.Item>
+          ))}
         </RadioCard.Root>
       )}
     />
