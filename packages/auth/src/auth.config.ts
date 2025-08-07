@@ -7,7 +7,8 @@ export const authConfigSchema = z.object({
   betterAuthUrl: z.url(),
   betterAuthSecret: z.string().min(32),
   frontendDomain: z.string(),
-  frontendUrl: z.url()
+  frontendUrl: z.url(),
+  crossSubDomainCookies: z.boolean().default(true)
 });
 
 /**

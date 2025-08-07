@@ -36,7 +36,7 @@ export const createAuth = (
     },
     advanced: {
       crossSubDomainCookies: {
-        enabled: true,
+        enabled: config.crossSubDomainCookies,
         domain: getCookieDomain(config.frontendUrl)
       }
     },
