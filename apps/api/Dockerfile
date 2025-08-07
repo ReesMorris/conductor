@@ -68,6 +68,8 @@ RUN bun add prisma@^6.13.0 --no-save --ignore-scripts
 COPY --from=builder --chown=nonroot:nonroot /app/apps/api/dist /app/dist
 COPY --from=builder --chown=nonroot:nonroot /app/packages/database/generated /app/packages/database/generated
 COPY --from=builder --chown=nonroot:nonroot /app/packages/database/prisma /app/packages/database/prisma
+COPY --from=builder --chown=nonroot:nonroot /app/packages/database/src/seeds /app/packages/database/src/seeds
+COPY --from=builder --chown=nonroot:nonroot /app/packages/database/prisma.config.ts /app/packages/database/prisma.config.ts
 
 # Copy and prepare entrypoint script
 COPY ./apps/api/docker-entrypoint.sh /app/docker-entrypoint.sh

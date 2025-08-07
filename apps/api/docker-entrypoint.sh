@@ -22,7 +22,7 @@ fi
 
 # Seed database
 echo "Seeding database..."
-cd /app/packages/database && bunx tsx prisma/seed.ts
+cd /app/packages/database/prisma && bun run seed.ts
 
 if [ $? -eq 0 ]; then
   echo "Database seeded successfully"
