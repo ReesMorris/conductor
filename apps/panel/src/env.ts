@@ -13,16 +13,28 @@ import { THEME_NAMES } from './constants';
  */
 export const env = createEnv({
   server: {
+    // URLs
     FRONTEND_URL: z.url(),
     API_URL: z.url(),
+
+    // Theming
     DEFAULT_THEME: z.enum(THEME_NAMES).default('dark'),
-    TIMEZONE: z.string().default('Europe/London')
+
+    // Internationalization
+    TIMEZONE: z.string().default('Europe/London'),
+
+    // Logging
+    LOG_LEVEL: z
+      .enum(['trace', 'debug', 'info', 'warn', 'error', 'fatal'])
+      .default('info')
+      .describe('The logging level for the application')
   },
   runtimeEnv: {
     FRONTEND_URL: process.env.FRONTEND_URL,
     API_URL: process.env.API_URL,
     DEFAULT_THEME: process.env.DEFAULT_THEME,
-    TIMEZONE: process.env.TIMEZONE
+    TIMEZONE: process.env.TIMEZONE,
+    LOG_LEVEL: process.env.LOG_LEVEL
   },
   skipValidation: process.env.NEXT_PHASE === 'phase-production-build',
   emptyStringAsUndefined: true

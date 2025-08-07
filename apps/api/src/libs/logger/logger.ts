@@ -15,7 +15,7 @@ const isDevelopment = env.NODE_ENV === 'development';
  * @see https://getpino.io/
  */
 export const logger = pino({
-  level: env.LOG_LEVEL || 'info',
+  level: env.LOG_LEVEL,
   transport: isDevelopment
     ? {
         target: 'pino-pretty',

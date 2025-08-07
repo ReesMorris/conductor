@@ -2,11 +2,11 @@
   "name": "@conductor/panel",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build --turbo",
     "check": "biome check --write . && tsc --noEmit",
     "clean": "rm -rf .next",
     "codegen": "panda codegen",
-    "dev": "bun run clean && bun run codegen && next dev",
+    "dev": "bun run clean && bun run codegen && next dev --turbo",
     "i18n:extract": "tsx scripts/extract-messages.ts",
     "prepare": "bun run codegen",
     "start": "next start"
@@ -25,6 +25,8 @@
     "next": "15.4.5",
     "next-intl": "^4.3.4",
     "next-themes": "^0.4.6",
+    "pino": "^9.7.0",
+    "pino-pretty": "^13.1.1",
     "radix-ui": "^1.4.2",
     "react": "19.1.1",
     "react-dom": "19.1.1",

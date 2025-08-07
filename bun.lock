@@ -16,7 +16,6 @@
     },
     "apps/api": {
       "name": "@conductor/api",
-      "version": "0.1.0",
       "dependencies": {
         "@aws-sdk/client-s3": "^3.859.0",
         "@aws-sdk/s3-request-presigner": "^3.859.0",
@@ -44,7 +43,6 @@
     },
     "apps/panel": {
       "name": "@conductor/panel",
-      "version": "0.1.0",
       "dependencies": {
         "@better-fetch/fetch": "^1.1.18",
         "@conductor/api": "workspace:*",
@@ -59,6 +57,8 @@
         "next": "15.4.5",
         "next-intl": "^4.3.4",
         "next-themes": "^0.4.6",
+        "pino": "^9.6.1",
+        "pino-pretty": "^13.0.2",
         "radix-ui": "^1.4.2",
         "react": "19.1.1",
         "react-dom": "19.1.1",
@@ -86,7 +86,6 @@
     },
     "apps/proxy": {
       "name": "@conductor/proxy",
-      "version": "0.1.0",
       "dependencies": {
         "@conductor/database": "0.1.0",
         "@t3-oss/env-core": "^0.13.8",
@@ -101,7 +100,6 @@
     },
     "packages/auth": {
       "name": "@conductor/auth",
-      "version": "0.1.0",
       "dependencies": {
         "@conductor/database": "workspace:*",
         "@t3-oss/env-core": "^0.13.8",
@@ -116,7 +114,6 @@
     },
     "packages/database": {
       "name": "@conductor/database",
-      "version": "0.1.0",
       "dependencies": {
         "@prisma/client": "^6.13.0",
       },
