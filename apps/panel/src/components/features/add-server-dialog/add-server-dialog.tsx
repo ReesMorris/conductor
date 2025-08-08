@@ -42,21 +42,12 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
         <GameTypeSelect />
       </MultiStepModal.Step>
       <MultiStepModal.Step
-        title={formatMessage('Deploy the Server Template')}
+        title={formatMessage('Configure Your Server')}
         description={formatMessage(
-          'Follow these steps to deploy your server on Railway'
+          'Set up your server with the necessary configurations'
         )}
-        nextButtonLabel={formatMessage("I've deployed it")}
       >
         <DeployStep />
-      </MultiStepModal.Step>
-      <MultiStepModal.Step
-        title={formatMessage('Connect Your Server')}
-        description={formatMessage(
-          'Get your Railway internal address to establish the connection'
-        )}
-      >
-        wip
       </MultiStepModal.Step>
     </MultiStepModal.Root>
   );

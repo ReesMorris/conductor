@@ -106,17 +106,39 @@ model GameServer {
   game   Game   @relation(fields: [gameId], references: [id])
   gameId String
 
-  proxyPort  Int    @unique
-  targetHost String
-
   railwayServiceId String?
 
   enabled Boolean @default(true)
+
+  // Relations
+  connections GameServerConnection[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("game_servers")
+}
+
+model GameServerConnection {
+  id String @id @default(cuid())
+
+  serverId String
+  server   GameServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  domain    String? 
+  subdomain String? 
+  proxyPort Int   
+
+  name      String? 
+  enabled   Boolean @default(true)
+  isDefault Boolean @default(false) 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([domain, subdomain, proxyPort])
+  @@index([serverId])
+  @@map("game_server_connections")
 }
 
 enum UserRole {
