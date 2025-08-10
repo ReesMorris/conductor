@@ -4,7 +4,7 @@ export const styles = {
   overlay: css({
     position: 'fixed',
     inset: '0',
-    backgroundColor: 'black/60',
+    backgroundColor: 'glass.inverse',
     zIndex: 'overlay',
     backdropFilter: 'auto',
     backdropBlur: 'sm',

@@ -1,12 +1,7 @@
-import { Main } from '@/components/partials';
 import { page } from '@/libs/page';
-import { EmptyMessage } from './empty-message';
+import { Client } from './client';
 import { pageSchema } from './servers.schema';
 
 export const Page = page(pageSchema, () => {
-  return (
-    <Main>
-      <EmptyMessage />
-    </Main>
-  );
+  return <Client />;
 });

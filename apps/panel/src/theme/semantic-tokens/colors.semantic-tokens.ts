@@ -23,6 +23,9 @@ export const semanticColors = defineSemanticTokens.colors({
     },
     darker: {
       value: { _light: '{colors.black/13}', _dark: '{colors.white/25}' }
+    },
+    inverse: {
+      value: { _light: '{colors.white/1.1}', _dark: '{colors.black/20}' }
     }
   },
   primary: {
