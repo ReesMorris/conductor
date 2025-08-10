@@ -78,21 +78,20 @@ export const ServerCard: React.FC<ServerCardProps> = ({
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <div className={styles.icon} />
+        <div className={styles.serverIcon} />
         <div>
           <Heading unstyled level={2} className={styles.title}>
             {server.name}
           </Heading>
           <div className={styles.type}>{server.gameId}</div>
+          <div
+            className={styles.serverStatus}
+            data-status={isRunning ? 'running' : 'stopped'}
+          />
         </div>
       </div>
       <div className={styles.stats}>
-        <div data-placeholder>
-          Status: {isRunning ? 'Running' : 'Stopped'}
-          {server.connections?.[0] && (
-            <div>Port: {server.connections[0].proxyPort}</div>
-          )}
-        </div>
+        <div data-placeholder>Metrics will show here (coming soon)</div>
       </div>
       {server.connections?.[0]?.domain && (
         <CopyInput
@@ -105,7 +104,7 @@ export const ServerCard: React.FC<ServerCardProps> = ({
           aria-label={formatMessage('Delete <hidden>Server</hidden>', {
             hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
           })}
-          variant='outlined'
+          variant='destructive'
           disabled={isLoading}
           onClick={handleDelete}
         >
@@ -145,7 +144,7 @@ export const ServerCard: React.FC<ServerCardProps> = ({
           <RefreshCwIcon />
         </IconButton>
         <Button className={styles.manageButton} disabled>
-          {formatMessage('Manage')}
+          {formatMessage('Manage')} (Coming Soon)
         </Button>
       </div>
     </div>

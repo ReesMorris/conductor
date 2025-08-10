@@ -26,7 +26,7 @@ export const styles = {
     gap: '3',
     position: 'relative'
   }),
-  icon: css({
+  serverIcon: css({
     inlineSize: '10',
     blockSize: '10',
     backgroundColor: 'shadow',
@@ -34,6 +34,27 @@ export const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  }),
+  serverStatus: css({
+    position: 'absolute',
+    insetBlockStart: '0',
+    insetInlineEnd: '0',
+    inlineSize: '2',
+    blockSize: '2',
+    borderRadius: 'full',
+    transitionProperty: 'background-color',
+    transitionDuration: 'normal',
+    transitionTimingFunction: 'in-out',
+
+    '&[data-status="running"]': {
+      backgroundColor: 'green.900'
+    },
+    '&[data-status="stopped"]': {
+      backgroundColor: 'slate.900'
+    },
+    '&[data-status="pending"]': {
+      backgroundColor: 'yellow.900'
+    }
   }),
   title: css({
     color: 'foreground',
