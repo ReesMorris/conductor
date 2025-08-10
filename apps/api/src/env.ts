@@ -40,13 +40,6 @@ export const env = createEnv({
     RAILWAY_ENVIRONMENT_ID: z.string().describe('Railway environment ID'),
     RAILWAY_PROJECT_ID: z.string().describe('Railway project ID'),
 
-    // Proxy
-    PROXY_DOMAIN: z
-      .url()
-      .or(z.literal('localhost'))
-      .default('localhost')
-      .describe('Domain where the proxy service is hosted'),
-
     // Authentication
     BETTER_AUTH_URL: z.url().describe('Base URL for Better Auth'),
     BETTER_AUTH_SECRET: z

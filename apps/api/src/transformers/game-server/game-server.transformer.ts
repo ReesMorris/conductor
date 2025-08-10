@@ -1,4 +1,3 @@
-import { env } from '@/env';
 import type { BaseTransformer } from '../base';
 import type {
   GameServerInternal,
@@ -19,20 +18,9 @@ class GameServerTransformer
    * @returns The transformed Server for API response
    */
   transform(data: GameServerInternal): GameServerResponse {
-    // Build connection URL if we have connection info
-    let connectionUrl: string | undefined;
-    if ('connections' in data && data.connections?.[0]) {
-      const connection = data.connections[0];
-      if (connection.domain) {
-        connectionUrl = `${connection.domain}:${connection.proxyPort}`;
-      } else if (data.railwayUrl) {
-        connectionUrl = `${env.PROXY_DOMAIN}:${connection.proxyPort}`;
-      }
-    }
-
     return {
       ...data,
-      connectionUrl
+      connectionUrl: '// TODO: Generate connection URL'
     } as GameServerResponse;
   }
 

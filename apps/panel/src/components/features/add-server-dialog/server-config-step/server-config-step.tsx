@@ -1,6 +1,6 @@
 'use client';
 
-import { Field, Input, RadioCard } from '@/components/ui';
+import { Field, Input } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
 import { trpc } from '@/providers/trpc';
 import { useEffect } from 'react';
@@ -18,7 +18,6 @@ export const ServerConfigStep: React.FC = () => {
 
   // Watch form values
   const gameType = useWatch({ control, name: 'gameType' });
-  const connectionType = useWatch({ control, name: 'connectionType' });
 
   // Fetch game data to auto-fill server name and port
   const { data: games } = trpc.games.list.useQuery();
@@ -28,7 +27,6 @@ export const ServerConfigStep: React.FC = () => {
   useEffect(() => {
     if (selectedGame) {
       setValue('serverName', selectedGame.displayName);
-      setValue('proxyPort', selectedGame.defaultPort);
     }
   }, [selectedGame, setValue]);
 
@@ -51,61 +49,17 @@ export const ServerConfigStep: React.FC = () => {
       />
 
       <Controller
-        name='connectionType'
+        name='domain'
         control={control}
         render={({ field }) => (
-          <Field label={formatMessage('Connection Type')}>
-            <RadioCard.Root
-              value={field.value}
-              onValueChange={field.onChange}
-              className={styles.connectionTypeGrid}
-              aria-label={formatMessage('Connection type selection')}
-            >
-              <RadioCard.Item value='railway'>
-                {formatMessage('Railway URL')}
-              </RadioCard.Item>
-              <RadioCard.Item value='domain' disabled>
-                {formatMessage('Custom Domain (Coming Soon)')}
-              </RadioCard.Item>
-            </RadioCard.Root>
-          </Field>
-        )}
-      />
-
-      {connectionType === 'domain' && (
-        <Controller
-          name='domain'
-          control={control}
-          render={({ field }) => (
-            <Field
-              label={formatMessage('Domain')}
-              helpText={formatMessage(
-                'Your custom domain (e.g., mc.myserver.com)'
-              )}
-              errorMessage={errors.domain?.message}
-            >
-              <Input {...field} placeholder='mc.myserver.com' />
-            </Field>
-          )}
-        />
-      )}
-
-      <Controller
-        name='proxyPort'
-        control={control}
-        render={({ field: { onChange, ...field } }) => (
           <Field
-            label={formatMessage('Port')}
-            helpText={formatMessage('The port players will use to connect')}
-            errorMessage={errors.proxyPort?.message}
+            label={formatMessage('Domain (optional)')}
+            helpText={formatMessage(
+              'Leave empty to use a Railway-generated domain'
+            )}
+            errorMessage={errors.domain?.message}
           >
-            <Input
-              {...field}
-              type='number'
-              onChange={e => onChange(Number.parseInt(e.target.value, 10))}
-              min={1}
-              max={65535}
-            />
+            <Input {...field} placeholder='mc.myserver.com' />
           </Field>
         )}
       />

@@ -6,5 +6,5 @@ export interface MultiStepModalRootProps
    * Callback when flow is completed
    * Return false or throw to prevent closing the modal
    */
-  onComplete?: () => void | boolean | Promise<void | boolean>;
+  onComplete?: () => boolean | Promise<boolean>;
 }

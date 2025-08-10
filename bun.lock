@@ -84,20 +84,6 @@
         "typescript": "^5.9.2",
       },
     },
-    "apps/proxy": {
-      "name": "@conductor/proxy",
-      "dependencies": {
-        "@conductor/database": "0.1.0",
-        "@t3-oss/env-core": "^0.13.8",
-        "dotenv": "^17.2.1",
-        "zod": "^4.0.15",
-      },
-      "devDependencies": {
-        "@biomejs/biome": "^2.1.3",
-        "@types/node": "^24.2.0",
-        "typescript": "^5.9.2",
-      },
-    },
     "packages/auth": {
       "name": "@conductor/auth",
       "dependencies": {
@@ -258,8 +244,6 @@
     "@conductor/database": ["@conductor/database@workspace:packages/database"],
 
     "@conductor/panel": ["@conductor/panel@workspace:apps/panel"],
-
-    "@conductor/proxy": ["@conductor/proxy@workspace:apps/proxy"],
 
     "@csstools/postcss-cascade-layers": ["@csstools/postcss-cascade-layers@4.0.6", "", { "dependencies": { "@csstools/selector-specificity": "^3.1.1", "postcss-selector-parser": "^6.0.13" }, "peerDependencies": { "postcss": "^8.4" } }, "sha512-Xt00qGAQyqAODFiFEJNkTpSUz5VfYqnDLECdlA/Vv17nl/OIV5QfTRHGAXrBGG5YcJyHpJ+GF9gF/RZvOQz4oA=="],
 

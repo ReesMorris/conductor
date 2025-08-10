@@ -39,9 +39,8 @@ export const getServerStatus = protectedProcedure
       id: conn.id,
       name: conn.name || 'Default',
       domain: conn.domain,
-      proxyPort: conn.proxyPort,
       enabled: conn.enabled,
-      activeClients: 0 // Would come from proxy router in production
+      activeClients: 0
     }));
 
     return {

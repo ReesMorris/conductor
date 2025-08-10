@@ -132,7 +132,6 @@ model GameServerConnection {
   server   GameServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
   domain    String? 
-  proxyPort Int   
 
   name      String? 
   enabled   Boolean @default(true)
@@ -141,7 +140,7 @@ model GameServerConnection {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([domain, proxyPort])
+  @@unique([domain])
   @@index([serverId])
   @@map("game_server_connections")
 }

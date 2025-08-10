@@ -6,7 +6,7 @@ import type { StepMetadata } from './multi-step-modal.types';
 
 export const useMultiStepState = (
   children: React.ReactNode,
-  onComplete?: () => void | boolean | Promise<void | boolean>,
+  onComplete?: () => boolean | Promise<boolean>,
   onOpenChange?: (open: boolean) => void
 ) => {
   const [currentStep, setCurrentStep] = useState(0);
