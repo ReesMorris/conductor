@@ -1,1 +1,1 @@
-export { metadata, Page as default } from '@/views/home';
+export { metadata, Page as default } from '@/views/servers';
