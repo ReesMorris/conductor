@@ -6,7 +6,7 @@ import { EmptyMessage } from './empty-message';
 import { ServerList, ServerListSkeleton } from './server-list';
 
 export const Client = () => {
-  const { data } = trpc.servers.list.useQuery();
+  const { data, refetch } = trpc.servers.list.useQuery();
 
   return (
     <Main>
@@ -14,7 +14,7 @@ export const Client = () => {
         data.length === 0 ? (
           <EmptyMessage />
         ) : (
-          <ServerList servers={data} />
+          <ServerList servers={data} onRefresh={refetch} />
         )
       ) : (
         <ServerListSkeleton />

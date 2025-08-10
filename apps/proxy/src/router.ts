@@ -1,15 +1,21 @@
 import { connect, createServer, type Server, type Socket } from 'node:net';
-import type { Game, GameServer } from '@conductor/database';
+import type {
+  Game,
+  GameServer,
+  GameServerConnection
+} from '@conductor/database';
 import { PrismaClient } from '@conductor/database';
 
-type GameServerWithGame = GameServer & {
+type GameServerWithConnections = GameServer & {
   game: Game;
+  connections: GameServerConnection[];
 };
 
 export class ProxyRouter {
   private prisma: PrismaClient;
   private servers: Map<number, Server> = new Map();
   private activeConnections: Map<string, Set<Socket>> = new Map();
+  private portToConnectionKey: Map<number, string> = new Map();
 
   constructor() {
     this.prisma = new PrismaClient();
@@ -33,7 +39,7 @@ export class ProxyRouter {
     console.log('[ProxyRouter] Stopping...');
 
     // Close all proxy servers
-    for (const [port, server] of this.servers) {
+    for (const [port] of this.servers) {
       await this.stopProxyServer(port);
     }
 
@@ -45,27 +51,46 @@ export class ProxyRouter {
   private async loadGameServers() {
     const gameServers = await this.prisma.gameServer.findMany({
       where: { enabled: true },
-      include: { game: true }
+      include: {
+        game: true,
+        connections: {
+          where: { enabled: true }
+        }
+      }
     });
 
     console.log(
       `[ProxyRouter] Found ${gameServers.length} enabled game servers`
     );
 
-    // Start proxy for each game server
+    // Start proxy for each connection
     for (const gameServer of gameServers) {
-      await this.startProxyServer(gameServer);
+      for (const connection of gameServer.connections) {
+        await this.startProxyForConnection(gameServer, connection);
+      }
     }
   }
 
   private async reloadGameServers() {
     const gameServers = await this.prisma.gameServer.findMany({
       where: { enabled: true },
-      include: { game: true }
+      include: {
+        game: true,
+        connections: {
+          where: { enabled: true }
+        }
+      }
     });
 
     const currentPorts = new Set(this.servers.keys());
-    const desiredPorts = new Set(gameServers.map(gs => gs.proxyPort));
+    const desiredPorts = new Set<number>();
+
+    // Collect all desired ports
+    for (const gameServer of gameServers) {
+      for (const connection of gameServer.connections) {
+        desiredPorts.add(connection.proxyPort);
+      }
+    }
 
     // Stop servers that are no longer needed
     for (const port of currentPorts) {
@@ -79,15 +104,24 @@ export class ProxyRouter {
 
     // Start new servers
     for (const gameServer of gameServers) {
-      if (!currentPorts.has(gameServer.proxyPort)) {
-        await this.startProxyServer(gameServer);
+      for (const connection of gameServer.connections) {
+        if (!currentPorts.has(connection.proxyPort)) {
+          await this.startProxyForConnection(gameServer, connection);
+        }
       }
     }
   }
 
-  private async startProxyServer(gameServer: GameServerWithGame) {
-    const { proxyPort, targetHost, name, game } = gameServer;
+  private async startProxyForConnection(
+    gameServer: GameServerWithConnections,
+    connection: GameServerConnection
+  ) {
+    const { proxyPort, domain } = connection;
+    const { name, game, railwayUrl } = gameServer;
     const targetPort = game.defaultPort;
+
+    // Determine target host based on connection type
+    const targetHost = domain || railwayUrl || 'localhost';
 
     if (this.servers.has(proxyPort)) {
       console.log(`[ProxyRouter] Proxy already running on port ${proxyPort}`);
@@ -97,6 +131,7 @@ export class ProxyRouter {
     console.log(
       `[ProxyRouter] Starting proxy for "${name}" (${game.displayName})`
     );
+    console.log(`[ProxyRouter]   Connection: ${connection.name || 'default'}`);
     console.log(`[ProxyRouter]   Proxy Port: ${proxyPort}`);
     console.log(`[ProxyRouter]   Target: ${targetHost}:${targetPort}`);
     console.log(`[ProxyRouter]   Protocol: ${game.protocol}`);
@@ -108,10 +143,14 @@ export class ProxyRouter {
       );
 
       // Track connection
-      if (!this.activeConnections.has(gameServer.id)) {
-        this.activeConnections.set(gameServer.id, new Set());
+      const connectionKey = `${gameServer.id}:${connection.id}`;
+      if (!this.activeConnections.has(connectionKey)) {
+        this.activeConnections.set(connectionKey, new Set());
       }
-      this.activeConnections.get(gameServer.id)!.add(clientSocket);
+      const connectionSet = this.activeConnections.get(connectionKey);
+      if (connectionSet) {
+        connectionSet.add(clientSocket);
+      }
 
       // Connect to target server
       const targetSocket = connect(targetPort, targetHost, () => {
@@ -126,7 +165,7 @@ export class ProxyRouter {
 
       // Handle disconnections
       const cleanup = () => {
-        this.activeConnections.get(gameServer.id)?.delete(clientSocket);
+        this.activeConnections.get(connectionKey)?.delete(clientSocket);
         clientSocket.destroy();
         targetSocket.destroy();
       };
@@ -179,6 +218,11 @@ export class ProxyRouter {
     });
 
     this.servers.set(proxyPort, server);
+    // Track which connection key is associated with this port
+    this.portToConnectionKey.set(
+      proxyPort,
+      `${gameServer.id}:${connection.id}`
+    );
   }
 
   private async stopProxyServer(port: number) {
@@ -196,10 +240,25 @@ export class ProxyRouter {
     });
 
     this.servers.delete(port);
+    this.portToConnectionKey.delete(port);
   }
 
-  getActiveConnections(gameServerId: string): number {
-    return this.activeConnections.get(gameServerId)?.size || 0;
+  getActiveConnections(gameServerId: string, connectionId?: string): number {
+    const key = connectionId ? `${gameServerId}:${connectionId}` : gameServerId;
+
+    // If looking for specific connection
+    if (connectionId) {
+      return this.activeConnections.get(key)?.size || 0;
+    }
+
+    // Count all connections for the game server
+    let total = 0;
+    for (const [connKey, sockets] of this.activeConnections) {
+      if (connKey.startsWith(gameServerId)) {
+        total += sockets.size;
+      }
+    }
+    return total;
   }
 
   getAllActiveConnections(): Map<string, number> {
@@ -207,6 +266,18 @@ export class ProxyRouter {
     for (const [id, sockets] of this.activeConnections) {
       result.set(id, sockets.size);
     }
+    return result;
+  }
+
+  getConnectionsByPort(): Map<number, number> {
+    const result = new Map<number, number>();
+
+    // Count connections for each port using the mapping
+    for (const [port, connectionKey] of this.portToConnectionKey) {
+      const sockets = this.activeConnections.get(connectionKey);
+      result.set(port, sockets?.size || 0);
+    }
+
     return result;
   }
 }

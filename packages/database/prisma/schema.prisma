@@ -24,6 +24,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  gameServers   GameServer[]
 
   @@unique([email])
   @@map("user")
@@ -106,7 +107,12 @@ model GameServer {
   game   Game   @relation(fields: [gameId], references: [id])
   gameId String
 
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
   railwayServiceId String?
+  railwayProjectId String?
+  railwayUrl       String?
 
   enabled Boolean @default(true)
 

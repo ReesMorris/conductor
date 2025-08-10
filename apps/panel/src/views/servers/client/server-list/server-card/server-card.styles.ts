@@ -2,6 +2,7 @@ import { css } from '@/styled-system/css';
 
 export const styles = {
   card: css({
+    blockSize: 'full',
     display: 'flex',
     flexDirection: 'column',
     gap: '6',

@@ -1,5 +1,10 @@
-import type { GameServer } from '@conductor/database';
+import type { GameServer, GameServerConnection } from '@conductor/database';
 
 export interface ServerListProps {
-  servers: GameServer[];
+  servers: Array<
+    GameServer & {
+      connections?: GameServerConnection[];
+    }
+  >;
+  onRefresh?: () => void;
 }

@@ -46,6 +46,11 @@ export const styles = {
     _focusVisible: {
       zIndex: 'above',
       outlineColor: 'purple.900/20'
+    },
+
+    _disabled: {
+      cursor: 'not-allowed',
+      opacity: '0.2'
     }
   }),
   content: css({

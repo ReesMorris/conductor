@@ -9,7 +9,10 @@ import type { ServerListProps } from './server-list.types';
 
 const HEADING_ID = 'server-list-heading';
 
-export const ServerList: React.FC<ServerListProps> = ({ servers }) => {
+export const ServerList: React.FC<ServerListProps> = ({
+  servers,
+  onRefresh
+}) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { formatMessage } = useFormatMessage();
 
@@ -33,7 +36,7 @@ export const ServerList: React.FC<ServerListProps> = ({ servers }) => {
       <ul className={styles.grid} aria-labelledby={HEADING_ID}>
         {servers.map(server => (
           <li key={server.id}>
-            <ServerCard server={server} />
+            <ServerCard server={server} onRefresh={onRefresh} />
           </li>
         ))}
       </ul>

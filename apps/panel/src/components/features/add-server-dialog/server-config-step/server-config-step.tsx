@@ -64,8 +64,8 @@ export const ServerConfigStep: React.FC = () => {
               <RadioCard.Item value='railway'>
                 {formatMessage('Railway URL')}
               </RadioCard.Item>
-              <RadioCard.Item value='domain'>
-                {formatMessage('Custom Domain')}
+              <RadioCard.Item value='domain' disabled>
+                {formatMessage('Custom Domain (Coming Soon)')}
               </RadioCard.Item>
             </RadioCard.Root>
           </Field>

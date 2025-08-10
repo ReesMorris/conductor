@@ -13,7 +13,7 @@ const deployServerSchema = z.object({
 
 export const deployServer = protectedProcedure
   .input(deployServerSchema)
-  .mutation(async ({ input }) => {
+  .mutation(async ({ ctx, input }) => {
     const { gameType, serverName, connectionType, domain, proxyPort } = input;
 
     // Validate the game exists
@@ -54,7 +54,12 @@ export const deployServer = protectedProcedure
       data: {
         name: serverName,
         gameId: game.id,
+        userId: ctx.session.userId,
         railwayServiceId,
+        railwayUrl:
+          connectionType === 'railway'
+            ? `${serverName}-production.up.railway.app`
+            : undefined,
         enabled: true
       },
       include: {

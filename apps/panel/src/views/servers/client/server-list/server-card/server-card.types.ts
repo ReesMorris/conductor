@@ -1,5 +1,8 @@
-import type { GameServer } from '@conductor/database';
+import type { GameServer, GameServerConnection } from '@conductor/database';
 
 export interface ServerCardProps {
-  server: GameServer;
+  server: GameServer & {
+    connections?: GameServerConnection[];
+  };
+  onRefresh?: () => void;
 }
