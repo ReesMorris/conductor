@@ -6,7 +6,7 @@ import type { StepMetadata } from './multi-step-modal.types';
 
 export const useMultiStepState = (
   children: React.ReactNode,
-  onComplete?: () => void,
+  onComplete?: () => void | boolean | Promise<void | boolean>,
   onOpenChange?: (open: boolean) => void
 ) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -54,14 +54,26 @@ export const useMultiStepState = (
     }
   };
 
-  const complete = () => {
-    onComplete?.();
-    onOpenChange?.(false);
+  const complete = async () => {
+    try {
+      // Call onComplete and check if it returns false
+      const result = await onComplete?.();
 
-    // Reset state
-    setCurrentStep(0);
-    setStepDataState({});
-    setCanProceed(true);
+      // If onComplete returns false explicitly, don't close the modal
+      if (result === false) {
+        return;
+      }
+
+      // Otherwise, close the modal and reset state
+      onOpenChange?.(false);
+      setCurrentStep(0);
+      setStepDataState({});
+      setCanProceed(true);
+    } catch (error) {
+      // If onComplete throws an error, don't close the modal
+      // The error should be handled by the onComplete implementation
+      console.error('Error in onComplete:', error);
+    }
   };
 
   const setStepData = (data: Record<string, unknown>) => {

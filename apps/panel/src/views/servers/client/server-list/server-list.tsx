@@ -22,7 +22,11 @@ export const ServerList: React.FC<ServerListProps> = ({
 
   return (
     <>
-      <AddServerDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+      <AddServerDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onSuccess={onRefresh}
+      />
 
       <div className={styles.header}>
         <Heading unstyled id={HEADING_ID} level={1} className={styles.title}>

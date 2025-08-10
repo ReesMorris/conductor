@@ -3,6 +3,7 @@
 import { Button, Dialog } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
+import { useState } from 'react';
 import { styles } from './navigation-buttons.styles';
 import type { NavigationButtonsProps } from './navigation-buttons.types';
 
@@ -17,6 +18,16 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
   completeButtonLabel
 }) => {
   const { formatMessage } = useFormatMessage();
+  const [isCompleting, setIsCompleting] = useState(false);
+
+  const handleComplete = async () => {
+    setIsCompleting(true);
+    try {
+      await complete();
+    } finally {
+      setIsCompleting(false);
+    }
+  };
 
   return (
     <Dialog.Footer>
@@ -27,7 +38,10 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
         </Button>
 
         {isLastStep ? (
-          <Button onClick={complete} disabled={!canProceed || isFirstStep}>
+          <Button
+            onClick={handleComplete}
+            disabled={!canProceed || isFirstStep || isCompleting}
+          >
             {completeButtonLabel || formatMessage('Complete')}
             <ArrowRightIcon />
           </Button>

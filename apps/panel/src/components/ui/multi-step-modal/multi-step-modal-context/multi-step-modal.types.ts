@@ -52,7 +52,7 @@ export interface MultiStepModalContextValue {
   /**
    * Complete the multi-step flow
    */
-  complete: () => void;
+  complete: () => Promise<void>;
 }
 
 export interface StepMetadata {

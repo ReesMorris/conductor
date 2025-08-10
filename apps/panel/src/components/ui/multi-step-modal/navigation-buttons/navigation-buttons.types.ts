@@ -27,7 +27,7 @@ export interface NavigationButtonsProps {
   /**
    * Complete the flow
    */
-  complete: () => void;
+  complete: () => Promise<void>;
 
   /**
    * Custom label for the next button

@@ -12,7 +12,7 @@ export const Client = () => {
     <Main>
       {data ? (
         data.length === 0 ? (
-          <EmptyMessage />
+          <EmptyMessage onRefresh={refetch} />
         ) : (
           <ServerList servers={data} onRefresh={refetch} />
         )

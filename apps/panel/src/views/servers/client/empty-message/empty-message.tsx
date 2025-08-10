@@ -6,8 +6,9 @@ import { APP_NAME } from '@/constants';
 import { useFormatMessage } from '@/i18n/format-message';
 import { PlusIcon, ServerIcon } from 'lucide-react';
 import { useState } from 'react';
+import type { EmptyMessageProps } from './empty-message.types';
 
-export const EmptyMessage = () => {
+export const EmptyMessage: React.FC<EmptyMessageProps> = ({ onRefresh }) => {
   const { formatMessage } = useFormatMessage();
   const [dialogOpen, setDialogOpen] = useState(false);
 
@@ -17,7 +18,11 @@ export const EmptyMessage = () => {
 
   return (
     <>
-      <AddServerDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+      <AddServerDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onSuccess={onRefresh}
+      />
 
       <EmptyState
         indicator={<ServerIcon />}

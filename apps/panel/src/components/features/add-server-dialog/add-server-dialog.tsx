@@ -12,7 +12,8 @@ import { ServerConfigStep } from './server-config-step';
 
 const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
   open,
-  onOpenChange
+  onOpenChange,
+  onSuccess
 }) => {
   const { formatMessage } = useFormatMessage();
   const toast = useToast();
@@ -22,19 +23,7 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
   const gameType = watch('gameType');
   const serverName = watch('serverName');
 
-  const deployMutation = trpc.servers.deploy.useMutation({
-    onSuccess: data => {
-      toast.success(
-        formatMessage('Server deployed successfully!'),
-        formatMessage('Connection URL: {url}', { url: data.connectionUrl })
-      );
-      onOpenChange(false);
-      reset(defaultValues);
-    },
-    onError: error => {
-      toast.error(formatMessage('Failed to deploy server'), error.message);
-    }
-  });
+  const deployMutation = trpc.servers.deploy.useMutation();
 
   const handleOpenChange = (isOpen: boolean) => {
     if (!isOpen) {
@@ -44,9 +33,40 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
     onOpenChange(isOpen);
   };
 
-  const handleComplete = handleSubmit(data => {
-    deployMutation.mutate(data);
-  });
+  const handleComplete = async () => {
+    // Use handleSubmit to validate the form
+    return new Promise<boolean>(resolve => {
+      handleSubmit(
+        async data => {
+          try {
+            // Form is valid, deploy the server
+            await deployMutation.mutateAsync(data);
+            toast.success(formatMessage('Server deployed!'));
+
+            // Success - close dialog and reset form
+            onOpenChange(false);
+            reset(defaultValues);
+
+            // Call the onSuccess callback to refresh the server list
+            onSuccess?.();
+
+            resolve(true);
+          } catch (error) {
+            // Mutation failed, show error but keep dialog open
+            toast.error(
+              formatMessage('Failed to deploy server'),
+              error instanceof Error ? error.message : 'Unknown error'
+            );
+            resolve(false);
+          }
+        },
+        () => {
+          // Form has validation errors - keep dialog open
+          resolve(false);
+        }
+      )();
+    });
+  };
 
   return (
     <MultiStepModal.Root

@@ -8,4 +8,9 @@ export interface AddServerDialogProps {
    * Callback function to be called when the dialog is closed.
    */
   onOpenChange: (isOpen: boolean) => void;
+
+  /**
+   * Callback function to be called after successful server deployment.
+   */
+  onSuccess?: () => void;
 }
