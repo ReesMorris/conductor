@@ -7,6 +7,8 @@
     "check": "biome check --write .",
     "dev": "bun --watch src/index.ts",
     "dev:echo": "bun src/echo-server.ts",
+    "docker:build": "docker build -t conductor-proxy:latest -f Dockerfile ../..",
+    "docker:run": "docker run -p 3000:3000 --env-file .env conductor-proxy:latest",
     "seed": "bun src/seed.ts",
     "start": "bun dist/index.js"
   },
