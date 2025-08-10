@@ -93,9 +93,9 @@ export const ServerCard: React.FC<ServerCardProps> = ({
       <div className={styles.stats}>
         <div data-placeholder>Metrics will show here (coming soon)</div>
       </div>
-      {server.connections?.[0]?.domain && (
+      {server.connectionUrl && (
         <CopyInput
-          value={`${server.connections[0].domain}:${server.connections[0].proxyPort}`}
+          value={server.connectionUrl}
           aria-label={formatMessage('Server address')}
         />
       )}

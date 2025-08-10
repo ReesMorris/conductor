@@ -33,7 +33,7 @@ const AddServerDialogInner: React.FC<AddServerDialogProps> = ({
     onOpenChange(isOpen);
   };
 
-  const handleComplete = async () => {
+  const handleComplete = () => {
     // Use handleSubmit to validate the form
     return new Promise<boolean>(resolve => {
       handleSubmit(

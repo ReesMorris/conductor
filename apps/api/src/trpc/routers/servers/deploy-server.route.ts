@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import { prisma } from '@conductor/database';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
@@ -102,8 +103,7 @@ function getConnectionUrl(
 ): string {
   switch (connectionType) {
     case 'railway':
-      // TODO: Get actual Railway proxy URL from config
-      return `conductor-proxy.up.railway.app:${proxyPort}`;
+      return `${env.PROXY_DOMAIN}:${proxyPort}`;
     case 'domain':
       return `${domain}:${proxyPort}`;
     default:
