@@ -18,12 +18,23 @@ export const AddServerForm: React.FC<AddServerFormProps> = ({
       {...props}
       // onSubmit={handleSubmit}
       defaultValues={{
-        gameType: ''
+        gameType: '',
+        serverName: '',
+        connectionType: 'railway',
+        domain: '',
+        proxyPort: 25565
       }}
       resolver={zodResolver(
         addServerFormSchema({
           gameTypeRequired: formatMessage('Game type is required'),
-          invalidGameType: formatMessage('Invalid game type selected')
+          serverNameRequired: formatMessage('Server name is required'),
+          domainRequired: formatMessage(
+            'Domain is required for custom domain connection'
+          ),
+          proxyPortRequired: formatMessage('Port is required'),
+          proxyPortInvalid: formatMessage(
+            'Port must be a valid number between 1 and 65535'
+          )
         })
       )}
     >

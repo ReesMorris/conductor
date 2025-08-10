@@ -3,7 +3,8 @@ import {
   onboardingRouter,
   preferencesRouter,
   profileRouter,
-  railwayRouter
+  railwayRouter,
+  serversRouter
 } from './routers';
 import { router } from './trpc';
 
@@ -15,7 +16,8 @@ export const appRouter = router({
   preferences: preferencesRouter,
   profile: profileRouter,
   railway: railwayRouter,
-  onboarding: onboardingRouter
+  onboarding: onboardingRouter,
+  servers: serversRouter
 });
 
 export type AppRouter = typeof appRouter;
