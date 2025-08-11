@@ -38,7 +38,6 @@ export const getServerStatus = protectedProcedure
     const activeConnections = server.connections.map(conn => ({
       id: conn.id,
       name: conn.name || 'Default',
-      domain: conn.domain,
       enabled: conn.enabled,
       activeClients: 0
     }));

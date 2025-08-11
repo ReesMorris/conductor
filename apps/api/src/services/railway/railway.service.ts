@@ -6,7 +6,9 @@ import {
   GET_PROJECT_SERVICES_QUERY,
   GET_SERVICE_DEPLOYMENTS_QUERY,
   GET_SERVICE_QUERY,
-  VALIDATE_TOKEN_QUERY
+  GET_TCP_PROXIES_QUERY,
+  VALIDATE_TOKEN_QUERY,
+  WORKFLOW_STATUS_QUERY
 } from './railway.queries';
 import type {
   GetCurrentUserResponse,
@@ -213,15 +215,11 @@ export class RailwayService {
   /**
    * Get all services for a project
    */
-  getProjectServices(
-    projectId: string,
-    environmentId: string
-  ): Promise<GetProjectServicesResponse> {
+  getProjectServices(projectId: string): Promise<GetProjectServicesResponse> {
     return this.client.request<GetProjectServicesResponse>(
       GET_PROJECT_SERVICES_QUERY,
       {
-        projectId,
-        environmentId
+        projectId
       }
     );
   }
@@ -240,6 +238,43 @@ export class RailwayService {
         first
       }
     );
+  }
+
+  /**
+   * Check workflow status
+   */
+  async getWorkflowStatus(
+    workflowId: string
+  ): Promise<{ status: string; error: string | null }> {
+    const response = await this.client.request<{
+      workflowStatus: { status: string; error: string | null };
+    }>(WORKFLOW_STATUS_QUERY, { workflowId });
+    return response.workflowStatus;
+  }
+
+  /**
+   * Get TCP proxies for a service
+   */
+  async getTcpProxies(
+    environmentId: string,
+    serviceId: string
+  ): Promise<
+    Array<{
+      id: string;
+      domain: string;
+      proxyPort: number;
+      applicationPort: number;
+    }>
+  > {
+    const response = await this.client.request<{
+      tcpProxies: Array<{
+        id: string;
+        domain: string;
+        proxyPort: number;
+        applicationPort: number;
+      }>;
+    }>(GET_TCP_PROXIES_QUERY, { environmentId, serviceId });
+    return response.tcpProxies;
   }
 }
 

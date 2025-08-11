@@ -86,11 +86,12 @@ model Railway {
 }
 
 model Game {
-  id                String   @id @default(cuid())
-  displayName       String
-  defaultPort       Int
-  protocol          Protocol
-  railwayTemplateId String
+  id                  String   @id @default(cuid())
+  displayName         String
+  defaultPort         Int
+  protocol            Protocol
+  railwayTemplateId   String  
+  railwayTemplateCode String   @default("") 
 
   servers GameServer[]
 
@@ -111,7 +112,6 @@ model GameServer {
   userId String
 
   railwayServiceId String?
-  railwayProjectId String?
   railwayUrl       String?
 
   enabled Boolean @default(true)
@@ -131,8 +131,6 @@ model GameServerConnection {
   serverId String
   server   GameServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
-  domain    String? 
-
   name      String? 
   enabled   Boolean @default(true)
   isDefault Boolean @default(false) 
@@ -140,7 +138,6 @@ model GameServerConnection {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([domain])
   @@index([serverId])
   @@map("game_server_connections")
 }

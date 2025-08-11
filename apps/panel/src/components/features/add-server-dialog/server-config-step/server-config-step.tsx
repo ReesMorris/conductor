@@ -47,22 +47,6 @@ export const ServerConfigStep: React.FC = () => {
           </Field>
         )}
       />
-
-      <Controller
-        name='domain'
-        control={control}
-        render={({ field }) => (
-          <Field
-            label={formatMessage('Domain (optional)')}
-            helpText={formatMessage(
-              'Leave empty to use a Railway-generated domain'
-            )}
-            errorMessage={errors.domain?.message}
-          >
-            <Input {...field} placeholder='mc.myserver.com' />
-          </Field>
-        )}
-      />
     </div>
   );
 };

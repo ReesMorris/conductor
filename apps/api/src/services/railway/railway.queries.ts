@@ -50,14 +50,17 @@ export const GET_SERVICE_QUERY = `
  * Get services for a project
  */
 export const GET_PROJECT_SERVICES_QUERY = `
-  query GetProjectServices($projectId: String!, $environmentId: String!) {
+  query GetProjectServices($projectId: String!) {
     project(id: $projectId) {
-      services(environmentId: $environmentId) {
+      id
+      name
+      services {
         edges {
           node {
             id
             name
             templateServiceId
+            createdAt
           }
         }
       }
@@ -81,6 +84,35 @@ export const GET_SERVICE_DEPLOYMENTS_QUERY = `
           }
         }
       }
+    }
+  }
+`;
+
+/**
+ * Get workflow status
+ */
+export const WORKFLOW_STATUS_QUERY = `
+  query workflowStatus($workflowId: String!) {
+    workflowStatus(workflowId: $workflowId) {
+      status
+      error
+    }
+  }
+`;
+
+/**
+ * Get TCP proxies for a service
+ */
+export const GET_TCP_PROXIES_QUERY = `
+  query getTcpProxies($environmentId: String!, $serviceId: String!) {
+    tcpProxies(environmentId: $environmentId, serviceId: $serviceId) {
+      id
+      createdAt
+      serviceId
+      environmentId
+      applicationPort
+      proxyPort
+      domain
     }
   }
 `;

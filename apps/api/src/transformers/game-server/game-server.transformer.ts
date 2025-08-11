@@ -18,9 +18,12 @@ class GameServerTransformer
    * @returns The transformed Server for API response
    */
   transform(data: GameServerInternal): GameServerResponse {
+    // Generate connection URL from Railway URL
+    const connectionUrl = data.railwayUrl || 'Pending deployment...';
+
     return {
       ...data,
-      connectionUrl: '// TODO: Generate connection URL'
+      connectionUrl
     } as GameServerResponse;
   }
 

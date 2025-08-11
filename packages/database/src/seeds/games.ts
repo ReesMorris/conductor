@@ -6,6 +6,7 @@ export const games: Prisma.GameCreateInput[] = [
     displayName: 'Minecraft',
     defaultPort: 25565,
     protocol: 'TCP',
-    railwayTemplateId: 'aebe100e-0335-45a7-bcc0-d60f916653b1'
+    railwayTemplateId: '560dfff4-c332-47aa-b403-1d7f58b6d844', // conductor/minecraft template UUID
+    railwayTemplateCode: 'Ylo10j' // conductor/minecraft template code
   }
 ];
