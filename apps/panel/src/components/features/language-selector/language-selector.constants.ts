@@ -11,10 +11,5 @@ export const LANGUAGES: Language[] = [
     code: 'en',
     name: 'English',
     nativeName: 'English'
-  },
-  {
-    code: 'it',
-    name: 'Italian',
-    nativeName: 'Italiano'
   }
 ];

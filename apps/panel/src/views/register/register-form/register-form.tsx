@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Form, type HandleSubmit } from '@/components/ui';
+import { Alert, Button, Form, type HandleSubmit } from '@/components/ui';
 import { useAuth } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { getAuthErrorMessage } from '@/i18n/mappings';
@@ -17,7 +17,13 @@ import {
 } from './register-form.schema';
 import { styles } from './register-form.styles';
 
-export const RegisterForm: React.FC = () => {
+interface RegisterFormProps {
+  registrationEnabled: boolean;
+}
+
+export const RegisterForm: React.FC<RegisterFormProps> = ({
+  registrationEnabled
+}) => {
   const { formatMessage } = useFormatMessage();
   const [authError, setAuthError] = useState<string | null>(null);
   const auth = useAuth();
@@ -43,6 +49,17 @@ export const RegisterForm: React.FC = () => {
       setAuthError(formatMessage('An unexpected error occurred'));
     }
   };
+
+  // If registration is disabled, show a message
+  if (!registrationEnabled) {
+    return (
+      <Alert color='warning'>
+        {formatMessage(
+          'Registration is currently disabled. Please contact an administrator for access.'
+        )}
+      </Alert>
+    );
+  }
 
   return (
     <Form<RegisterFormData>

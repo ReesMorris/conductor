@@ -26,5 +26,6 @@ export * from './select';
 export * from './separator';
 export * from './skeleton';
 export * from './steps';
+export * from './switch';
 export * from './toast';
 export * from './tooltip';

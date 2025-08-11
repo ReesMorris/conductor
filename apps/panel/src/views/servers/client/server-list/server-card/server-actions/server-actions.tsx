@@ -44,7 +44,7 @@ export const ServerActions: React.FC<ServerCardProps> = ({
         <Button className={styles.manageButton} disabled>
           {formatMessage('Manage<hidden> Server</hidden>', {
             hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-          })}{' '}
+          })}
           (coming soon)
         </Button>
       </div>

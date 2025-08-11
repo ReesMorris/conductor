@@ -1,12 +1,15 @@
 import { AuthLayout } from '@/components/layouts';
 import { Link } from '@/components/ui';
 import { formatMessageServer } from '@/i18n/format-message-server';
+import { api } from '@/libs/api';
 import { page } from '@/libs/page';
 import { route } from '@/utils/route';
 import { pageSchema } from './register.schema';
 import { RegisterForm } from './register-form';
 
 export const Page = page(pageSchema, async () => {
+  const { registrationEnabled } = await api.workspace.getSettings.query();
+
   return (
     <AuthLayout
       title={await formatMessageServer('Create an Account')}
@@ -20,7 +23,7 @@ export const Page = page(pageSchema, async () => {
         )
       }
     >
-      <RegisterForm />
+      <RegisterForm registrationEnabled={registrationEnabled} />
     </AuthLayout>
   );
 });

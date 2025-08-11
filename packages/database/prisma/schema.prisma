@@ -147,6 +147,16 @@ enum UserRole {
   admin
 }
 
+model WorkspaceSettings {
+  id                  String   @id @default("workspace_settings")
+  registrationEnabled Boolean  @default(true)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("workspace_settings")
+}
+
 enum Protocol {
   TCP
   UDP
