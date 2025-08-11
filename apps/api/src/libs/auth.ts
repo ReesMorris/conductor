@@ -3,15 +3,23 @@ import type { Auth } from '@conductor/auth';
 import { createAuth } from '@conductor/auth/server';
 
 /**
- * Configured auth instance for the API
+ * Singleton auth instance to prevent multiple Redis connections
  */
-export const getAuth = () =>
-  createAuth({
-    betterAuthUrl: env.BETTER_AUTH_URL,
-    betterAuthSecret: env.BETTER_AUTH_SECRET,
-    frontendDomain: env.FRONTEND_DOMAIN,
-    frontendUrl: env.FRONTEND_URL,
-    redisUrl: env.REDIS_URL
-  }) as Auth;
+let authInstance: Auth | undefined;
 
-export type { Auth, Session } from '@conductor/auth';
+/**
+ * Configured auth instance for the API
+ * Uses singleton pattern to ensure only one Redis connection is created
+ */
+export const getAuth = async (): Promise<Auth> => {
+  if (!authInstance) {
+    authInstance = await createAuth({
+      betterAuthUrl: env.BETTER_AUTH_URL,
+      betterAuthSecret: env.BETTER_AUTH_SECRET,
+      frontendDomain: env.FRONTEND_DOMAIN,
+      frontendUrl: env.FRONTEND_URL,
+      redisUrl: env.REDIS_URL
+    });
+  }
+  return authInstance;
+};

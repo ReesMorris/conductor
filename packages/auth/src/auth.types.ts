@@ -12,7 +12,7 @@ import type { createAuth } from './auth.server';
  * Auth instance type
  * This is the type of the auth instance created by `createAuth`
  */
-export type Auth = ReturnType<typeof createAuth>;
+export type Auth = Awaited<ReturnType<typeof createAuth>>;
 
 /**
  * Auth configuration schema
