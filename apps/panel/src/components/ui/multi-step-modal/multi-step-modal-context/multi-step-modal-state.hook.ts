@@ -80,6 +80,12 @@ export const useMultiStepState = (
     setStepDataState(prev => ({ ...prev, ...data }));
   };
 
+  const reset = () => {
+    setCurrentStep(0);
+    setStepDataState({});
+    setCanProceed(true);
+  };
+
   // Get current step element
   const currentStepElement = Children.toArray(children)[currentStep];
 
@@ -98,6 +104,7 @@ export const useMultiStepState = (
     setCanProceed,
     setStepData,
     complete,
+    reset,
 
     // Computed values
     isFirstStep,

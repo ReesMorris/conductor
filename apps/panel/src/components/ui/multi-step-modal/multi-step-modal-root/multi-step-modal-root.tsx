@@ -17,10 +17,19 @@ import type { MultiStepModalRootProps } from './multi-step-modal-root.types';
 export const MultiStepModalRoot: React.FC<MultiStepModalRootProps> = ({
   onComplete,
   children,
+  onOpenChange,
   ...props
 }) => {
   const { formatMessage } = useFormatMessage();
-  const stepState = useMultiStepState(children, onComplete, props.onOpenChange);
+  const stepState = useMultiStepState(children, onComplete, onOpenChange);
+
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      // Reset the multi-step state when closing
+      stepState.reset();
+    }
+    onOpenChange?.(open);
+  };
 
   const contextValue: MultiStepModalContextValue = {
     currentStep: stepState.currentStep,
@@ -40,7 +49,7 @@ export const MultiStepModalRoot: React.FC<MultiStepModalRootProps> = ({
   const description = stepState.steps[stepState.currentStep]?.description;
 
   return (
-    <Dialog.Root {...props}>
+    <Dialog.Root {...props} onOpenChange={handleOpenChange}>
       <Dialog.Content size='lg'>
         <Dialog.Header>
           {title && <Dialog.Title>{title}</Dialog.Title>}
