@@ -5,12 +5,12 @@
 	# Handle API routes - strip /api prefix and proxy to API server
 	handle /api/* {
 		uri strip_prefix /api
-		reverse_proxy localhost:4000
+		reverse_proxy 127.0.0.1:4000
 	}
 
 	# Handle all other routes - proxy to panel
 	handle {
-		reverse_proxy localhost:3000
+		reverse_proxy 127.0.0.1:3000
 	}
 
 	# Enable compression
