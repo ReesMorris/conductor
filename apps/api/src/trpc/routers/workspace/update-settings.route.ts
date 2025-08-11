@@ -19,7 +19,7 @@ export const updateSettings = adminProcedure
       },
       create: {
         id: 'workspace_settings',
-        registrationEnabled: input.registrationEnabled ?? true
+        registrationEnabled: input.registrationEnabled ?? false
       }
     });
 

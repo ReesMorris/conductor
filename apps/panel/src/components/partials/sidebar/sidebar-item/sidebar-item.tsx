@@ -11,7 +11,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   href,
   icon,
   label,
-  userRole: role,
+  userRole,
   exact = true,
   disabled
 }) => {
@@ -19,7 +19,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   const { user } = useUser();
 
   // Make sure we have permission to see this item
-  if (role && user?.role !== role) {
+  if (userRole && user?.role !== userRole) {
     return null;
   }
 

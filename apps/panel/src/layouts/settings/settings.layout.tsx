@@ -38,20 +38,22 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             icon={<ShieldIcon />}
           />
         </Sidebar.Section>
-        <Sidebar.Section title={formatMessage('Workspace')}>
+        <Sidebar.Section userRole='admin' title={formatMessage('Workspace')}>
           <Sidebar.Item
+            userRole='admin'
             href={route('WORKSPACE_GENERAL_SETTINGS')}
             label={formatMessage('General Settings')}
             icon={<SettingsIcon />}
           />
           <Sidebar.Item
+            userRole='admin'
             href={route('WORKSPACE_RAILWAY_SETTINGS')}
             label={formatMessage('Railway Settings')}
             icon={<TrainFrontIcon />}
-            userRole='admin'
           />
           <Sidebar.Item
             disabled
+            userRole='admin'
             href={route('WORKSPACE_USERS_SETTINGS')}
             label={`${formatMessage('Users')} (soon)`}
             icon={<UsersIcon />}

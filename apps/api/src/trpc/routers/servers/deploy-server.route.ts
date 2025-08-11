@@ -4,14 +4,14 @@ import { decrypt } from '@/utils/encryption';
 import { prisma } from '@conductor/database';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
-import { protectedProcedure } from '../../procedures';
+import { adminProcedure } from '../../procedures';
 
 const deployServerSchema = z.object({
   gameType: z.string(),
   serverName: z.string()
 });
 
-export const deployServer = protectedProcedure
+export const deployServer = adminProcedure
   .input(deployServerSchema)
   .mutation(async ({ ctx, input }) => {
     const { gameType, serverName } = input;

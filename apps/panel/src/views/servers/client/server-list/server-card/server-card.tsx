@@ -20,7 +20,7 @@ export const ServerCard: React.FC<ServerCardProps> = ({
             {server.name}
           </Heading>
           <div className={styles.type}>{server.gameId}</div>
-          <div className={styles.serverStatus} data-status='unknown' />
+          {/* <div className={styles.serverStatus} data-status='unknown' /> */}
         </div>
       </div>
 

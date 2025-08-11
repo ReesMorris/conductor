@@ -12,12 +12,17 @@ export const getSettings = publicProcedure.query(async () => {
     settings = await prisma.workspaceSettings.create({
       data: {
         id: 'workspace_settings',
-        registrationEnabled: true
+        registrationEnabled: false
       }
     });
   }
 
+  // Check if there are any users - if not, always allow registration for the first admin
+  const userCount = await prisma.user.count();
+  const effectiveRegistrationEnabled =
+    userCount === 0 ? true : settings.registrationEnabled;
+
   return {
-    registrationEnabled: settings.registrationEnabled
+    registrationEnabled: effectiveRegistrationEnabled
   };
 });

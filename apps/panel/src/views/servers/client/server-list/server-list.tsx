@@ -1,5 +1,6 @@
 import { AddServerDialog } from '@/components/features/add-server-dialog';
 import { Button, Heading } from '@/components/ui';
+import { useUser } from '@/hooks';
 import { useFormatMessage } from '@/i18n/format-message';
 import { PlusIcon } from 'lucide-react';
 import { useState } from 'react';
@@ -15,6 +16,7 @@ export const ServerList: React.FC<ServerListProps> = ({
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const { formatMessage } = useFormatMessage();
+  const { user } = useUser();
 
   const handleClick = () => {
     setDialogOpen(true);
@@ -22,20 +24,25 @@ export const ServerList: React.FC<ServerListProps> = ({
 
   return (
     <>
-      <AddServerDialog
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-        onSuccess={onRefresh}
-      />
+      {user?.role === 'admin' && (
+        <AddServerDialog
+          open={dialogOpen}
+          onOpenChange={setDialogOpen}
+          onSuccess={onRefresh}
+        />
+      )}
 
       <div className={styles.header}>
         <Heading unstyled id={HEADING_ID} level={1} className={styles.title}>
-          {formatMessage('Your Servers')}
+          {formatMessage('Servers')}
         </Heading>
-        <Button type='button' variant='primary' onClick={handleClick}>
-          <PlusIcon />
-          {formatMessage('Add Server')}
-        </Button>
+
+        {user?.role === 'admin' && (
+          <Button type='button' variant='primary' onClick={handleClick}>
+            <PlusIcon />
+            {formatMessage('Add Server')}
+          </Button>
+        )}
       </div>
       <ul className={styles.grid} aria-labelledby={HEADING_ID}>
         {servers.map(server => (
