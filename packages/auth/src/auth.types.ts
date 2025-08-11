@@ -4,9 +4,9 @@ import type {
   UserRole
 } from '@conductor/database';
 import type z from 'zod';
-import type { createAuth } from './auth';
 import type { createAuthClient } from './auth.client';
 import type { authClientConfigSchema, authConfigSchema } from './auth.config';
+import type { createAuth } from './auth.server';
 
 /**
  * Auth instance type

@@ -76,7 +76,13 @@ export const env = createEnv({
       .string()
       .transform(v => v === 'true')
       .default(false)
-      .describe('Force path-style URLs (required for MinIO)')
+      .describe('Force path-style URLs (required for MinIO)'),
+
+    // Redis (optional, for session storage)
+    REDIS_URL: z
+      .url()
+      .optional()
+      .describe('Redis connection URL for session storage')
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true

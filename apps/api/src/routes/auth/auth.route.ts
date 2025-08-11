@@ -1,5 +1,5 @@
 import { env } from '@/env';
-import { auth } from '@/libs';
+import { getAuth } from '@/libs';
 import { userTransformer } from '@/transformers';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
@@ -21,6 +21,7 @@ authRoutes.use(
 
 // Handle all auth requests with response transformation
 authRoutes.all('/*', async c => {
+  const auth = await getAuth();
   const response = await auth.handler(c.req.raw);
 
   // Clone the response to modify it

@@ -2,6 +2,7 @@ import { prisma } from '@conductor/database';
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin } from 'better-auth/plugins';
+import { createRedisStorage } from './auth.redis';
 import type { AuthConfig } from './auth.types';
 import { makeFirstUserAdmin } from './hooks';
 
@@ -10,13 +11,14 @@ import { makeFirstUserAdmin } from './hooks';
  * @param config - The configuration for the auth instance
  * @returns The configured auth instance
  */
-export const createAuth = (
+export const createAuth = async (
   config: AuthConfig
-): ReturnType<typeof betterAuth> => {
+): Promise<ReturnType<typeof betterAuth>> => {
   return betterAuth({
     database: prismaAdapter(prisma, {
       provider: 'postgresql'
     }),
+    secondaryStorage: await createRedisStorage(config.redisUrl),
     baseURL: config.betterAuthUrl,
     basePath: '/auth',
     secret: config.betterAuthSecret,

@@ -1,4 +1,4 @@
-import { auth } from '@/libs';
+import { getAuth } from '@/libs';
 import type { Session, User } from '@conductor/auth';
 import type { Context, Next } from 'hono';
 import type { AuthVariables } from './auth.types';
@@ -23,6 +23,7 @@ export const authMiddleware = async (
   next: Next
 ) => {
   try {
+    const auth = await getAuth();
     const session = await auth.api.getSession({
       headers: c.req.raw.headers
     });

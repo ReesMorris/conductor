@@ -1,4 +1,4 @@
-import { auth, prisma } from '@/libs';
+import { getAuth, prisma } from '@/libs';
 import { userTransformer } from '@/transformers';
 import { protectedProcedure } from '@/trpc/procedures';
 import { z } from 'zod';
@@ -21,6 +21,7 @@ export const updateSecuritySettings = protectedProcedure
 
     // Handle email update separately if provided
     if (input.email) {
+      const auth = await getAuth();
       await auth.api.changeEmail({
         body: { newEmail: input.email },
         headers: { token: ctx.session.token }
