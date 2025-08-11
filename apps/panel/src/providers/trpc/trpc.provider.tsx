@@ -11,8 +11,8 @@ import type { TRPCProviderProps } from './trpc.types';
 export const trpc = createTRPCReact<AppRouter>();
 
 export const TrpcProvider: React.FC<TRPCProviderProps> = ({
-  children,
-  apiUrl
+  apiUrl,
+  children
 }) => {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() => {

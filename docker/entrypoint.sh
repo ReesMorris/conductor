@@ -9,11 +9,9 @@ if [ -n "$DATABASE_URL" ]; then
     cd /app/packages/database
     bun x prisma migrate deploy || echo "Migration failed or no migrations to run"
     
-    # Optionally seed the database (controlled by SEED_DATABASE env var)
-    if [ "$SEED_DATABASE" = "true" ]; then
-        echo "Seeding database..."
-        cd /app/packages/database/prisma && bun run seed.ts || echo "Database seeding failed (may already be seeded)"
-    fi
+    # Seed the database (safe to run multiple times due to upsert)
+    echo "Seeding database..."
+    cd /app/packages/database/prisma && bun run seed.ts || echo "Database seeding failed (may already be seeded)"
     
     cd /app
 fi

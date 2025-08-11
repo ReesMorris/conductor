@@ -14,8 +14,8 @@ import { THEME_NAMES } from './constants';
 export const env = createEnv({
   server: {
     // URLs
-    FRONTEND_URL: z.url(),
-    API_URL: z.url(),
+    FRONTEND_URL: z.url().default('http://localhost:8080/api'), // defaults are needed to prevent build errors
+    API_URL: z.url().default('http://localhost:8080'),
 
     // Theming
     DEFAULT_THEME: z.enum(THEME_NAMES).default('dark'),
@@ -36,6 +36,5 @@ export const env = createEnv({
     TIMEZONE: process.env.TIMEZONE,
     LOG_LEVEL: process.env.LOG_LEVEL
   },
-  skipValidation: process.env.NEXT_PHASE === 'phase-production-build',
   emptyStringAsUndefined: true
 });
