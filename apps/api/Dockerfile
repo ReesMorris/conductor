@@ -41,7 +41,7 @@ COPY --from=pruner /app/out/full/ .
 RUN --mount=type=secret,id=turbo_token \
     TURBO_TOKEN=$(cat /run/secrets/turbo_token 2>/dev/null || echo "") \
     TURBO_TEAM=${TURBO_TEAM} \
-    bun x turbo db:generate && \
+    bun x turbo db:generate --force && \
     bun x turbo build --filter=@conductor/api
 
 # ============================================================================
