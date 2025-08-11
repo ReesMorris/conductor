@@ -51,8 +51,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
             userRole='admin'
           />
           <Sidebar.Item
+            disabled
             href={route('WORKSPACE_USERS_SETTINGS')}
-            label={formatMessage('Users')}
+            label={`${formatMessage('Users')} (soon)`}
             icon={<UsersIcon />}
           />
         </Sidebar.Section>

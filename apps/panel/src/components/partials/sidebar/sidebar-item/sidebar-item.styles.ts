@@ -28,6 +28,12 @@ export const styles = {
       outlineColor: 'purple.900'
     },
 
+    _disabled: {
+      opacity: '0.3',
+      pointerEvents: 'none',
+      cursor: 'not-allowed'
+    },
+
     '&[aria-current]': {
       backgroundColor: 'purple.900/10',
       color: 'purple.900',

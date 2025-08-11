@@ -12,7 +12,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
   icon,
   label,
   userRole: role,
-  exact = true
+  exact = true,
+  disabled
 }) => {
   const pathname = usePathname();
   const { user } = useUser();
@@ -31,6 +32,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       href={href}
       className={styles.link}
       aria-current={isCurrent ? 'page' : undefined}
+      tabIndex={disabled ? -1 : undefined}
+      data-disabled={disabled ?? undefined}
     >
       <span className={styles.text}>
         {icon}

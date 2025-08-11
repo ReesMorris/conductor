@@ -26,4 +26,10 @@ export interface SidebarItemProps {
    * @default true
    */
   exact?: boolean;
+
+  /**
+   * Whether the item is disabled.
+   * @default false
+   */
+  disabled?: boolean;
 }
