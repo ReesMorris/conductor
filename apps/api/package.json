@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsc && bun build src/index.ts --outdir dist --target bun --minify",
     "check": "biome check --write . && tsc --noEmit",
-    "dev": "bun --watch src/index.ts",
+    "dev": "PORT=${API_PORT:-4000} bun --watch src/index.ts",
     "start": "NODE_ENV=production bun run dist/index.js"
   },
   "dependencies": {

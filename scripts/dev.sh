@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Load dev environment variables
-if [ -f .env.dev ]; then
+# Load development environment variables from root
+if [ -f .env.development ]; then
   set -a
-  source .env.dev
+  source .env.development
   set +a
 fi
 
@@ -36,12 +36,21 @@ until docker compose exec -T minio mc ready local > /dev/null 2>&1; do
 done
 echo "MinIO is ready!"
 
+# Wait for Caddy to be ready
+echo "Waiting for Caddy to be ready..."
+until docker compose exec -T caddy caddy version > /dev/null 2>&1; do
+  sleep 1
+done
+echo "Caddy is ready!"
+
 # Run database migrations
 echo "Running database migrations..."
 yarn db:push --filter=@conductor/database >/dev/null 2>&1 && echo "✓ Database ready"
 
 # Start Turbo dev
 echo "Starting applications..."
+echo "→ Access Conductor at http://localhost:${PORT:-8080}"
+echo ""
 turbo dev
 
 # If turbo exits normally, still clean up

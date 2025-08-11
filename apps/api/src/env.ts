@@ -10,7 +10,7 @@ export const env = createEnv({
       .describe('The environment the app is running in'),
 
     // Server
-    PORT: z.coerce
+    API_PORT: z.coerce
       .number()
       .default(4000)
       .describe('The port the server will listen on'),

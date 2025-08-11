@@ -4,7 +4,6 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { admin } from 'better-auth/plugins';
 import type { AuthConfig } from './auth.types';
 import { makeFirstUserAdmin } from './hooks';
-import { getCookieDomain } from './utils';
 
 /**
  * Create a configured auth instance
@@ -32,12 +31,6 @@ export const createAuth = (
 
         // Add a fake delay to simulate email sending
         await new Promise(resolve => setTimeout(resolve, 100));
-      }
-    },
-    advanced: {
-      crossSubDomainCookies: {
-        enabled: config.crossSubDomainCookies,
-        domain: getCookieDomain(config.frontendUrl)
       }
     },
     databaseHooks: {

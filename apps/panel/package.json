@@ -6,7 +6,7 @@
     "check": "biome check --write . && tsc --noEmit",
     "clean": "rm -rf .next",
     "codegen": "panda codegen",
-    "dev": "bun run clean && bun run codegen && next dev --turbo",
+    "dev": "bun run clean && bun run codegen && PORT=${PANEL_PORT:-3000} next dev --turbo",
     "i18n:extract": "tsx scripts/extract-messages.ts",
     "prepare": "bun run codegen",
     "start": "next start"

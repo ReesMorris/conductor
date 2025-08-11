@@ -1,0 +1,35 @@
+# Caddyfile for Conductor
+# Routes /api/* to the API server and everything else to the panel
+
+:8080 {
+	# Handle API routes - strip /api prefix and proxy to API server
+	handle /api/* {
+		uri strip_prefix /api
+		reverse_proxy host.docker.internal:4000 {
+			# Add common API headers
+			header_up X-Real-IP {remote}
+			header_up X-Forwarded-For {remote}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+
+	# Handle all other routes - proxy to panel
+	handle {
+		reverse_proxy host.docker.internal:3000 {
+			# Add headers for proper proxying
+			header_up X-Real-IP {remote}
+			header_up X-Forwarded-For {remote}
+			header_up X-Forwarded-Proto {scheme}
+		}
+	}
+
+	# Enable compression
+	encode gzip
+
+	# Add security headers
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+}

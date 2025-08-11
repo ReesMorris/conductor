@@ -4,7 +4,7 @@ import { disconnectDatabase, logger } from './libs';
 
 const log = logger.child({ module: 'server' });
 
-log.info(`Server starting on port ${env.PORT} in ${env.NODE_ENV} mode`);
+log.info(`Server starting on port ${env.API_PORT} in ${env.NODE_ENV} mode`);
 
 // Graceful shutdown handlers
 process.on('SIGINT', async () => {
@@ -19,6 +19,6 @@ process.on('SIGTERM', async () => {
 });
 
 export default {
-  port: env.PORT,
+  port: env.API_PORT,
   fetch: app.fetch
 };

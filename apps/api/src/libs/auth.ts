@@ -9,8 +9,14 @@ export const auth = createAuth({
   betterAuthUrl: env.BETTER_AUTH_URL,
   betterAuthSecret: env.BETTER_AUTH_SECRET,
   frontendDomain: env.FRONTEND_DOMAIN,
-  frontendUrl: env.FRONTEND_URL,
-  crossSubDomainCookies: env.NODE_ENV !== 'development'
+  frontendUrl: env.FRONTEND_URL
 }) as Auth;
+
+console.log({
+  betterAuthUrl: env.BETTER_AUTH_URL,
+  betterAuthSecret: env.BETTER_AUTH_SECRET,
+  frontendDomain: env.FRONTEND_DOMAIN,
+  frontendUrl: env.FRONTEND_URL
+});
 
 export type { Auth, Session } from '@conductor/auth';
