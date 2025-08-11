@@ -57,7 +57,7 @@ export const DeleteServerDialog: React.FC<DeleteServerDialogProps> = ({
 
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Content size='lg'>
+      <Dialog.Content>
         <Dialog.Header>
           <Dialog.Title>{formatMessage('Delete Server')}</Dialog.Title>
           <Dialog.Description>
@@ -78,7 +78,7 @@ export const DeleteServerDialog: React.FC<DeleteServerDialogProps> = ({
         )}
 
         {railwayServiceExists && (
-          <Alert color='error' className={styles.alert}>
+          <Alert color='error'>
             {formatMessage(
               "<strong>This server is still running on Railway.</strong> We don't have the ability to delete it for you, so you will need to do that manually. Please remove the server and any volumes before deleting it from {appName}.",
               {
@@ -91,7 +91,7 @@ export const DeleteServerDialog: React.FC<DeleteServerDialogProps> = ({
 
             <div className={styles.alertActions}>
               <IconButton
-                variant='outlined'
+                variant='ghost'
                 onClick={() => deleteInfoQuery.refetch()}
                 isLoading={deleteInfoQuery.isRefetching}
                 aria-label={formatMessage('Check Again')}

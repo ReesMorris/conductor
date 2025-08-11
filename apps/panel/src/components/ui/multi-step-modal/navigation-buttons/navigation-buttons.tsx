@@ -41,9 +41,10 @@ export const NavigationButtons: React.FC<NavigationButtonsProps> = ({
           <Button
             onClick={handleComplete}
             disabled={!canProceed || isFirstStep || isCompleting}
+            isLoading={isCompleting}
           >
             {completeButtonLabel || formatMessage('Complete')}
-            <ArrowRightIcon />
+            {!isCompleting && <ArrowRightIcon />}
           </Button>
         ) : (
           <Button onClick={next} disabled={!canProceed}>

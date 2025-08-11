@@ -42,13 +42,13 @@ export const styles = {
     _active: {
       borderColor: 'primary',
       backgroundColor: 'primary',
-      color: 'foreground'
+      color: 'primary.contrast'
     },
 
     _complete: {
       backgroundColor: 'primary',
       borderColor: 'primary',
-      color: 'foreground'
+      color: 'primary.contrast'
     },
 
     _incomplete: {

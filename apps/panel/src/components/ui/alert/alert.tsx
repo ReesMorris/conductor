@@ -21,8 +21,8 @@ export const Alert: React.FC<AlertProps> = ({
       <div className={classes.content}>
         <div className={classes.icon}>{icon}</div>
         <div>
-          <p className={classes.title}>{title}</p>
-          <p className={classes.description}>{children}</p>
+          <div className={classes.title}>{title}</div>
+          <div className={classes.description}>{children}</div>
         </div>
       </div>
     </div>

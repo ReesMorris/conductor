@@ -19,7 +19,6 @@ export const styles = {
   strong: css({
     display: 'block',
     marginBlockEnd: '2',
-    fontWeight: 'semibold',
-    letterSpacing: 'wide'
+    fontWeight: 'normal'
   })
 };

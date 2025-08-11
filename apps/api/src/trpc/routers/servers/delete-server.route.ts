@@ -52,10 +52,7 @@ export const deleteServer = protectedProcedure
           if (serviceExists) {
             throw new TRPCError({
               code: 'PRECONDITION_FAILED',
-              message: 'Please delete the service from Railway first',
-              cause: {
-                railwayDashboardUrl: `https://railway.com/project/${env.RAILWAY_PROJECT_ID}/service/${server.railwayServiceId}`
-              }
+              message: 'Please delete the service from Railway first'
             });
           }
         } catch (error) {

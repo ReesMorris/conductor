@@ -54,6 +54,9 @@ export const styles = {
     },
     '&[data-status="pending"]': {
       backgroundColor: 'yellow.900'
+    },
+    '&[data-status="unknown"]': {
+      backgroundColor: 'slate.500'
     }
   }),
   title: css({
@@ -75,12 +78,5 @@ export const styles = {
       color: 'foreground/50',
       textStyle: 'sm'
     }
-  }),
-  footer: css({
-    display: 'flex',
-    gap: '2'
-  }),
-  manageButton: css({
-    flexGrow: 1
   })
 };

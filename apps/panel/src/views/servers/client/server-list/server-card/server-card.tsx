@@ -1,11 +1,6 @@
-import { DeleteServerDialog } from '@/components/features/delete-server-dialog';
-import { Button, CopyInput, Heading, IconButton } from '@/components/ui';
-import { useToast } from '@/hooks/toast';
+import { CopyInput, Heading } from '@/components/ui';
 import { useFormatMessage } from '@/i18n/format-message';
-import { trpc } from '@/providers/trpc';
-import { VisuallyHidden } from '@/styled-system/jsx';
-import { PauseIcon, PlayIcon, RefreshCwIcon, TrashIcon } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { ServerActions } from './server-actions';
 import { styles } from './server-card.styles';
 import type { ServerCardProps } from './server-card.types';
 
@@ -14,134 +9,33 @@ export const ServerCard: React.FC<ServerCardProps> = ({
   onRefresh
 }) => {
   const { formatMessage } = useFormatMessage();
-  const toast = useToast();
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-
-  const startMutation = trpc.servers.start.useMutation();
-  const stopMutation = trpc.servers.stop.useMutation();
-  const restartMutation = trpc.servers.restart.useMutation();
-
-  const isRunning = server.enabled;
-  const isLoading =
-    startMutation.isPending ||
-    stopMutation.isPending ||
-    restartMutation.isPending;
-
-  const handleStart = useCallback(async () => {
-    try {
-      await startMutation.mutateAsync({ serverId: server.id });
-      toast.success(formatMessage('Server started'));
-      onRefresh?.();
-    } catch {
-      toast.error(formatMessage('Failed to start server'));
-    }
-  }, [server.id, startMutation, toast, formatMessage, onRefresh]);
-
-  const handleStop = useCallback(async () => {
-    try {
-      await stopMutation.mutateAsync({ serverId: server.id });
-      toast.success(formatMessage('Server stopped'));
-      onRefresh?.();
-    } catch {
-      toast.error(formatMessage('Failed to stop server'));
-    }
-  }, [server.id, stopMutation, toast, formatMessage, onRefresh]);
-
-  const handleRestart = useCallback(async () => {
-    try {
-      await restartMutation.mutateAsync({ serverId: server.id });
-      toast.success(formatMessage('Server restarted'));
-      onRefresh?.();
-    } catch {
-      toast.error(formatMessage('Failed to restart server'));
-    }
-  }, [server.id, restartMutation, toast, formatMessage, onRefresh]);
-
-  const handleDeleteClick = useCallback(() => {
-    setDeleteDialogOpen(true);
-  }, []);
 
   return (
-    <>
-      <DeleteServerDialog
-        open={deleteDialogOpen}
-        onOpenChange={setDeleteDialogOpen}
-        server={server}
-        onSuccess={onRefresh}
-      />
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <div className={styles.serverIcon} />
 
-      <div className={styles.card}>
-        <div className={styles.header}>
-          <div className={styles.serverIcon} />
-          <div>
-            <Heading unstyled level={2} className={styles.title}>
-              {server.name}
-            </Heading>
-            <div className={styles.type}>{server.gameId}</div>
-            <div
-              className={styles.serverStatus}
-              data-status={isRunning ? 'running' : 'stopped'}
-            />
-          </div>
-        </div>
-        <div className={styles.stats}>
-          <div data-placeholder>Metrics will show here (coming soon)</div>
-        </div>
-        {server.connectionUrl && (
-          <CopyInput
-            value={server.connectionUrl}
-            aria-label={formatMessage('Server address')}
-          />
-        )}
-        <div className={styles.footer}>
-          <IconButton
-            aria-label={formatMessage('Delete <hidden>Server</hidden>', {
-              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-            })}
-            variant='destructive'
-            disabled={isLoading}
-            onClick={handleDeleteClick}
-          >
-            <TrashIcon />
-          </IconButton>
-          {isRunning ? (
-            <IconButton
-              aria-label={formatMessage('Stop <hidden>Server</hidden>', {
-                hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-              })}
-              variant='outlined'
-              disabled={isLoading}
-              onClick={handleStop}
-            >
-              <PauseIcon />
-            </IconButton>
-          ) : (
-            <IconButton
-              aria-label={formatMessage('Start <hidden>Server</hidden>', {
-                hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-              })}
-              variant='outlined'
-              disabled={isLoading}
-              onClick={handleStart}
-            >
-              <PlayIcon />
-            </IconButton>
-          )}
-          <IconButton
-            aria-label={formatMessage('Restart <hidden>Server</hidden>', {
-              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-            })}
-            variant='outlined'
-            disabled={isLoading || !isRunning}
-            onClick={handleRestart}
-          >
-            <RefreshCwIcon />
-          </IconButton>
-          <Button className={styles.manageButton} disabled>
-            {formatMessage('Manage')} (Coming Soon)
-          </Button>
+        <div>
+          <Heading unstyled level={2} className={styles.title}>
+            {server.name}
+          </Heading>
+          <div className={styles.type}>{server.gameId}</div>
+          <div className={styles.serverStatus} data-status='unknown' />
         </div>
       </div>
-    </>
+
+      <div className={styles.stats}>
+        <div data-placeholder>Metrics will show here (coming soon)</div>
+      </div>
+
+      {server.connectionUrl && (
+        <CopyInput
+          value={server.connectionUrl}
+          aria-label={formatMessage('Server address')}
+        />
+      )}
+
+      <ServerActions server={server} onRefresh={onRefresh} />
+    </div>
   );
 };

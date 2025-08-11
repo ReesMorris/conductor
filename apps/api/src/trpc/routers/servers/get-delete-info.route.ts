@@ -60,7 +60,7 @@ export const getDeleteInfo = protectedProcedure
 
     // Generate Railway dashboard URL for the service
     const railwayDashboardUrl = server.railwayServiceId
-      ? `https://railway.com/project/${env.RAILWAY_PROJECT_ID}/service/${server.railwayServiceId}`
+      ? `https://railway.com/project/${env.RAILWAY_PROJECT_ID}/service/${server.railwayServiceId}?environmentId=${env.RAILWAY_ENVIRONMENT_ID}`
       : null;
 
     return {

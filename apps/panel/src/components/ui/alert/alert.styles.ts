@@ -46,8 +46,8 @@ export const styles = sva({
         container: {
           '--alert-text': '{colors.red.900}',
           '--alert-description': '{colors.red.900}',
-          '--alert-bg': '{colors.red.900/10}',
-          '--alert-border': '{colors.red.900/20}'
+          '--alert-bg': '{colors.red.900/5}',
+          '--alert-border': '{colors.red.900/15}'
         }
       },
       warning: {
