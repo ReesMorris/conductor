@@ -45,6 +45,12 @@ RUN --mount=type=secret,id=turbo_token \
 FROM oven/bun:1.2 AS panel-builder
 WORKDIR /app
 
+# Install OpenSSL for Prisma
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends openssl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Accept build arguments
 ARG TURBO_TEAM
 
@@ -52,8 +58,9 @@ ARG TURBO_TEAM
 COPY --from=pruner /app .
 RUN bun install --frozen-lockfile --ignore-scripts
 
-# Build the panel (Next.js app)
+# Run codegen (Panda CSS) and build the panel (Next.js app)
 RUN --mount=type=secret,id=turbo_token \
+    cd apps/panel && bun run codegen && cd ../.. && \
     TURBO_TOKEN=$(cat /run/secrets/turbo_token 2>/dev/null || echo "") \
     TURBO_TEAM=${TURBO_TEAM} \
     bun x turbo build --filter=@conductor/panel
