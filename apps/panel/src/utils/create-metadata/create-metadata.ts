@@ -21,7 +21,7 @@ export const createMetadata = (callback: MetadataCallback) => {
     }
 
     return {
-      icons: '/images/logo.webp',
+      icons: '/images/logo-round.webp',
       alternates: {
         canonical: env.FRONTEND_URL,
         languages: routing.locales
