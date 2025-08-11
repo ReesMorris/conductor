@@ -10,6 +10,7 @@
     "FRONTEND_URL",
     "API_URL",
     "DATABASE_URL",
+    "REDIS_URL",
     "BETTER_AUTH_URL",
     "BETTER_AUTH_SECRET",
     "ENCRYPTION_KEY",
@@ -26,8 +27,7 @@
     "LOG_LEVEL",
     "LOG_REQUESTS",
     "DEFAULT_THEME",
-    "TIMEZONE",
-    "REDIS_URL"
+    "TIMEZONE"
   ],
   "tasks": {
     "build": {
