@@ -57,6 +57,14 @@ export const styles = sva({
           '--alert-bg': '{colors.yellow.900/10}',
           '--alert-border': '{colors.yellow.900/20}'
         }
+      },
+      success: {
+        container: {
+          '--alert-text': '{colors.green.900}',
+          '--alert-description': '{colors.green.900}',
+          '--alert-bg': '{colors.green.900/10}',
+          '--alert-border': '{colors.green.900/20}'
+        }
       }
     }
   },

@@ -51,7 +51,7 @@ export const styles = {
       gap: '5',
       inlineSize: '[min(90vw, var(--dialog-width))]',
       maxBlockSize: '[85vh]',
-      padding: '8',
+      padding: 'var(--dialog-padding)',
       backdropFilter: 'auto',
       backdropBlur: 'xl',
       borderRadius: 'lg',
@@ -67,13 +67,16 @@ export const styles = {
     variants: {
       size: {
         md: {
-          '--dialog-width': '25rem'
+          '--dialog-width': '25rem',
+          '--dialog-padding': 'spacing.8'
         },
         lg: {
-          '--dialog-width': '40rem'
+          '--dialog-width': '40rem',
+          '--dialog-padding': 'spacing.8'
         },
         xl: {
-          '--dialog-width': '60rem'
+          '--dialog-width': '60rem',
+          '--dialog-padding': 'spacing.8'
         }
       }
     },

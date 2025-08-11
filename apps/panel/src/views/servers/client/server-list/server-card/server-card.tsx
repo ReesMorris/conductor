@@ -1,10 +1,11 @@
+import { DeleteServerDialog } from '@/components/features/delete-server-dialog';
 import { Button, CopyInput, Heading, IconButton } from '@/components/ui';
 import { useToast } from '@/hooks/toast';
 import { useFormatMessage } from '@/i18n/format-message';
 import { trpc } from '@/providers/trpc';
 import { VisuallyHidden } from '@/styled-system/jsx';
 import { PauseIcon, PlayIcon, RefreshCwIcon, TrashIcon } from 'lucide-react';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { styles } from './server-card.styles';
 import type { ServerCardProps } from './server-card.types';
 
@@ -14,18 +15,17 @@ export const ServerCard: React.FC<ServerCardProps> = ({
 }) => {
   const { formatMessage } = useFormatMessage();
   const toast = useToast();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
   const startMutation = trpc.servers.start.useMutation();
   const stopMutation = trpc.servers.stop.useMutation();
   const restartMutation = trpc.servers.restart.useMutation();
-  const deleteMutation = trpc.servers.delete.useMutation();
 
   const isRunning = server.enabled;
   const isLoading =
     startMutation.isPending ||
     stopMutation.isPending ||
-    restartMutation.isPending ||
-    deleteMutation.isPending;
+    restartMutation.isPending;
 
   const handleStart = useCallback(async () => {
     try {
@@ -57,96 +57,91 @@ export const ServerCard: React.FC<ServerCardProps> = ({
     }
   }, [server.id, restartMutation, toast, formatMessage, onRefresh]);
 
-  const handleDelete = useCallback(async () => {
-    if (
-      !window.confirm(
-        formatMessage('Are you sure you want to delete this server?')
-      )
-    ) {
-      return;
-    }
-
-    try {
-      await deleteMutation.mutateAsync({ serverId: server.id });
-      toast.success(formatMessage('Server deleted'));
-      onRefresh?.();
-    } catch {
-      toast.error(formatMessage('Failed to delete server'));
-    }
-  }, [server.id, deleteMutation, toast, formatMessage, onRefresh]);
+  const handleDeleteClick = useCallback(() => {
+    setDeleteDialogOpen(true);
+  }, []);
 
   return (
-    <div className={styles.card}>
-      <div className={styles.header}>
-        <div className={styles.serverIcon} />
-        <div>
-          <Heading unstyled level={2} className={styles.title}>
-            {server.name}
-          </Heading>
-          <div className={styles.type}>{server.gameId}</div>
-          <div
-            className={styles.serverStatus}
-            data-status={isRunning ? 'running' : 'stopped'}
+    <>
+      <DeleteServerDialog
+        open={deleteDialogOpen}
+        onOpenChange={setDeleteDialogOpen}
+        server={server}
+        onSuccess={onRefresh}
+      />
+
+      <div className={styles.card}>
+        <div className={styles.header}>
+          <div className={styles.serverIcon} />
+          <div>
+            <Heading unstyled level={2} className={styles.title}>
+              {server.name}
+            </Heading>
+            <div className={styles.type}>{server.gameId}</div>
+            <div
+              className={styles.serverStatus}
+              data-status={isRunning ? 'running' : 'stopped'}
+            />
+          </div>
+        </div>
+        <div className={styles.stats}>
+          <div data-placeholder>Metrics will show here (coming soon)</div>
+        </div>
+        {server.connectionUrl && (
+          <CopyInput
+            value={server.connectionUrl}
+            aria-label={formatMessage('Server address')}
           />
+        )}
+        <div className={styles.footer}>
+          <IconButton
+            aria-label={formatMessage('Delete <hidden>Server</hidden>', {
+              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
+            })}
+            variant='destructive'
+            disabled={isLoading}
+            onClick={handleDeleteClick}
+          >
+            <TrashIcon />
+          </IconButton>
+          {isRunning ? (
+            <IconButton
+              aria-label={formatMessage('Stop <hidden>Server</hidden>', {
+                hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
+              })}
+              variant='outlined'
+              disabled={isLoading}
+              onClick={handleStop}
+            >
+              <PauseIcon />
+            </IconButton>
+          ) : (
+            <IconButton
+              aria-label={formatMessage('Start <hidden>Server</hidden>', {
+                hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
+              })}
+              variant='outlined'
+              disabled={isLoading}
+              onClick={handleStart}
+            >
+              <PlayIcon />
+            </IconButton>
+          )}
+          <IconButton
+            aria-label={formatMessage('Restart <hidden>Server</hidden>', {
+              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
+            })}
+            variant='outlined'
+            disabled={isLoading || !isRunning}
+            onClick={handleRestart}
+          >
+            <RefreshCwIcon />
+          </IconButton>
+          <Button className={styles.manageButton} disabled>
+            {formatMessage('Manage')} (Coming Soon)
+          </Button>
         </div>
       </div>
-      <div className={styles.stats}>
-        <div data-placeholder>Metrics will show here (coming soon)</div>
-      </div>
-      {server.connectionUrl && (
-        <CopyInput
-          value={server.connectionUrl}
-          aria-label={formatMessage('Server address')}
-        />
-      )}
-      <div className={styles.footer}>
-        <IconButton
-          aria-label={formatMessage('Delete <hidden>Server</hidden>', {
-            hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-          })}
-          variant='destructive'
-          disabled={isLoading}
-          onClick={handleDelete}
-        >
-          <TrashIcon />
-        </IconButton>
-        {isRunning ? (
-          <IconButton
-            aria-label={formatMessage('Stop <hidden>Server</hidden>', {
-              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-            })}
-            variant='outlined'
-            disabled={isLoading}
-            onClick={handleStop}
-          >
-            <PauseIcon />
-          </IconButton>
-        ) : (
-          <IconButton
-            aria-label={formatMessage('Start <hidden>Server</hidden>', {
-              hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-            })}
-            variant='outlined'
-            disabled={isLoading}
-            onClick={handleStart}
-          >
-            <PlayIcon />
-          </IconButton>
-        )}
-        <IconButton
-          aria-label={formatMessage('Restart <hidden>Server</hidden>', {
-            hidden: text => <VisuallyHidden>{text}</VisuallyHidden>
-          })}
-          variant='outlined'
-          disabled={isLoading || !isRunning}
-          onClick={handleRestart}
-        >
-          <RefreshCwIcon />
-        </IconButton>
-        <Button className={styles.manageButton} disabled>
-          {formatMessage('Manage')} (Coming Soon)
-        </Button>
-      </div>
-    </div>
+    </>
   );
 };

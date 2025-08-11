@@ -93,32 +93,3 @@ export const restartServer = protectedProcedure
       message: 'Server restarted successfully'
     };
   });
-
-export const deleteServer = protectedProcedure
-  .input(serverActionSchema)
-  .mutation(async ({ ctx, input }) => {
-    const server = await prisma.gameServer.findFirst({
-      where: {
-        id: input.serverId,
-        userId: ctx.session.userId
-      }
-    });
-
-    if (!server) {
-      throw new TRPCError({
-        code: 'NOT_FOUND',
-        message: 'Server not found'
-      });
-    }
-
-    // Delete server and all connections (cascade delete)
-    await prisma.gameServer.delete({
-      where: { id: input.serverId }
-    });
-
-    // In production, this would also delete the Railway service
-    return {
-      success: true,
-      message: 'Server deleted successfully'
-    };
-  });

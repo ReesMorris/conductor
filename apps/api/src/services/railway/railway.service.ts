@@ -276,6 +276,117 @@ export class RailwayService {
     }>(GET_TCP_PROXIES_QUERY, { environmentId, serviceId });
     return response.tcpProxies;
   }
+
+  /**
+   * Stage environment changes (for deletion)
+   */
+  async stageEnvironmentChanges(input: {
+    environmentId: string;
+    serviceId: string;
+  }): Promise<{ changeId: string }> {
+    const mutation = `
+      mutation stageEnvironmentChanges($environmentId: String!, $payload: EnvironmentConfig!) {
+        environmentStageChanges(environmentId: $environmentId, input: $payload) {
+          id
+        }
+      }
+    `;
+
+    const payload = {
+      services: {
+        [input.serviceId]: {
+          isDeleted: true
+        }
+      }
+    };
+
+    try {
+      const response = await this.client.request<{
+        environmentStageChanges: { id: string };
+      }>(mutation, {
+        environmentId: input.environmentId,
+        payload
+      });
+
+      return { changeId: response.environmentStageChanges.id };
+    } catch (error: any) {
+      // Log the actual GraphQL error for debugging
+      if (error.response?.errors) {
+        console.error(
+          'GraphQL errors:',
+          JSON.stringify(error.response.errors, null, 2)
+        );
+      }
+      if (error.response?.data) {
+        console.error(
+          'GraphQL data:',
+          JSON.stringify(error.response.data, null, 2)
+        );
+      }
+      log.error(error, 'Failed to stage environment changes');
+      throw error;
+    }
+  }
+
+  /**
+   * Commit staged environment changes
+   */
+  async commitStagedChanges(input: {
+    environmentId: string;
+    message?: string;
+    skipDeploys?: boolean;
+  }): Promise<string> {
+    const mutation = `
+      mutation environmentPatchCommitStaged($environmentId: String!, $message: String, $skipDeploys: Boolean) {
+        environmentPatchCommitStaged(
+          environmentId: $environmentId
+          commitMessage: $message
+          skipDeploys: $skipDeploys
+        )
+      }
+    `;
+
+    try {
+      const response = await this.client.request<{
+        environmentPatchCommitStaged: string;
+      }>(mutation, {
+        environmentId: input.environmentId,
+        message: input.message,
+        skipDeploys: input.skipDeploys ?? false
+      });
+
+      return response.environmentPatchCommitStaged;
+    } catch (error) {
+      log.error(error, 'Failed to commit staged changes');
+      throw error;
+    }
+  }
+
+  /**
+   * Delete a service from Railway (stages and commits the deletion)
+   */
+  async deleteService(input: {
+    environmentId: string;
+    serviceId: string;
+  }): Promise<void> {
+    try {
+      // Stage the deletion
+      await this.stageEnvironmentChanges({
+        environmentId: input.environmentId,
+        serviceId: input.serviceId
+      });
+
+      // Commit the staged changes
+      await this.commitStagedChanges({
+        environmentId: input.environmentId,
+        message: 'Delete service',
+        skipDeploys: false
+      });
+    } catch (error) {
+      log.error(error, 'Failed to delete service');
+      throw error;
+    }
+  }
 }
 
 /**
