@@ -40,6 +40,16 @@ export const env = createEnv({
     RAILWAY_ENVIRONMENT_ID: z.string().describe('Railway environment ID'),
     RAILWAY_PROJECT_ID: z.string().describe('Railway project ID'),
 
+    // GitHub
+    GITHUB_REPO_OWNER: z
+      .string()
+      .describe('GitHub repository owner')
+      .default('reesmorris'),
+    GITHUB_REPO_NAME: z
+      .string()
+      .describe('GitHub repository name')
+      .default('conductor'),
+
     // Authentication
     BETTER_AUTH_URL: z.url().describe('Base URL for Better Auth'),
     BETTER_AUTH_SECRET: z

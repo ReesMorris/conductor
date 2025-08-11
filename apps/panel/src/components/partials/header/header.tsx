@@ -1,3 +1,4 @@
+import { UpdateBadge } from '@/components/features/update-badge';
 import { cx } from '@/styled-system/css';
 import { Wrapper } from '../wrapper';
 import { styles } from './header.styles';
@@ -14,6 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ className, ...props }) => {
         </div>
 
         <div className={styles.right}>
+          <UpdateBadge />
           <UserMenu />
         </div>
       </Wrapper>
