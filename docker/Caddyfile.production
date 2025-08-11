@@ -1,0 +1,25 @@
+# Caddyfile for Conductor (Production)
+# Routes /api/* to the API server and everything else to the panel
+
+:{$PORT:8080} {
+	# Handle API routes - strip /api prefix and proxy to API server
+	handle /api/* {
+		uri strip_prefix /api
+		reverse_proxy localhost:4000
+	}
+
+	# Handle all other routes - proxy to panel
+	handle {
+		reverse_proxy localhost:3000
+	}
+
+	# Enable compression
+	encode gzip
+
+	# Add security headers
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+}

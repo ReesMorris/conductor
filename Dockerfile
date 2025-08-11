@@ -81,7 +81,7 @@ COPY --from=builder --chown=conductor:conductor /app/apps/panel/.next/static /ap
 COPY --from=builder --chown=conductor:conductor /app/apps/panel/public /app/panel/apps/panel/public
 
 # Copy configuration files
-COPY --chown=conductor:conductor ./Caddyfile /etc/caddy/Caddyfile
+COPY --chown=conductor:conductor ./docker/Caddyfile.production /etc/caddy/Caddyfile
 COPY --chown=conductor:conductor ./docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY --chown=conductor:conductor ./docker/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
